@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <!--    <string name="title_machines">Maszyny</string>-->
+    <string name="title_home">Mapa</string>
+    <string name="title_menu">Menu</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- MachineTabs -->
+    <string name="tractors_tab">Ciągniki</string>
+    <string name="harvesters_tab">Kombajny</string>
+    <string name="handlers_tab">Ładowarki</string>
+
+
+    <!-- userListView -->
+    <string-array name="userListView">
+        <item>Ustawienia</item>
+        <item>O aplikacji</item>
+        <item>Pomoc</item>
+        <item>Regulamin</item>
+        <item>Wyloguj się</item>
+    </string-array>
+
+
+    <!--FieldsDetailFragments -->
+    <string name="cultivating">Uprawa i siew</string>
+    <string name="plant_protection">Ochrona roślin</string>
+    <string name="fertilization">Nawożenie</string>
+
+
+    <!-- Spiner FieldDetail -->
+    <string-array name="fieldDetailDialog">
+        <item>Uprawa</item>
+        <item>Ochrona</item>
+        <item>Nawozenie</item>
+    </string-array>
+
+    <string name="text_view">Przykładowy TextView</string>
+    <string name="edit_text">Przykładowy EditText</string>
+    <string name="button">Przykładowy Button</string>
+</resources>
