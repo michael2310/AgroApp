@@ -14,8 +14,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapters.FieldAdapter;
+import com.example.myapplication.Adapters.FieldDetailAdapterCultivation;
+import com.example.myapplication.Dialogs.DialogDetailRemove;
 import com.example.myapplication.Dialogs.DialogField;
 import com.example.myapplication.Models.Fields;
+import com.example.myapplication.Models.FieldsDetailCultivation;
+import com.example.myapplication.Services.FieldDetailRemoveService;
 import com.example.myapplication.Services.RecordService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class FieldsRecordActivity extends AppCompatActivity implements ChildEventListener, DialogField.DialogListener {
+public class FieldsRecordActivity extends AppCompatActivity implements ChildEventListener, DialogField.DialogListener, DialogDetailRemove.DialogDetailRemoveListener {
     private static final String TAG = FieldsRecordActivity.class.getSimpleName();
     
     FloatingActionButton fab;
@@ -36,7 +40,8 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
     FieldAdapter fieldAdapter;
     String email;
     String id;
-
+    String fieldIdToRemove;
+    int positionInfo;
     ArrayList<Fields> list;
     FieldAdapter adapter;
 
@@ -111,7 +116,25 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
            id = user.getUid();
         }
 
+        fieldAdapter.setListener1(new FieldAdapter.Listener() {
+            @Override
+            public void onClick(int position) {
+                String id = fieldAdapter.fieldsArrayList.get(position).getFieldId();
+
+                Toast.makeText(FieldsRecordActivity.this, id, Toast.LENGTH_SHORT).show();
+                positionInfo = position;
+                Intent serviceIntent = new Intent(FieldsRecordActivity.this, FieldDetailRemoveService.class);
+                serviceIntent.putExtra("id", id);
+                serviceIntent.putExtra("userName", email.split("@")[0]);
+                //serviceIntent.putExtra("fieldId", id);
+                startService(serviceIntent);
+               // openDialogRemove(position);
+               // removeText();
+            }
+        });
+
     }
+
 
 
 
@@ -119,6 +142,11 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
         //create instance of opendialog
         DialogField dialogField = new DialogField();
         dialogField.show(getSupportFragmentManager(), "Dialog Field");
+    }
+
+    private void openDialogRemove(int position){
+        DialogDetailRemove dialogDetailRemove = new DialogDetailRemove(position);
+        dialogDetailRemove.show(getSupportFragmentManager(), "Dialog Detail Remove");
     }
 
     @Override
@@ -142,8 +170,9 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
             Fields field = dataSnapshot.getValue(Fields.class);
             fieldAdapter.fieldsArrayList.add(field);
             fieldAdapter.notifyDataSetChanged();
-
         }
+
+
     }
 
     @Override
@@ -156,9 +185,11 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
         Log.d(TAG, "onChildRemoved: ");
         if(fieldAdapter != null){
             Fields field = dataSnapshot.getValue(Fields.class);
-            fieldAdapter.fieldsArrayList.remove(field);
+            fieldAdapter.fieldsArrayList.remove(positionInfo);
             fieldAdapter.notifyDataSetChanged();
         }
+
+
 
     }
 
@@ -185,6 +216,14 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
         startService(serviceIntent);
     }
 
+    @Override
+    public void removeText() {
+        Intent serviceIntent = new Intent(FieldsRecordActivity.this, FieldDetailRemoveService.class);
+        serviceIntent.putExtra("id", fieldIdToRemove);
+        //serviceIntent.putExtra("fieldId", id);
+        startService(serviceIntent);
+    }
+
 //    public void hash(){
 //        HashMap<String, Object> hashMap = new HashMap<>();
 //        hashMap.put("admin", id);
@@ -200,4 +239,8 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
 //            }
 //        });
 //    }
+
+    public void setId(String id){
+        this.id = id;
+    }
 }

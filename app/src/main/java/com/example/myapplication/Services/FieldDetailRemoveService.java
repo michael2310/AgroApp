@@ -27,31 +27,109 @@ public class FieldDetailRemoveService extends Service {
         }
         String id = intent.getStringExtra("id");
         String fieldId = intent.getStringExtra("fieldId");
-
-        // sprawdzić
-        FirebaseDatabase.getInstance().getReference("fieldsDetailUprawa").child(fieldId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d(TAG, "onDataChange: ");
-                if(dataSnapshot.exists()){
-                    //String id = FirebaseDatabase.getInstance().getReference().push().getKey();
-                    // FirebaseDatabase.getInstance().getReference("fields").child(userName).push().setValue(new Fields(userName, name, number, area));
-                    FirebaseDatabase.getInstance().getReference("fieldsDetailUprawa").child(fieldId).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Log.d(TAG, "onComplete: ");
-                        }
-                    });
-                    Log.d("postKey", id);
-                }
+        String userName = intent.getStringExtra("userName");
+if(fieldId != null) {
+    // sprawdzić
+    FirebaseDatabase.getInstance().getReference("fieldsDetailUprawa").child(fieldId).addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            Log.d(TAG, "onDataChange: ");
+            if (dataSnapshot.exists()) {
+                //String id = FirebaseDatabase.getInstance().getReference().push().getKey();
+                // FirebaseDatabase.getInstance().getReference("fields").child(userName).push().setValue(new Fields(userName, name, number, area));
+                FirebaseDatabase.getInstance().getReference("fieldsDetailUprawa").child(fieldId).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: ");
+                    }
+                });
+                Log.d("postKey", id);
             }
+        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: ");
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            Log.d(TAG, "onCancelled: ");
+        }
+    });
+
+    FirebaseDatabase.getInstance().getReference("fieldsDetailOchrona").child(fieldId).addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            Log.d(TAG, "onDataChange: ");
+            if (dataSnapshot.exists()) {
+                //String id = FirebaseDatabase.getInstance().getReference().push().getKey();
+                // FirebaseDatabase.getInstance().getReference("fields").child(userName).push().setValue(new Fields(userName, name, number, area));
+                FirebaseDatabase.getInstance().getReference("fieldsDetailOchrona").child(fieldId).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: ");
+                    }
+                });
+                Log.d("postKey", id);
             }
-        });
+        }
 
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            Log.d(TAG, "onCancelled: ");
+        }
+    });
+
+    FirebaseDatabase.getInstance().getReference("fieldsDetailNawozenie").child(fieldId).addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            Log.d(TAG, "onDataChange: ");
+            if (dataSnapshot.exists()) {
+                //String id = FirebaseDatabase.getInstance().getReference().push().getKey();
+                // FirebaseDatabase.getInstance().getReference("fields").child(userName).push().setValue(new Fields(userName, name, number, area));
+                FirebaseDatabase.getInstance().getReference("fieldsDetailNawozenie").child(fieldId).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: ");
+                    }
+                });
+                Log.d("postKey", id);
+            }
+        }
+
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            Log.d(TAG, "onCancelled: ");
+        }
+    });
+
+}
+
+else {
+
+    FirebaseDatabase.getInstance().getReference("fields").addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            Log.d(TAG, "onDataChange: ");
+            if (dataSnapshot.exists()) {
+                //String id = FirebaseDatabase.getInstance().getReference().push().getKey();
+                // FirebaseDatabase.getInstance().getReference("fields").child(userName).push().setValue(new Fields(userName, name, number, area));
+                FirebaseDatabase.getInstance().getReference("fields").child(userName).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: ");
+                    }
+                });
+                Log.d("postKey", id);
+            }
+        }
+
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            Log.d(TAG, "onCancelled: ");
+        }
+    });
+}
         return super.onStartCommand(intent, flags, startId);
 
     }

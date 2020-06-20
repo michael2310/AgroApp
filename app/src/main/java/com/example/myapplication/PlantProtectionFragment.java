@@ -11,10 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.example.myapplication.Adapters.FieldDetailAdapter;
-import com.example.myapplication.Models.FieldsDetail;
+
+import com.example.myapplication.Adapters.FieldDetailAdapterPlantProtection;
+import com.example.myapplication.Dialogs.DialogDetail;
+import com.example.myapplication.Dialogs.DialogDetailRemove;
+//import com.example.myapplication.Models.FieldsDetail;
+import com.example.myapplication.Models.FieldsDetailCultivation;
+import com.example.myapplication.Models.FieldsDetailPlantProtection;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -27,7 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlantProtectionFragment extends Fragment implements ChildEventListener {
+public class PlantProtectionFragment extends Fragment implements ChildEventListener, DialogDetailRemove.DialogDetailRemoveListener {
 
     private String fieldId;
     String a;
@@ -35,7 +39,13 @@ public class PlantProtectionFragment extends Fragment implements ChildEventListe
     DatabaseReference reference;
     String email;
     String id;
-    FieldDetailAdapter fieldDetailAdapter;
+
+    String plant;
+    String chemia;
+    String date;
+    int positionInfo;
+
+    FieldDetailAdapterPlantProtection fieldDetailAdapter;
     public PlantProtectionFragment() {
         // Required empty public constructor
     }
@@ -68,12 +78,44 @@ public class PlantProtectionFragment extends Fragment implements ChildEventListe
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(layoutManager);
 
-        fieldDetailAdapter = new FieldDetailAdapter();
+        fieldDetailAdapter = new FieldDetailAdapterPlantProtection();
         recyclerView.setAdapter(fieldDetailAdapter);
 
-     //   TextView textView = (TextView) view.findViewById(R.id.text);
-   //     textView.setText(fieldId);
+        fieldDetailAdapter.setListener(new FieldDetailAdapterPlantProtection.Listener() {
+            @Override
+            public void onClick(int position) {
+                plant = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getPlant();
+                // chemia = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getChemia();
+                date = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getDate();
+                id = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getId();
+                openDialog();
+            }
+        });
+
+        fieldDetailAdapter.setListener1(new FieldDetailAdapterPlantProtection.Listener() {
+            @Override
+            public void onClick(int position) {
+                id = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getId();
+                FieldsDetailActivity fieldsDetailActivity = (FieldsDetailActivity) getActivity();
+                fieldsDetailActivity.setId(id);
+                positionInfo = position;
+//                fieldDetailAdapter.fieldsDetailsArrayList.remove(position);
+//                fieldDetailAdapter.notifyItemRemoved(position);
+                openDialogRemove(position);
+            }
+        });
     }
+
+    private void openDialog() {
+        DialogDetail dialogDetail = new DialogDetail(plant, chemia, date);
+        dialogDetail.show(getChildFragmentManager(), "Dialog Detail");
+    }
+
+    private void openDialogRemove(int position){
+        DialogDetailRemove dialogDetailRemove = new DialogDetailRemove(position);
+        dialogDetailRemove.show(getChildFragmentManager(), "Dialog Detail Remove");
+    }
+
 
     @Override
     public void onStart() {
@@ -91,7 +133,7 @@ public class PlantProtectionFragment extends Fragment implements ChildEventListe
     @Override
     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
         if(fieldDetailAdapter != null) {
-            FieldsDetail field = dataSnapshot.getValue(FieldsDetail.class);
+            FieldsDetailPlantProtection field = dataSnapshot.getValue(FieldsDetailPlantProtection.class);
             fieldDetailAdapter.fieldsDetailsArrayList.add(field);
             fieldDetailAdapter.notifyDataSetChanged();
         }
@@ -104,7 +146,11 @@ public class PlantProtectionFragment extends Fragment implements ChildEventListe
 
     @Override
     public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+        if(fieldDetailAdapter != null) {
+            FieldsDetailPlantProtection field = dataSnapshot.getValue(FieldsDetailPlantProtection.class);
+            fieldDetailAdapter.fieldsDetailsArrayList.remove(positionInfo);
+            fieldDetailAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -114,6 +160,11 @@ public class PlantProtectionFragment extends Fragment implements ChildEventListe
 
     @Override
     public void onCancelled(@NonNull DatabaseError databaseError) {
+
+    }
+
+    @Override
+    public void removeText() {
 
     }
 

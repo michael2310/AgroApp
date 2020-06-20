@@ -20,7 +20,7 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
     public ArrayList<Fields> fieldsArrayList = new ArrayList<>();
 
     private Listener listener;
-
+    private Listener listener1;
 
     //interfejs
     public interface Listener{
@@ -67,6 +67,16 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
             }
         });
 
+        cardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(listener1 != null){
+                    listener1.onClick(position);
+                }
+                return false;
+            }
+        });
+
 
         //holder.itemView
     }
@@ -80,7 +90,9 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
         this.listener = listener;
     }
 
-
+    public void setListener1 (Listener listener1){
+        this.listener1 = listener1;
+    }
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private CardView cardView;

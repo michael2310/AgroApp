@@ -6,33 +6,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.myapplication.Adapters.FieldDetailAdapter;
+import com.example.myapplication.Dialogs.DialogCultivation;
 import com.example.myapplication.Dialogs.DialogDetailRemove;
-import com.example.myapplication.Dialogs.DialogFieldDetail;
+import com.example.myapplication.Dialogs.DialogFertilization;
+import com.example.myapplication.Dialogs.DialogPlantProtection;
 import com.example.myapplication.Services.FieldDetailRemoveService;
 import com.example.myapplication.Services.FieldDetailService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class FieldsDetailActivity extends AppCompatActivity implements DialogFieldDetail.DialogListener, DialogDetailRemove.DialogDetailRemoveListener {
+public class FieldsDetailActivity extends AppCompatActivity implements DialogDetailRemove.DialogDetailRemoveListener, DialogCultivation.DialogListener, DialogPlantProtection.DialogListener, DialogFertilization.DialogListener {
 
     // do odczyywania pozycji na liscie
     public static final String EXTRA_FIELD_ID = "fieldId";
@@ -65,7 +57,19 @@ public class FieldsDetailActivity extends AppCompatActivity implements DialogFie
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDialog();
+               // openDialog();
+                //openDialogChooseCategory();
+                int number = pager.getCurrentItem();
+
+                if(number == 0){
+                    openDialogCultivation();
+                }
+                else if(number == 1){
+                    openDialogPlantProtection();
+                }
+                else if (number == 2){
+                    openDialogFertilization();
+                }
             }
         });
         Intent intent = getIntent();
@@ -87,25 +91,27 @@ public class FieldsDetailActivity extends AppCompatActivity implements DialogFie
     }
 
 
-    private void openDialog() {
+
+
+    private void openDialogCultivation () {
         //create instance of opendialog
-        DialogFieldDetail dialogFieldDetail = new DialogFieldDetail();
-        dialogFieldDetail.show(getSupportFragmentManager(), "Dialog Field Detail");
+        DialogCultivation dialogCultivation = new DialogCultivation();
+        dialogCultivation.show(getSupportFragmentManager(), "Dialog Field Detail");
     }
 
-    @Override
-    public void applyTexts(String plant, String chemia, String date, String category) {
-        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
-        intent.putExtra("fieldId", fieldId);
-        intent.putExtra("userName", email.split("@")[0]);
-        intent.putExtra("category", category);
-        intent.putExtra("plant", plant);
-        intent.putExtra("chemia", chemia);
-        intent.putExtra("date", date);
-        startService(intent);
-        //FirebaseDatabase.getInstance().getReference("fieldsDetail").child(fieldId).push().setValue(new FieldsDetail(email.split("@")[0], plant, chemia, date, fieldId, category));
-
+    private void openDialogFertilization() {
+        //create instance of opendialog
+        DialogFertilization dialogFertilization = new DialogFertilization();
+        dialogFertilization.show(getSupportFragmentManager(), "Dialog Field Detail");
     }
+
+    private void openDialogPlantProtection() {
+        //create instance of opendialog
+        DialogPlantProtection dialogPlantProtection = new DialogPlantProtection();
+        dialogPlantProtection.show(getSupportFragmentManager(), "Dialog Field Detail");
+    }
+
+
 
     @Override
     public void removeText() {
@@ -113,6 +119,49 @@ public class FieldsDetailActivity extends AppCompatActivity implements DialogFie
         serviceIntent.putExtra("id", id);
         serviceIntent.putExtra("fieldId", fieldId);
         startService(serviceIntent);
+    }
+
+
+    @Override
+    public void applyTextsPlantProtection(String plant, String chemia, String dose, String developmentPhase, String date, String category) {
+        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
+        intent.putExtra("fieldId", fieldId);
+        intent.putExtra("userName", email.split("@")[0]);
+        intent.putExtra("category", category);
+        intent.putExtra("plant", plant);
+        intent.putExtra("chemia", chemia);
+        intent.putExtra("dose", dose);
+        intent.putExtra("developmentPhase", developmentPhase);
+        intent.putExtra("date", date);
+        startService(intent);
+    }
+
+    @Override
+    public void applyTextsFertilization(String plant, String chemia, String dose, String developmentPhase, String date, String category) {
+        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
+        intent.putExtra("fieldId", fieldId);
+        intent.putExtra("userName", email.split("@")[0]);
+        intent.putExtra("category", category);
+        intent.putExtra("plant", plant);
+        intent.putExtra("chemia", chemia);
+        intent.putExtra("dose", dose);
+        intent.putExtra("developmentPhase", developmentPhase);
+        intent.putExtra("date", date);
+        startService(intent);
+    }
+
+    @Override
+    public void applyTextsCultivation(String plant, String cultivationType, String sowingType, String date, String info, String category) {
+        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
+        intent.putExtra("fieldId", fieldId);
+        intent.putExtra("userName", email.split("@")[0]);
+        intent.putExtra("category", category);
+        intent.putExtra("plant", plant);
+        intent.putExtra("cultivationType", cultivationType);
+        intent.putExtra("sowingType", sowingType);
+        intent.putExtra("date", date);
+        intent.putExtra("info", info);
+        startService(intent);
     }
 
     class SectionsPagerAdapter extends FragmentPagerAdapter {

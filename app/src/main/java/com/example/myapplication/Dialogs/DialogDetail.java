@@ -17,9 +17,9 @@ import com.example.myapplication.R;
 
 public class DialogDetail extends AppCompatDialogFragment {
 
-    public DialogDetail(String plant, String chemia, String info){
+    public DialogDetail(String plant, String chemicals, String info){
         this.plant = plant;
-        this.chemia = chemia;
+        this.chemicals = chemicals;
         this.info = info;
     }
 
@@ -28,7 +28,9 @@ public class DialogDetail extends AppCompatDialogFragment {
     TextView textViewDate;
 
     String plant;
-    String chemia;
+    String cultivationType;
+    String sowingType;
+    String chemicals;
     String info;
 
 
@@ -50,7 +52,7 @@ public class DialogDetail extends AppCompatDialogFragment {
         textViewDate = view.findViewById(R.id.info);
 
         textViewPlant.setText("Roślina: " +plant);
-        textViewChemia.setText("Środek: " + chemia);
+        textViewChemia.setText("Środek: " + chemicals);
         textViewDate.setText("Informacje: " + info);
 
 

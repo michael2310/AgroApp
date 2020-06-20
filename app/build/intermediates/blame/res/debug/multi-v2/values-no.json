@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Android Studio Projects\\MyApplication\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-no\\values-no.xml",
+            "outputFile": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-no\\values-no.xml",
             "map": [
                 {
                     "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\4a4efc5a6b6addac42000861933cf183\\jetified-arcgis-android-100.7.0\\res\\values-no\\values-no.xml",

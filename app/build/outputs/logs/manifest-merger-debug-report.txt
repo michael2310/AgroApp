@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:2:1-61:12
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:2:1-62:12
 MERGED from [com.esri.arcgisruntime:arcgis-android:100.7.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\4a4efc5a6b6addac42000861933cf183\jetified-arcgis-android-100.7.0\AndroidManifest.xml:2:1-10:12
 MERGED from [androidx.navigation:navigation-ui:2.2.2] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\9d9ba218892b14f546288a3e7bae8a74\navigation-ui-2.2.2\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\b85b7e0481f3222852aee40ec4c0fa26\material-1.1.0\AndroidManifest.xml:17:1-24:12
@@ -79,25 +79,25 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\mi
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\468ce79092f15593026d29383e329c87\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\b55ae32354d6a01c1a54b392cc10599e\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:protolite-well-known-types:15.0.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\ef3d53e002886760b451cebaaaddd815\jetified-protolite-well-known-types-15.0.0\AndroidManifest.xml:2:1-11:12
-INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:2:1-61:12
+INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:2:1-62:12
 	package
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:3:5-40
-		INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
-		INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:3:5-40
+		INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:2:1-61:12
-		INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:2:1-62:12
+		INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:2:1-61:12
-		INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:2:1-62:12
+		INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:5:5-67
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:5:5-67
 MERGED from [com.firebaseui:firebase-ui-firestore:4.1.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\7db8bab4512b37abd7790c00abddac36\jetified-firebase-ui-firestore-4.1.0\AndroidManifest.xml:11:5-67
 MERGED from [com.firebaseui:firebase-ui-firestore:4.1.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\7db8bab4512b37abd7790c00abddac36\jetified-firebase-ui-firestore-4.1.0\AndroidManifest.xml:11:5-67
 MERGED from [com.google.firebase:firebase-database:19.3.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\f41aa971764c4aef5caf485efddbcecd\jetified-firebase-database-19.3.0\AndroidManifest.xml:26:5-67
@@ -117,9 +117,9 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:17.4.0] C:\Us
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.4.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\63f20461d7e30c07bf5dd435a8c26d61\jetified-play-services-measurement-sdk-api-17.4.0\AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.4.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\63f20461d7e30c07bf5dd435a8c26d61\jetified-play-services-measurement-sdk-api-17.4.0\AndroidManifest.xml:23:5-67
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:5:22-64
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:5:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:6:5-79
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:6:5-79
 MERGED from [com.google.firebase:firebase-database:19.3.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\f41aa971764c4aef5caf485efddbcecd\jetified-firebase-database-19.3.0\AndroidManifest.xml:25:5-79
 MERGED from [com.google.firebase:firebase-database:19.3.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\f41aa971764c4aef5caf485efddbcecd\jetified-firebase-database-19.3.0\AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\f25cb47cdff75fe8ba838175dae7fbed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:23:5-79
@@ -137,33 +137,33 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:17.4.0] C:\Us
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.4.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\63f20461d7e30c07bf5dd435a8c26d61\jetified-play-services-measurement-sdk-api-17.4.0\AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.4.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\63f20461d7e30c07bf5dd435a8c26d61\jetified-play-services-measurement-sdk-api-17.4.0\AndroidManifest.xml:24:5-79
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:6:22-76
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:6:22-76
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:7:5-81
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:7:5-81
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:7:22-78
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:7:22-78
 uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:8:5-98
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:8:5-98
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:8:22-95
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:8:22-95
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:9:5-81
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:9:5-81
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:9:22-78
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:9:22-78
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:10:5-79
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:10:5-79
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:10:22-76
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:10:22-76
 uses-feature#0x00020000
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:12:5-14:35
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:12:5-14:35
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\f25cb47cdff75fe8ba838175dae7fbed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\f25cb47cdff75fe8ba838175dae7fbed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
 	android:glEsVersion
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:13:9-41
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:13:9-41
 	android:required
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:14:9-32
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:14:9-32
 application
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:16:5-59:19
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:16:5-60:19
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\b85b7e0481f3222852aee40ec4c0fa26\material-1.1.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.1.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\b85b7e0481f3222852aee40ec4c0fa26\material-1.1.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\99263ae0355f528cdb252f81976d504b\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
@@ -219,101 +219,101 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\mi
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\b2b51ad2129f7ae88186ad90508b79ab\core-1.1.0\AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:21:9-35
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:21:9-35
 	android:label
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:19:9-41
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:19:9-41
 	android:roundIcon
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:20:9-54
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:20:9-54
 	android:icon
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:18:9-43
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:18:9-43
 	android:allowBackup
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:17:9-35
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:17:9-35
 	android:theme
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:22:9-40
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:22:9-40
 activity#com.example.myapplication.WorkersActivity
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:24:9-25:67
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:23:9-25:58
 	android:parentActivityName
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:25:13-55
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:25:13-55
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:24:19-50
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:24:13-44
 activity#com.example.myapplication.OptimalizationActivity
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:26:9-27:57
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:26:9-28:58
 	android:parentActivityName
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:27:13-55
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:28:13-55
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:26:19-57
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:27:13-51
 meta-data#com.google.android.geo.API_KEY
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:29:9-31:47
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:30:9-32:47
 	android:value
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:31:13-44
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:32:13-44
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:30:13-58
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:31:13-58
 activity#com.example.myapplication.UserDetailActivity
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:33:9-35:37
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:34:9-36:37
 	android:label
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:35:13-34
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:36:13-34
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:34:13-47
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:35:13-47
 activity#com.example.myapplication.FieldsDetailActivity
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:36:9-58
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:37:9-58
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:36:19-55
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:37:19-55
 activity#com.example.myapplication.FieldsRecordActivity
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:37:9-58
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:38:9-58
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:37:19-55
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:38:19-55
 activity#com.example.myapplication.RegisterActivity
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:38:9-54
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:39:9-54
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:38:19-51
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:39:19-51
 activity#com.example.myapplication.LoginActivity
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:39:9-41:48
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:40:9-42:48
 	android:label
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:41:13-45
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:42:13-45
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:40:13-42
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:41:13-42
 activity#com.example.myapplication.MainActivity
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:42:9-50:20
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:43:9-51:20
 	android:label
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:44:13-45
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:45:13-45
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:43:13-41
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:44:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:45:13-49:29
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:46:13-50:29
 action#android.intent.action.MAIN
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:46:17-69
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:47:17-69
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:46:25-66
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:47:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:48:17-77
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:49:17-77
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:48:27-74
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:49:27-74
 activity#com.example.myapplication.ui.machines.MachniesActivity
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:51:9-52:57
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:52:9-54:58
 	android:parentActivityName
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:52:13-55
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:54:13-55
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:51:19-63
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:53:13-57
 service#com.example.myapplication.Services.RecordService
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:55:9-59
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:56:9-59
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:55:18-56
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:56:18-56
 service#com.example.myapplication.Services.FieldDetailService
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:56:9-64
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:57:9-64
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:56:18-61
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:57:18-61
 service#com.example.myapplication.Services.FieldDetailRemoveService
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:57:9-70
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:58:9-70
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:57:18-67
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:58:18-67
 service#com.example.myapplication.Services.WorkersService
-ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:58:9-60
+ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:59:9-60
 	android:name
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml:58:18-57
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:59:18-57
 uses-sdk
-INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
-INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
+INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
+INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
 MERGED from [com.esri.arcgisruntime:arcgis-android:100.7.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\4a4efc5a6b6addac42000861933cf183\jetified-arcgis-android-100.7.0\AndroidManifest.xml:6:5-8:41
 MERGED from [com.esri.arcgisruntime:arcgis-android:100.7.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\4a4efc5a6b6addac42000861933cf183\jetified-arcgis-android-100.7.0\AndroidManifest.xml:6:5-8:41
 MERGED from [androidx.navigation:navigation-ui:2.2.2] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\9d9ba218892b14f546288a3e7bae8a74\navigation-ui-2.2.2\AndroidManifest.xml:20:5-22:41
@@ -464,16 +464,16 @@ MERGED from [androidx.print:print:1.0.0] C:\Users\michu\.gradle\caches\transform
 MERGED from [androidx.print:print:1.0.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\b55ae32354d6a01c1a54b392cc10599e\print-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:protolite-well-known-types:15.0.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\ef3d53e002886760b451cebaaaddd815\jetified-protolite-well-known-types-15.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:protolite-well-known-types:15.0.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\ef3d53e002886760b451cebaaaddd815\jetified-protolite-well-known-types-15.0.0\AndroidManifest.xml:7:5-9:41
-INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
-INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
+INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
+INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
-		INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
-		ADDED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
-		INJECTED from D:\Android Studio Projects\MyApplication\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
+		ADDED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml
 activity#com.google.firebase.auth.internal.FederatedSignInActivity
 ADDED from [com.google.firebase:firebase-auth:19.3.1] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\35d59384e5f94fa3a8b66cea2c1872ae\jetified-firebase-auth-19.3.1\AndroidManifest.xml:24:9-31:50
 	android:excludeFromRecents

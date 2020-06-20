@@ -18,9 +18,11 @@ import com.example.myapplication.R;
 
 public class DialogFieldDetail extends DialogFragment {
     private EditText editTextPlant;
-    private EditText editTextChemia;
+    private EditText editTextChemical;
+    private EditText editTextDose;
+    private EditText editTextDevelopmentPhase;
     private EditText editTextDate;
-    private Spinner spinner;
+
     private DialogListener listener;
 
     @NonNull
@@ -40,17 +42,21 @@ public class DialogFieldDetail extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String plant = editTextPlant.getText().toString();
-                String chemia = editTextChemia.getText().toString();
+                String chemia = editTextChemical.getText().toString();
+                String dose = editTextDose.getText().toString();
+                String developmentPhase = editTextDevelopmentPhase.getText().toString();
                 String date = editTextDate.getText().toString();
-                String category = String.valueOf(spinner.getSelectedItem());
-                listener.applyTexts(plant, chemia, date, category);
+                String category = "Ochrona";
+                listener.applyTexts(plant, chemia, dose, developmentPhase, date, category);
             }
         });
 
         editTextPlant = view.findViewById(R.id.editTextPlant);
-        editTextChemia = view.findViewById(R.id.editTextChemia);
+        editTextChemical = view.findViewById(R.id.editTextChemical);
+        editTextDose = view.findViewById(R.id.editTextDose);
+        editTextDevelopmentPhase = view.findViewById(R.id.editTextDevelopmentPhase);
         editTextDate = view.findViewById(R.id.editTextDate);
-        spinner = view.findViewById(R.id.spinner);
+
 
 
         return builder.create();
@@ -68,6 +74,6 @@ public class DialogFieldDetail extends DialogFragment {
     }
 
     public interface DialogListener{
-        void applyTexts(String plant, String chemia, String date, String category);
+        void applyTexts(String plant, String chemia, String dose, String developmentPhase, String date, String category);
     }
 }

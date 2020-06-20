@@ -18,14 +18,36 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editTextChemia"
+        android:id="@+id/editTextChemical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Środek"
+        android:hint="Środek chemiczny"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPlant">
+    </EditText>
+
+    <EditText
+        android:id="@+id/editTextDose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Dawka"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextChemical">
+    </EditText>
+
+    <EditText
+        android:id="@+id/editTextDevelopmentPhase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Faza rozwojowa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDose">
     </EditText>
 
     <EditText
@@ -33,20 +55,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Informacje"
+        android:hint="Data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextChemia">
+        app:layout_constraintTop_toBottomOf="@+id/editTextDevelopmentPhase">
     </EditText>
 
-    <Spinner
-        android:id="@+id/spinner"
+    <EditText
+        android:id="@+id/editTextInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:entries="@array/fieldDetailDialog"
+        android:hint="Informacje"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate">
+    </EditText>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

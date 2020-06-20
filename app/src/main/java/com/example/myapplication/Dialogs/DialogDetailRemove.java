@@ -12,18 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.fragment.app.DialogFragment;
 
-import com.example.myapplication.Adapters.FieldDetailAdapter;
-import com.example.myapplication.Models.FieldsDetail;
+import com.example.myapplication.Adapters.FieldDetailAdapterCultivation;
 import com.example.myapplication.R;
 
 public class DialogDetailRemove extends AppCompatDialogFragment {
 
     TextView textViewInfo;
     DialogDetailRemoveListener listener;
-    FieldDetailAdapter fieldDetailAdapter;
+    FieldDetailAdapterCultivation fieldDetailAdapter;
     String id;
+    String category;
     int position;
 
     public DialogDetailRemove(int position){
@@ -37,7 +36,7 @@ public class DialogDetailRemove extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog_detail_remove, null);
 
-        fieldDetailAdapter = new FieldDetailAdapter();
+        fieldDetailAdapter = new FieldDetailAdapterCultivation();
 
         builder.setView(view).setTitle("Informacje o wpisie").setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
             @Override
@@ -70,4 +69,5 @@ public class DialogDetailRemove extends AppCompatDialogFragment {
     public interface DialogDetailRemoveListener{
         void removeText();
     }
+
 }

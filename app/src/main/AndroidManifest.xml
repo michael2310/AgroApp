@@ -20,11 +20,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".WorkersActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".OptimalizationActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".WorkersActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".OptimalizationActivity"
+            android:parentActivityName=".MainActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -48,9 +49,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.machines.MachniesActivity"
-            android:parentActivityName=".MainActivity"/>
-
+        <activity
+            android:name=".ui.machines.MachniesActivity"
+            android:parentActivityName=".MainActivity" />
 
         <service android:name=".Services.RecordService" />
         <service android:name=".Services.FieldDetailService" />

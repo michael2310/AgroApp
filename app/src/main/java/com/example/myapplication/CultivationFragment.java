@@ -1,36 +1,23 @@
 package com.example.myapplication;
 
-import android.content.ClipData;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.myapplication.Adapters.FieldDetailAdapter;
+import com.example.myapplication.Adapters.FieldDetailAdapterCultivation;
 import com.example.myapplication.Dialogs.DialogDetail;
 import com.example.myapplication.Dialogs.DialogDetailRemove;
-import com.example.myapplication.Dialogs.DialogFieldDetail;
-import com.example.myapplication.Models.FieldsDetail;
-import com.example.myapplication.Services.FieldDetailRemoveService;
-import com.example.myapplication.Services.FieldDetailService;
-import com.example.myapplication.Services.RecordService;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.myapplication.Models.FieldsDetailCultivation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -51,7 +38,7 @@ public class CultivationFragment extends Fragment implements ChildEventListener,
     DatabaseReference reference;
     String email;
     String id;
-    FieldDetailAdapter fieldDetailAdapter;
+    FieldDetailAdapterCultivation fieldDetailAdapter;
 
     String plant;
     String chemia;
@@ -90,21 +77,20 @@ public class CultivationFragment extends Fragment implements ChildEventListener,
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(layoutManager);
 
-        fieldDetailAdapter = new FieldDetailAdapter();
+        fieldDetailAdapter = new FieldDetailAdapterCultivation();
         recyclerView.setAdapter(fieldDetailAdapter);
 
-        fieldDetailAdapter.setListener(new FieldDetailAdapter.Listener() {
+        fieldDetailAdapter.setListener(new FieldDetailAdapterCultivation.Listener() {
             @Override
             public void onClick(int position) {
                 plant = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getPlant();
-                chemia = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getChemia();
                 date = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getDate();
                 id = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getId();
                 openDialog();
             }
         });
 
-        fieldDetailAdapter.setListener1(new FieldDetailAdapter.Listener() {
+        fieldDetailAdapter.setListener1(new FieldDetailAdapterCultivation.Listener() {
             @Override
             public void onClick(int position) {
                 id = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getId();
@@ -146,7 +132,7 @@ public class CultivationFragment extends Fragment implements ChildEventListener,
     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
         Log.d(TAG, "onChildAdded:");
         if(fieldDetailAdapter != null) {
-            FieldsDetail field = dataSnapshot.getValue(FieldsDetail.class);
+            FieldsDetailCultivation field = dataSnapshot.getValue(FieldsDetailCultivation.class);
             fieldDetailAdapter.fieldsDetailsArrayList.add(field);
             fieldDetailAdapter.notifyDataSetChanged();
         }
@@ -160,7 +146,7 @@ public class CultivationFragment extends Fragment implements ChildEventListener,
     public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
         Log.d(TAG, "onChildRemoved: ");
         if(fieldDetailAdapter != null) {
-            FieldsDetail field = dataSnapshot.getValue(FieldsDetail.class);
+            FieldsDetailCultivation field = dataSnapshot.getValue(FieldsDetailCultivation.class);
             fieldDetailAdapter.fieldsDetailsArrayList.remove(positionInfo);
             fieldDetailAdapter.notifyDataSetChanged();
         }

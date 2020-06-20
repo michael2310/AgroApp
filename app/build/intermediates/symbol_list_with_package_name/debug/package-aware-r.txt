@@ -1651,8 +1651,11 @@ id direct
 id disableHome
 id dropdown_menu
 id editTextArea
-id editTextChemia
+id editTextChemical
+id editTextCultivationType
 id editTextDate
+id editTextDevelopmentPhase
+id editTextDose
 id editTextEmail
 id editTextInfo
 id editTextLastname
@@ -1662,6 +1665,7 @@ id editTextNumber
 id editTextPassword
 id editTextPlant
 id editTextRepeatPassword
+id editTextSowingType
 id editTextSurname
 id edit_query
 id employee_recycler
@@ -1828,7 +1832,6 @@ id snackbar_text
 id snap
 id snapMargins
 id spacer
-id spinner
 id split_action_bar
 id spread
 id spread_inside
@@ -2008,6 +2011,7 @@ layout fragment_menu
 layout fragment_plant_protection
 layout fragment_tractors
 layout layout_dialog
+layout layout_dialog_cultivation_detail
 layout layout_dialog_detail
 layout layout_dialog_detail_remove
 layout layout_dialog_field_detail

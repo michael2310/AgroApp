@@ -12,8 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myapplication.Adapters.FieldDetailAdapter;
-import com.example.myapplication.Models.FieldsDetail;
+
+import com.example.myapplication.Adapters.FieldDetailAdapterFertilization;
+import com.example.myapplication.Dialogs.DialogDetail;
+import com.example.myapplication.Dialogs.DialogDetailRemove;
+import com.example.myapplication.Models.FieldsDetailCultivation;
+import com.example.myapplication.Models.FieldsDetailFertilization;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -26,7 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FertilizationFragment extends Fragment implements ChildEventListener {
+public class FertilizationFragment extends Fragment implements ChildEventListener, DialogDetailRemove.DialogDetailRemoveListener {
 
     private String fieldId;
     String a;
@@ -34,7 +38,13 @@ public class FertilizationFragment extends Fragment implements ChildEventListene
     DatabaseReference reference;
     String email;
     String id;
-    FieldDetailAdapter fieldDetailAdapter;
+    FieldDetailAdapterFertilization fieldDetailAdapter;
+
+    String plant;
+    String chemia;
+    String date;
+    int positionInfo;
+
 
     public FertilizationFragment() {
         // Required empty public constructor
@@ -69,8 +79,42 @@ public class FertilizationFragment extends Fragment implements ChildEventListene
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(layoutManager);
 
-        fieldDetailAdapter = new FieldDetailAdapter();
+        fieldDetailAdapter = new FieldDetailAdapterFertilization();
         recyclerView.setAdapter(fieldDetailAdapter);
+
+        fieldDetailAdapter.setListener(new FieldDetailAdapterFertilization.Listener(){
+            @Override
+            public void onClick(int position) {
+                plant = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getPlant();
+               // chemia = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getChemia();
+                date = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getDate();
+                id = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getId();
+                openDialog();
+            }
+        });
+
+        fieldDetailAdapter.setListener1(new FieldDetailAdapterFertilization.Listener() {
+            @Override
+            public void onClick(int position) {
+                id = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getId();
+                FieldsDetailActivity fieldsDetailActivity = (FieldsDetailActivity) getActivity();
+                fieldsDetailActivity.setId(id);
+                positionInfo = position;
+//                fieldDetailAdapter.fieldsDetailsArrayList.remove(position);
+//                fieldDetailAdapter.notifyItemRemoved(position);
+                openDialogRemove(position);
+            }
+        });
+    }
+
+    private void openDialog() {
+        DialogDetail dialogDetail = new DialogDetail(plant, chemia, date);
+        dialogDetail.show(getChildFragmentManager(), "Dialog Detail");
+    }
+
+    private void openDialogRemove(int position){
+        DialogDetailRemove dialogDetailRemove = new DialogDetailRemove(position);
+        dialogDetailRemove.show(getChildFragmentManager(), "Dialog Detail Remove");
     }
 
     @Override
@@ -89,7 +133,7 @@ public class FertilizationFragment extends Fragment implements ChildEventListene
     @Override
     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
             if(fieldDetailAdapter != null) {
-            FieldsDetail field = dataSnapshot.getValue(FieldsDetail.class);
+            FieldsDetailFertilization field = dataSnapshot.getValue(FieldsDetailFertilization.class);
             fieldDetailAdapter.fieldsDetailsArrayList.add(field);
             fieldDetailAdapter.notifyDataSetChanged();
         }
@@ -103,7 +147,11 @@ public class FertilizationFragment extends Fragment implements ChildEventListene
 
     @Override
     public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+        if(fieldDetailAdapter != null) {
+            FieldsDetailFertilization field = dataSnapshot.getValue(FieldsDetailFertilization.class);
+            fieldDetailAdapter.fieldsDetailsArrayList.remove(positionInfo);
+            fieldDetailAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -113,6 +161,11 @@ public class FertilizationFragment extends Fragment implements ChildEventListene
 
     @Override
     public void onCancelled(@NonNull DatabaseError databaseError) {
+
+    }
+
+    @Override
+    public void removeText() {
 
     }
 }

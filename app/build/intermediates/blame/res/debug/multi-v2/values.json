@@ -1,46 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Android Studio Projects\\MyApplication\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "D:\\Android Studio Projects\\MyApplication\\app\\src\\main\\res\\values\\map_api.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "57",
-                        "endLines": "4",
-                        "endColumns": "13",
-                        "endOffsets": "165"
-                    },
-                    "to": {
-                        "startLines": "2872",
-                        "startColumns": "4",
-                        "startOffsets": "292507",
-                        "endLines": "2874",
-                        "endColumns": "13",
-                        "endOffsets": "292613"
-                    }
-                },
-                {
-                    "source": "D:\\Android Studio Projects\\MyApplication\\app\\src\\main\\res\\values\\dimens.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "90,149",
-                        "endColumns": "57,55",
-                        "endOffsets": "143,200"
-                    },
-                    "to": {
-                        "startLines": "431,432",
-                        "startColumns": "4,4",
-                        "startOffsets": "25329,25387",
-                        "endColumns": "57,55",
-                        "endOffsets": "25382,25438"
-                    }
-                },
-                {
-                    "source": "D:\\Android Studio Projects\\MyApplication\\app\\src\\main\\res\\values\\colors.xml",
+                    "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\values\\colors.xml",
                     "from": {
                         "startLines": "5,4,2,3",
                         "startColumns": "4,4,4,4",
@@ -73,25 +37,6 @@
                         "endLines": "725,766,7949,7953",
                         "endColumns": "56,63,24,24",
                         "endOffsets": "44478,46509,622231,622380"
-                    }
-                },
-                {
-                    "source": "D:\\Android Studio Projects\\MyApplication\\app\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "33,17,1,41,27,40,29,13,12,7,28,39,3,4,11",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "1039,572,17,1318,833,1258,949,489,436,284,888,1198,133,178,385",
-                        "endLines": "37,23,1,41,27,40,29,13,12,7,28,39,3,4,11",
-                        "endColumns": "19,19,51,53,53,58,51,50,51,69,59,58,43,43,49",
-                        "endOffsets": "1190,788,64,1367,882,1312,996,535,483,349,943,1252,172,217,430"
-                    },
-                    "to": {
-                        "startLines": "2,7,821,2829,2853,2855,2860,2867,2868,2869,2916,2920,2921,2922,2923",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "150,302,50134,287813,290627,290826,291353,292027,292078,292130,299754,300012,300071,300115,300159",
-                        "endLines": "6,13,821,2829,2853,2855,2860,2867,2868,2869,2916,2920,2921,2922,2923",
-                        "endColumns": "19,19,51,53,53,58,51,50,51,69,59,58,43,43,49",
-                        "endOffsets": "297,512,50181,287862,290676,290880,291400,292073,292125,292195,299809,300066,300110,300154,300204"
                     }
                 },
                 {
@@ -133,6 +78,25 @@
                     }
                 },
                 {
+                    "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "33,17,1,41,27,40,29,13,12,7,28,39,3,4,11",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1039,572,17,1318,833,1258,949,489,436,284,888,1198,133,178,385",
+                        "endLines": "37,23,1,41,27,40,29,13,12,7,28,39,3,4,11",
+                        "endColumns": "19,19,51,53,53,58,51,50,51,69,59,58,43,43,49",
+                        "endOffsets": "1190,788,64,1367,882,1312,996,535,483,349,943,1252,172,217,430"
+                    },
+                    "to": {
+                        "startLines": "2,7,821,2829,2853,2855,2860,2867,2868,2869,2916,2920,2921,2922,2923",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "150,302,50134,287813,290627,290826,291353,292027,292078,292130,299754,300012,300071,300115,300159",
+                        "endLines": "6,13,821,2829,2853,2855,2860,2867,2868,2869,2916,2920,2921,2922,2923",
+                        "endColumns": "19,19,51,53,53,58,51,50,51,69,59,58,43,43,49",
+                        "endOffsets": "297,512,50181,287862,290676,290880,291400,292073,292125,292195,299809,300066,300110,300154,300204"
+                    }
+                },
+                {
                     "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\31792b341daae454da09525b8d30698b\\coordinatorlayout-1.1.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,6,16",
@@ -149,6 +113,23 @@
                         "endLines": "49,6425,7682,7771",
                         "endColumns": "60,12,24,24",
                         "endOffsets": "2260,532083,606826,612037"
+                    }
+                },
+                {
+                    "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\values\\dimens.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "90,149",
+                        "endColumns": "57,55",
+                        "endOffsets": "143,200"
+                    },
+                    "to": {
+                        "startLines": "431,432",
+                        "startColumns": "4,4",
+                        "startOffsets": "25329,25387",
+                        "endColumns": "57,55",
+                        "endOffsets": "25382,25438"
                     }
                 },
                 {
@@ -224,25 +205,6 @@
                     }
                 },
                 {
-                    "source": "D:\\Android Studio Projects\\MyApplication\\app\\src\\main\\res\\values\\styles.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "57",
-                        "endLines": "8",
-                        "endColumns": "12",
-                        "endOffsets": "358"
-                    },
-                    "to": {
-                        "startLines": "2937",
-                        "startColumns": "4",
-                        "startOffsets": "301213",
-                        "endLines": "2942",
-                        "endColumns": "12",
-                        "endOffsets": "301509"
-                    }
-                },
-                {
                     "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\c7b6252082af7c3db8c761dc5fc777cc\\cardview-1.0.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,35,36,37,38,45,47,50,7",
@@ -297,23 +259,6 @@
                         "endLines": "8479,8485,8489,8492,8553",
                         "endColumns": "24,24,24,24,24",
                         "endOffsets": "646527,646771,646924,647057,650772"
-                    }
-                },
-                {
-                    "source": "D:\\Android Studio Projects\\MyApplication\\app\\build\\generated\\res\\google-services\\debug\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,200,308,391,495,605,725,822",
-                        "endColumns": "144,107,82,103,109,119,96,73",
-                        "endOffsets": "195,303,386,490,600,720,817,891"
-                    },
-                    "to": {
-                        "startLines": "2854,2861,2862,2863,2864,2865,2866,2917",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "290681,291405,291513,291596,291700,291810,291930,299814",
-                        "endColumns": "144,107,82,103,109,119,96,73",
-                        "endOffsets": "290821,291508,291591,291695,291805,291925,292022,299883"
                     }
                 },
                 {
@@ -393,6 +338,25 @@
                     }
                 },
                 {
+                    "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\values\\map_api.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "57",
+                        "endLines": "4",
+                        "endColumns": "13",
+                        "endOffsets": "165"
+                    },
+                    "to": {
+                        "startLines": "2872",
+                        "startColumns": "4",
+                        "startOffsets": "292507",
+                        "endLines": "2874",
+                        "endColumns": "13",
+                        "endOffsets": "292613"
+                    }
+                },
+                {
                     "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\5231f5585b0612674f3e97d28795c269\\recyclerview-1.1.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
@@ -448,6 +412,25 @@
                     }
                 },
                 {
+                    "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "57",
+                        "endLines": "8",
+                        "endColumns": "12",
+                        "endOffsets": "358"
+                    },
+                    "to": {
+                        "startLines": "2937",
+                        "startColumns": "4",
+                        "startOffsets": "301213",
+                        "endLines": "2942",
+                        "endColumns": "12",
+                        "endOffsets": "301509"
+                    }
+                },
+                {
                     "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\be0ed6dae355adebfb0e21d1fd98f145\\browser-1.0.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
@@ -479,6 +462,23 @@
                         "startOffsets": "44483,44523,45026,45165,45220,46104,46158,46210,46259,46320",
                         "endColumns": "39,46,42,54,46,53,51,48,60,49",
                         "endOffsets": "44518,44565,45064,45215,45262,46153,46205,46254,46315,46365"
+                    }
+                },
+                {
+                    "source": "D:\\Android Studio Projects\\AgroApp\\app\\build\\generated\\res\\google-services\\debug\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,200,308,391,495,605,725,822",
+                        "endColumns": "144,107,82,103,109,119,96,73",
+                        "endOffsets": "195,303,386,490,600,720,817,891"
+                    },
+                    "to": {
+                        "startLines": "2854,2861,2862,2863,2864,2865,2866,2917",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "290681,291405,291513,291596,291700,291810,291930,299814",
+                        "endColumns": "144,107,82,103,109,119,96,73",
+                        "endOffsets": "290821,291508,291591,291695,291805,291925,292022,299883"
                     }
                 },
                 {
