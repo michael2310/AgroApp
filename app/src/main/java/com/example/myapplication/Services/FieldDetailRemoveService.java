@@ -120,6 +120,30 @@ else {
                     }
                 });
                 Log.d("postKey", id);
+
+                FirebaseDatabase.getInstance().getReference("fieldsDetailUprawa").child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: ");
+                    }
+                });
+                Log.d("postKey", id);
+
+                FirebaseDatabase.getInstance().getReference("fieldsDetailOchrona").child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: ");
+                    }
+                });
+                Log.d("postKey", id);
+
+                FirebaseDatabase.getInstance().getReference("fieldsDetailNawozenie").child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: ");
+                    }
+                });
+                Log.d("postKey", id);
             }
         }
 

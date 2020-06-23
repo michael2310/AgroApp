@@ -36,7 +36,7 @@ public class WorkersService extends Service {
                 if(dataSnapshot.exists()){
                     String id = FirebaseDatabase.getInstance().getReference().push().getKey();
                     // FirebaseDatabase.getInstance().getReference("fields").child(userName).push().setValue(new Fields(userName, name, number, area));
-                    FirebaseDatabase.getInstance().getReference("workers").child(userName).child(id).setValue(new Employee(surname, lastname, info));
+                    FirebaseDatabase.getInstance().getReference("workers").child(userName).child(id).setValue(new Employee(surname, lastname, id, info));
                     Log.d("postKey", id);
                 }
             }

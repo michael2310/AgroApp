@@ -1,24 +1,48 @@
 package com.example.myapplication.Models;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import java.util.ArrayList;
 
 public class Employee  {
     String surname;
     String lastname;
+    String email;
     String info;
     float Latitude;
     float Longitude;
+    String id;
+    String farmCode;
+    int position;
     //LatLng latLng;
 
     ArrayList<Employee> employees = new ArrayList<>();
 
 
-    public Employee(String surname, String lastname, String info){
+    public Employee(String name, String email, String id, String farmCode){
+        this.surname = name;
+        this.email = email;
+        this.id = id;
+        this.farmCode = farmCode;
+    }
+
+    public Employee(String surname, String lastname){
         this.surname = surname;
         this.lastname = lastname;
         this.info = info;
+    }
+
+//    public Employee(String surname, String lastname, String id, String info){
+//        this.surname = surname;
+//        this.lastname = lastname;
+//        this.id = id;
+//        this.info = info;
+//    }
+
+    public Employee(String surname, String lastname, String id, String info, int position){
+        this.surname = surname;
+        this.lastname = lastname;
+        this.id = id;
+        this.info = info;
+        this.position = position;
     }
 //    public Employee(String name, double x, double y, LatLng latLng){
 //        this.name = name;
@@ -78,6 +102,14 @@ public class Employee  {
         this.lastname = lastname;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getInfo() {
         return info;
     }
@@ -100,5 +132,13 @@ public class Employee  {
 
     public void setLongitude(float longitude) {
         Longitude = longitude;
+    }
+
+    public String getCode() {
+        return farmCode;
+    }
+
+    public void setCode(String farmcode) {
+        this.farmCode = farmcode;
     }
 }

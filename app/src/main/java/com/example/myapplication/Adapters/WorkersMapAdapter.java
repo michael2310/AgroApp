@@ -18,6 +18,7 @@ public class WorkersMapAdapter extends RecyclerView.Adapter<WorkersMapAdapter.Vi
     String[] names;
     double[] x;
     double[] y;
+    String[] id;
 
     private Listener listener;
 

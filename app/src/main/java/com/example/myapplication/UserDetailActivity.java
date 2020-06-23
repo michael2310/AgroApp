@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.myapplication.Adapters.UserDetailAdapter;
+import com.example.myapplication.Models.Fields;
 import com.example.myapplication.Models.Person;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +26,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserDetailActivity extends AppCompatActivity {
 
@@ -40,6 +42,25 @@ public class UserDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_detail);
 
 
+//        FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
+//        if (user1 != null) {
+//            email = user1.getEmail();
+//            reference = FirebaseDatabase.getInstance().getReference("users").child(user1.getUid());
+//            // to sa te metody na dole
+//            reference.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    String name = dataSnapshot.child("name").getValue().toString();
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                }
+//            });
+//           // id = user.getUid();
+//        }
 
         userDetailAdapter = new UserDetailAdapter();
 

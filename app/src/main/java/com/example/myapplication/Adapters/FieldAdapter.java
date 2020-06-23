@@ -1,26 +1,47 @@
 package com.example.myapplication.Adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Dialogs.DialogDetailRemove;
+import com.example.myapplication.FieldsRecordActivity;
 import com.example.myapplication.Models.Fields;
 import com.example.myapplication.R;
+import com.example.myapplication.Services.FieldDetailRemoveService;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> {
+public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> implements DialogDetailRemove.DialogDetailRemoveListener {
 
     public ArrayList<Fields> fieldsArrayList = new ArrayList<>();
 
     private Listener listener;
     private Listener listener1;
+    private Listener listener2;
+
+    @Override
+    public void removeText() {
+
+    }
 
     //interfejs
     public interface Listener{
@@ -53,6 +74,15 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
         Button numberButton = (Button) cardView.findViewById(R.id.numberButton);
         numberButton.setText(fields.getNumber());
         numberButton.setTextSize(20);
+
+        ImageButton imageButton = (ImageButton) cardView.findViewById(R.id.imageButton);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMenu(imageButton, position);
+            }
+        });
 
 //        TextView textViewId = (TextView) cardView.findViewById(R.id.textViewId);
 //        textViewId.setText(fields.getFieldId());
@@ -93,6 +123,11 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
     public void setListener1 (Listener listener1){
         this.listener1 = listener1;
     }
+
+    public void setListener2 (Listener listener2){
+        this.listener2 = listener2;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private CardView cardView;
@@ -102,4 +137,35 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
             cardView = v;
         }
     }
+
+    private void showMenu(View view,int position) {
+        // inflate menu
+        PopupMenu popup = new PopupMenu(view.getContext(),view );
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_field_cardview, popup.getMenu());
+      // popup.setOnMenuItemClickListener(new MyMenuItemClickListener(position, view));
+        //view.startAnimation(Con);
+        //view.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.nav_default_enter_anim));
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.Edit:
+                        Toast.makeText(view.getContext(),"Edytuj", Toast.LENGTH_SHORT).show();
+                        // INTERFEJS
+                        return true;
+                    case R.id.Delete:
+                        // INTERFEJS
+                        if(listener2 != null){
+                            listener2.onClick(position);
+                        }
+                        return true;
+                    default:
+                }
+                return false;
+            }
+        });
+        popup.show();
+    }
+
 }

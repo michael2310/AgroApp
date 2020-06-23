@@ -17,11 +17,17 @@ import com.example.myapplication.R;
 import com.example.myapplication.UserDetailActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class UserDetailAdapter extends RecyclerView.Adapter<UserDetailAdapter.ViewHolder> {
 
+    DatabaseReference reference;
     private Listener listener;
     //interfejs
     public interface Listener{
@@ -47,18 +53,38 @@ public class UserDetailAdapter extends RecyclerView.Adapter<UserDetailAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull UserDetailAdapter.ViewHolder holder, int position) {
-        String email = null;
-        Button signOutButton;
+
+
+        CardView cardView = holder.cardView;
+        TextView textViewUserName = (TextView) cardView.findViewById(R.id.nameText);
+        TextView textViewCode = (TextView) cardView.findViewById(R.id.textViewCodeDisplay);
+        TextView textViewArea = (TextView) cardView.findViewById(R.id.textViewAreaDisplay);
+        TextView textViewNumberOfFields = (TextView) cardView.findViewById(R.id.textViewNumberOfFieldsDisplay);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            // Name, email address, and profile photo Url
-            //email = user.getEmail();
-            email = user.getEmail();
+            reference = FirebaseDatabase.getInstance().getReference().child("users").child(user.getEmail().split("@")[0]);
+            // to sa te metody na dole
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot != null) {
+                        String name = dataSnapshot.child("name").getValue().toString();
+                        String code = dataSnapshot.child("code").getValue().toString();
+                        textViewUserName.setText(name);
+                        textViewCode.setText(code);
+                       // textViewArea.setText();
+                       // textViewNumberOfFields.setText();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
-        CardView cardView = holder.cardView;
-        TextView textView = (TextView) cardView.findViewById(R.id.nameText);
-        textView.setText(email);
+       // textView.setText(email);
     }
 
     @Override

@@ -40,4 +40,14 @@
     <string name="text_view">Przykładowy TextView</string>
     <string name="edit_text">Przykładowy EditText</string>
     <string name="button">Przykładowy Button</string>
+
+    <!-- Spiner RegisterActivity -->
+
+    <string-array name="accountType">
+        <item>Właściciel</item>
+        <item>Pracownik</item>
+    </string-array>
+
+    <!-- RegisterActivity-->
+    <string name="account_tpye">Typ konta</string>
 </resources>

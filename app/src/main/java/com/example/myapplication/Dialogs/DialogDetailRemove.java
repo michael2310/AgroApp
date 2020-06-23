@@ -29,6 +29,11 @@ public class DialogDetailRemove extends AppCompatDialogFragment {
         this.position = position;
     }
 
+    public DialogDetailRemove(int position, String id){
+        this.position = position;
+        this.id = id;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

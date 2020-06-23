@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,9 +43,15 @@ public class WorkersActivity extends AppCompatActivity implements DialogWorkers.
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(FieldsRecordActivity.this, AddFieldActivity.class);
-                //startActivity(intent);
-                openDialog();
+                // tak jak działało do tej pory
+                //openDialog();
+
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, "To jest twój kod");
+                startActivity(intent);
+
+
             }
         });
 
@@ -170,4 +178,5 @@ public class WorkersActivity extends AppCompatActivity implements DialogWorkers.
     public void onCancelled(@NonNull DatabaseError databaseError) {
 
     }
+
 }
