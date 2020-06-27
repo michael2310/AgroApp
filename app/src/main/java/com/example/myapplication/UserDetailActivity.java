@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -74,12 +75,12 @@ public class UserDetailActivity extends AppCompatActivity {
         }
 
 
-
-        UserDetailAdapter adapter = new UserDetailAdapter();
-        //manager ukladu
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        userRecycler.setLayoutManager(linearLayoutManager);
-        userRecycler.setAdapter(adapter);
+        setAdapter(userRecycler);
+//        UserDetailAdapter adapter = new UserDetailAdapter();
+//        //manager ukladu
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        userRecycler.setLayoutManager(linearLayoutManager);
+//        userRecycler.setAdapter(adapter);
 
 
 
@@ -100,6 +101,14 @@ public class UserDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(UserDetailActivity.this, LoginActivity.class);
         UserDetailActivity.this.startActivity(intent);
         UserDetailActivity.this.finish();
+    }
+
+    private void setAdapter(RecyclerView userRecycler){
+        UserDetailAdapter adapter = new UserDetailAdapter();
+        //manager ukladu
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        userRecycler.setLayoutManager(linearLayoutManager);
+        userRecycler.setAdapter(adapter);
     }
 
 }

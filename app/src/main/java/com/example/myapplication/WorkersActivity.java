@@ -25,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class WorkersActivity extends AppCompatActivity implements DialogWorkers.DialogListener, ChildEventListener {
     private static final String TAG = WorkersActivity.class.getSimpleName();
@@ -39,29 +40,41 @@ public class WorkersActivity extends AppCompatActivity implements DialogWorkers.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employees);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
         fab = (FloatingActionButton) findViewById(R.id.addFab);
         fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // tak jak działało do tej pory
-                //openDialog();
-
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "To jest twój kod");
-                startActivity(intent);
-
-
-            }
-        });
+           @Override
+           public void onClick(View v) {
+               // tak jak działało do tej pory
+               //openDialog();
+               if (user != null) {
+                   reference = FirebaseDatabase.getInstance().getReference().child("users").child(user.getEmail().split("@")[0]);
+                   // to sa te metody na dole
+                   reference.addValueEventListener(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                           if (dataSnapshot != null) {
+                               String name = dataSnapshot.child("name").getValue().toString();
+                               String code = dataSnapshot.child("code").getValue().toString();
+                               Intent intent = new Intent(Intent.ACTION_SEND);
+                               intent.setType("text/plain");
+                               intent.putExtra(Intent.EXTRA_TEXT, "Użytkownik " + name + " prosi Cię o dołączenie do jego gospodarstwa. Wpisz w aplikacji AgroApp następujący kod: " + code);
+                               startActivity(intent);
+                           }
+                       }
+                       @Override
+                       public void onCancelled(@NonNull DatabaseError databaseError) {
+                       }
+                   });
+               }
+           }
+       });
 
         RecyclerView fieldsRecycler = (RecyclerView) findViewById(R.id.employee_recycler);
         fieldsRecycler.setHasFixedSize(true);
 
-        //linear layout
-        // LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        // fieldsRecycler.setLayoutManager(linearLayoutManager);
-        //StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         fieldsRecycler.setLayoutManager(layoutManager);
 
@@ -106,7 +119,7 @@ public class WorkersActivity extends AppCompatActivity implements DialogWorkers.
 //        });
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         if (user != null) {
             email = user.getEmail();
             reference = FirebaseDatabase.getInstance().getReference("workers").child(user.getEmail().split("@")[0]);

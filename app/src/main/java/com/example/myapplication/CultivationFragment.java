@@ -69,6 +69,8 @@ public class CultivationFragment extends Fragment implements ChildEventListener,
     }
 
 
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

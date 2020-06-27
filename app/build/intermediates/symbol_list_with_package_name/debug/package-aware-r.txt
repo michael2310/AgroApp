@@ -1499,8 +1499,7 @@ drawable googleg_standard_color_18
 drawable ic_account_box_black_24dp
 drawable ic_account_circle_black_24dp
 drawable ic_add
-drawable ic_baseline_person_100
-drawable ic_baseline_person_24
+drawable ic_baseline_person_96
 drawable ic_build_black_24dp
 drawable ic_calendar_black_24dp
 drawable ic_check_black_24dp
@@ -1626,6 +1625,7 @@ id action_mode_close_button
 id action_text
 id actions
 id activity_chooser_view_content
+id activity_main
 id add
 id addFab
 id adjust_height
@@ -1654,6 +1654,8 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
+id btn
+id button
 id buttonPanel
 id cancel_action
 id cancel_button
@@ -1727,6 +1729,7 @@ id editTextRepeatPassword
 id editTextSowingType
 id editTextSurname
 id edit_query
+id employee_mobile_navigation
 id employee_recycler
 id end
 id end_padder
@@ -1767,6 +1770,7 @@ id imageButton
 id imageView
 id imageView3
 id info
+id infoRecycler
 id info_text
 id invisible
 id italic
@@ -1787,7 +1791,7 @@ id mapview_esribanner_layout
 id mapview_esribanner_logotext
 id masked
 id media_actions
-id menu_recycler
+id menuRecycler
 id message
 id middle
 id mini
@@ -1930,6 +1934,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textView
+id textView2
 id textView3
 id textView4
 id textView5
@@ -2038,6 +2043,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_employee_main
 layout activity_employees
 layout activity_fields_detail
 layout activity_fields_record
@@ -2047,7 +2053,9 @@ layout activity_main
 layout activity_optimalization
 layout activity_register
 layout activity_register_info
+layout activity_register_info_employee
 layout activity_test
+layout activity_test2
 layout activity_user_detail
 layout arcgisruntime_mapview_esribanner_layout
 layout arcgisruntime_sketcheditor_callout_layout
@@ -2082,6 +2090,8 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_combine_harvester
 layout fragment_cultivation
+layout fragment_employee_home
+layout fragment_employee_menu
 layout fragment_fertilization
 layout fragment_handlers
 layout fragment_home
@@ -2162,6 +2172,7 @@ menu menu_field_cardview
 menu menu_main
 mipmap ic_launcher
 mipmap ic_launcher_round
+navigation employee_mobile_navigation
 navigation mobile_navigation
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description

@@ -48,15 +48,15 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.View
         Employee employees = employeeArrayList.get(position);
 
         TextView textViewSurname = (TextView) cardView.findViewById(R.id.textViewSurname);
-        textViewSurname.setText(employees.getSurname());
+        textViewSurname.setText(employees.getName());
 
         TextView textViewLastname = (TextView) cardView.findViewById(R.id.textViewLastname);
-        textViewLastname.setText(employees.getLastname());
+        //textViewLastname.setText(employees.getLastname());
 
         Button numberButton = (Button) cardView.findViewById(R.id.ButtonName);
        // numberButton.setText(employees.getSurname().charAt(0) + employees.getLastname().charAt(0));
         //if(employees.getSurname() != null && employees.getLastname()!= null) {
-            numberButton.setText(String.valueOf(employees.getSurname().charAt(0) + "" + employees.getLastname().charAt(0)));
+        //    numberButton.setText(String.valueOf(employees.getSurname().charAt(0) + "" + employees.getLastname().charAt(0)));
         //}
         numberButton.setTextSize(20);
         //String initials = String.valueOf(surname.charAt(0)) + String.valueOf(lastname.charAt(0));

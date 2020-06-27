@@ -3,53 +3,43 @@ package com.example.myapplication.Models;
 import java.util.ArrayList;
 
 public class Employee  {
-    String surname;
-    String lastname;
-    String email;
-    String info;
-    float Latitude;
-    float Longitude;
-    String id;
-    String farmCode;
+    private String name;
+    private String email;
+    private String password;
+    private String id;
+    private String info;
+    private float Latitude;
+    private float Longitude;
+    private String lat;
+    private String lng;
+    private String farmCode;
+    private String imageUrl;
+    private String accountType;
+
     int position;
+
+
     //LatLng latLng;
 
     ArrayList<Employee> employees = new ArrayList<>();
 
 
-    public Employee(String name, String email, String id, String farmCode){
-        this.surname = name;
+//    public Employee(String name, String email, String id, String farmCode){
+//        this.name = name;
+//        this.email = email;
+//        this.id = id;
+//        this.farmCode = farmCode;
+//    }
+
+
+
+    public Employee(String name, String email, String id, String accountType){
+        this.name = name;
         this.email = email;
         this.id = id;
-        this.farmCode = farmCode;
+        this.accountType = accountType;
     }
 
-    public Employee(String surname, String lastname){
-        this.surname = surname;
-        this.lastname = lastname;
-        this.info = info;
-    }
-
-//    public Employee(String surname, String lastname, String id, String info){
-//        this.surname = surname;
-//        this.lastname = lastname;
-//        this.id = id;
-//        this.info = info;
-//    }
-
-    public Employee(String surname, String lastname, String id, String info, int position){
-        this.surname = surname;
-        this.lastname = lastname;
-        this.id = id;
-        this.info = info;
-        this.position = position;
-    }
-//    public Employee(String name, double x, double y, LatLng latLng){
-//        this.name = name;
-//        this.x = x;
-//        this.y = y;
-//        this.latLng = latLng;
-//    }
 
     public Employee(){
     }
@@ -86,20 +76,12 @@ public class Employee  {
 //    }
 
 
-    public String getSurname() {
-        return surname;
+    public String getName() {
+        return name;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getId() {
@@ -140,5 +122,61 @@ public class Employee  {
 
     public void setCode(String farmcode) {
         this.farmCode = farmcode;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+
+    public String getFarmCode() {
+        return farmCode;
+    }
+
+    public void setFarmCode(String farmCode) {
+        this.farmCode = farmCode;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 }

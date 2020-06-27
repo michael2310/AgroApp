@@ -47,7 +47,7 @@ public class WorkersMapAdapter extends RecyclerView.Adapter<WorkersMapAdapter.Vi
         Employee employees = employeeArrayListMap.get(position);
 
         TextView textView = (TextView) cardView.findViewById(R.id.info_text);
-        textView.setText(employees.getSurname());
+        textView.setText(employees.getName());
 
         //listener przy tworzeniu viewHoldera
         cardView.setOnClickListener(new View.OnClickListener() {
