@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="250dp"
     android:layout_margin="5dp"
-    app:cardElevation="2dp">
+    app:cardCornerRadius="15dp"
+    app:cardElevation="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,6 +23,7 @@
             android:src="@drawable/ic_baseline_person_96"
             android:textColor="#fff"
             android:textSize="20sp"
+            android:elevation="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"></de.hdodenhof.circleimageview.CircleImageView>
 
@@ -45,12 +47,12 @@
             android:layout_marginStart="16dp"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/textViewCode"
-            app:layout_constraintTop_toTopOf="@+id/textViewCode"
+            app:layout_constraintStart_toEndOf="@+id/textViewFarm"
+            app:layout_constraintTop_toTopOf="@+id/textViewFarm"
             tools:text="XXXXXX"></TextView>
 
         <TextView
-            android:id="@+id/textViewCode"
+            android:id="@+id/textViewFarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -67,8 +69,8 @@
             android:layout_marginStart="16dp"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/textViewArea"
-            app:layout_constraintTop_toTopOf="@+id/textViewArea"
+            app:layout_constraintStart_toEndOf="@+id/textViewFarmCode"
+            app:layout_constraintTop_toTopOf="@+id/textViewFarmCode"
             tools:text="XXX Ha"></TextView>
 
         <TextView
@@ -83,15 +85,15 @@
             tools:text="XXX"></TextView>
 
         <TextView
-            android:id="@+id/textViewArea"
+            android:id="@+id/textViewFarmCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Całkowita powierzchnia:"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textViewCode"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCode"></TextView>
+            app:layout_constraintStart_toStartOf="@+id/textViewNumberOfFields"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNumberOfFields"></TextView>
 
         <TextView
             android:id="@+id/textViewNumberOfFields"
@@ -101,8 +103,8 @@
             android:text="Ilość działek:"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textViewArea"
-            app:layout_constraintTop_toBottomOf="@+id/textViewArea"></TextView>
+            app:layout_constraintStart_toStartOf="@+id/textViewFarm"
+            app:layout_constraintTop_toBottomOf="@+id/textViewFarm"></TextView>
 
         <TextView
             android:id="@+id/textView2"

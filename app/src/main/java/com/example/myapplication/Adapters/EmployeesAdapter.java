@@ -1,5 +1,6 @@
 package com.example.myapplication.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,15 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.View
     String[] names;
     double[] x;
     double[] y;
+
+    ArrayList<Employee> employeeList;
+    Context context;
+
+    EmployeesAdapter(ArrayList<Employee> employeeList, Context context){
+        this.employeeList = employeeList;
+        this.context = context;
+
+    }
 
     private Listener listener;
 
@@ -53,7 +63,7 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.View
         TextView textViewLastname = (TextView) cardView.findViewById(R.id.textViewLastname);
         //textViewLastname.setText(employees.getLastname());
 
-        Button numberButton = (Button) cardView.findViewById(R.id.ButtonName);
+        Button numberButton = (Button) cardView.findViewById(R.id.circleImageViewWorkers);
        // numberButton.setText(employees.getSurname().charAt(0) + employees.getLastname().charAt(0));
         //if(employees.getSurname() != null && employees.getLastname()!= null) {
         //    numberButton.setText(String.valueOf(employees.getSurname().charAt(0) + "" + employees.getLastname().charAt(0)));

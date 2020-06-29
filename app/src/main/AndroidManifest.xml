@@ -22,39 +22,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TestActivity"></activity>
-        <activity android:name=".EmployeeMainActivity" />
-        <activity android:name=".RegisterInfoEmployeeActivity" />
-        <activity android:name=".RegisterInfoOwnerActivity" />
+        <activity android:name=".ui.Workers.EmployeeDetailActivity"></activity>
+        <activity android:name=".ui.Workers.EmployeeFarmCodeActivity" />
         <activity
-            android:name=".WorkersActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".OptimalizationActivity"
-            android:parentActivityName=".MainActivity" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/map_key" />
-
-        <activity
-            android:name=".UserDetailActivity"
-            android:label="Konto" />
-        <activity android:name=".FieldsDetailActivity" />
-        <activity android:name=".FieldsRecordActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:name=".ui.LoginAndRegister.CheckUserLoggedInActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.Workers.EmployeeMainActivity" />
+        <activity android:name=".ui.LoginAndRegister.RegisterInfoEmployeeActivity" />
+        <activity android:name=".ui.LoginAndRegister.RegisterInfoOwnerActivity" />
+        <activity
+            android:name=".ui.Workers.WorkersActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ui.OptimalizationActivity"
+            android:parentActivityName=".MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+
+        <activity android:name=".ui.FieldRecords.FieldsDetailActivity" />
+        <activity android:name=".ui.FieldRecords.FieldsRecordActivity" />
+        <activity android:name=".ui.LoginAndRegister.RegisterActivity" />
+        <activity
+            android:name=".ui.LoginAndRegister.LoginActivity"
+            android:label="@string/app_name" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".ui.machines.MachniesActivity"
             android:parentActivityName=".MainActivity" />

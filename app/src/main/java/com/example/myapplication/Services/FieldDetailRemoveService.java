@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,13 +24,16 @@ public class FieldDetailRemoveService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         if (!intent.hasExtra("id")){
             return super.onStartCommand(intent, flags, startId);
         }
         String id = intent.getStringExtra("id");
         String fieldId = intent.getStringExtra("fieldId");
         String userName = intent.getStringExtra("userName");
-if(fieldId != null) {
+
+if(fieldId != null && user != null) {
     // sprawdzić
     FirebaseDatabase.getInstance().getReference("fieldsDetailUprawa").child(fieldId).addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
@@ -113,7 +118,7 @@ else {
             if (dataSnapshot.exists()) {
                 //String id = FirebaseDatabase.getInstance().getReference().push().getKey();
                 // FirebaseDatabase.getInstance().getReference("fields").child(userName).push().setValue(new Fields(userName, name, number, area));
-                FirebaseDatabase.getInstance().getReference("fields").child(userName).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                FirebaseDatabase.getInstance().getReference("fields").child(user.getUid()).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Log.d(TAG, "onComplete: ");

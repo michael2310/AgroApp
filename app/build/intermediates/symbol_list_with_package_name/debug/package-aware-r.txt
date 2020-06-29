@@ -58,6 +58,7 @@ animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
 array accountType
 array fieldDetailDialog
+array machineListView
 array userListView
 attr action
 attr actionBarDivider
@@ -323,6 +324,7 @@ attr cropShowCropOverlay
 attr cropShowProgressBar
 attr cropSnapRadius
 attr cropTouchRadius
+attr cursorVisible
 attr customNavigationLayout
 attr data
 attr dataPattern
@@ -413,6 +415,7 @@ attr fontProviderQuery
 attr fontStyle
 attr fontVariationSettings
 attr fontWeight
+attr forceKeyboard
 attr foregroundInsidePadding
 attr gapBetweenBars
 attr goIcon
@@ -426,6 +429,7 @@ attr helperTextTextColor
 attr hideMotionSpec
 attr hideOnContentScroll
 attr hideOnScroll
+attr hint
 attr hintAnimationEnabled
 attr hintEnabled
 attr hintTextAppearance
@@ -447,6 +451,7 @@ attr imageAspectRatioAdjust
 attr imageButtonStyle
 attr indeterminateProgressStyle
 attr initialActivityCount
+attr inputType
 attr insetForeground
 attr isLightTheme
 attr isMaterialTheme
@@ -611,11 +616,16 @@ attr paddingTopNoTitle
 attr panelBackground
 attr panelMenuListTheme
 attr panelMenuListWidth
+attr password
 attr passwordToggleContentDescription
 attr passwordToggleDrawable
 attr passwordToggleEnabled
 attr passwordToggleTint
 attr passwordToggleTintMode
+attr pinBackground
+attr pinHeight
+attr pinLength
+attr pinWidth
 attr popEnterAnim
 attr popExitAnim
 attr popUpTo
@@ -669,6 +679,7 @@ attr spinBars
 attr spinnerDropDownItemStyle
 attr spinnerStyle
 attr splitTrack
+attr splitWidth
 attr srcCompat
 attr stackFromEnd
 attr startDestination
@@ -754,6 +765,7 @@ attr textColorSearchUrl
 attr textEndPadding
 attr textInputStyle
 attr textLocale
+attr textSize
 attr textStartPadding
 attr theme
 attr themeLineHeight
@@ -1005,6 +1017,10 @@ color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
 color notification_material_background_media_default_color
+color previosMainColor
+color previousColorAccent
+color previousColorPrimary
+color previousColorPrimaryDark
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -1466,6 +1482,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable btn_view
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -1485,6 +1502,7 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable corner_list
 drawable crop_image_menu_flip
 drawable crop_image_menu_rotate_left
 drawable crop_image_menu_rotate_right
@@ -1494,11 +1512,15 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable fab_layout
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable gradient
 drawable ic_account_box_black_24dp
 drawable ic_account_circle_black_24dp
 drawable ic_add
+drawable ic_baseline_add_black_24
+drawable ic_baseline_add_photo_alternate_96
 drawable ic_baseline_person_96
 drawable ic_build_black_24dp
 drawable ic_calendar_black_24dp
@@ -1535,6 +1557,8 @@ drawable mtrl_ic_error
 drawable mtrl_popupmenu_background
 drawable mtrl_popupmenu_background_dark
 drawable mtrl_tabs_default_indicator
+drawable my_logo_black
+drawable my_logo_white
 drawable navigation_empty_icon
 drawable notification_action_background
 drawable notification_bg
@@ -1549,14 +1573,16 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable round_button
+drawable sample_background
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable upgrade_button
 id ALT
 id BOTTOM_END
 id BOTTOM_START
 id Button1
-id ButtonName
+id ButtonAddCode
 id CTRL
 id CropOverlayView
 id CropProgressBar
@@ -1616,7 +1642,7 @@ id action_container
 id action_context_bar
 id action_divider
 id action_image
-id action_logout
+id action_location
 id action_menu_divider
 id action_menu_presenter
 id action_mode_bar
@@ -1655,10 +1681,12 @@ id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
 id btn
-id button
+id button3
+id button4
 id buttonPanel
 id cancel_action
 id cancel_button
+id cardview_employee_detail
 id cardview_employees
 id cardview_fields
 id cardview_menu
@@ -1677,6 +1705,8 @@ id chip_group
 id chronometer
 id circleImageView
 id circleImageView2
+id circleImageView3
+id circleImageViewWorkers
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -1768,7 +1798,9 @@ id ifRoom
 id image
 id imageButton
 id imageView
+id imageView2
 id imageView3
+id imageView4
 id info
 id infoRecycler
 id info_text
@@ -1777,6 +1809,7 @@ id italic
 id item_touch_helper_previous_elevation
 id labeled
 id largeLabel
+id layout_main
 id left
 id light
 id line1
@@ -1838,6 +1871,7 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id number
 id numberButton
 id off
 id okButton
@@ -1856,8 +1890,10 @@ id password_toggle
 id peekHeight
 id percent
 id pin
+id pinview
 id plant
 id plantProtectionRecycler
+id progressBar
 id progress_circular
 id progress_horizontal
 id radio
@@ -1889,6 +1925,7 @@ id search_src_text
 id search_voice_btn
 id select_dialog_listview
 id selected
+id sendButton
 id shortcut
 id showCustom
 id showHome
@@ -1934,21 +1971,37 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textView
+id textView10
+id textView11
+id textView12
+id textView13
+id textView14
+id textView15
+id textView17
+id textView18
 id textView2
 id textView3
 id textView4
 id textView5
-id textViewArea
+id textView6
+id textView7
+id textView8
+id textView9
 id textViewAreaDisplay
-id textViewCode
 id textViewCodeDisplay
 id textViewDate
+id textViewEmail
+id textViewEmpty
+id textViewFarm
+id textViewFarmCode
 id textViewId
 id textViewInfo
+id textViewLastActive
 id textViewLastname
 id textViewName
 id textViewNumberOfFields
 id textViewNumberOfFieldsDisplay
+id textViewPhone
 id textViewSurname
 id text_input_end_icon
 id text_input_start_icon
@@ -1973,7 +2026,6 @@ id unlabeled
 id up
 id useLogo
 id userListView
-id userRecycler
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
@@ -2043,8 +2095,10 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_check_user_logged_in
+layout activity_employee_detail
+layout activity_employee_farm_code
 layout activity_employee_main
-layout activity_employees
 layout activity_fields_detail
 layout activity_fields_record
 layout activity_login
@@ -2052,15 +2106,15 @@ layout activity_machines
 layout activity_main
 layout activity_optimalization
 layout activity_register
-layout activity_register_info
 layout activity_register_info_employee
-layout activity_test
+layout activity_register_info_owner
 layout activity_test2
-layout activity_user_detail
+layout activity_workers
 layout arcgisruntime_mapview_esribanner_layout
 layout arcgisruntime_sketcheditor_callout_layout
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
+layout cardview_employee_detail
 layout cardview_employees
 layout cardview_field_details
 layout cardview_fields
@@ -2104,6 +2158,7 @@ layout layout_dialog_detail
 layout layout_dialog_detail_remove
 layout layout_dialog_field_detail
 layout layout_dialog_workers
+layout layout_main
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -4252,6 +4307,7 @@ string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string fertilization
 string firebase_database_url
+string firebase_path
 string gcm_defaultSenderId
 string google_api_key
 string google_app_id
@@ -4309,9 +4365,12 @@ string plant_protection
 string project_id
 string search_menu_title
 string status_bar_notification_info_overflow
+string test_email
+string test_password
 string text_view
 string title_home
 string title_menu
+string tracking_enabled_notif
 string tractors_tab
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
@@ -5073,6 +5132,7 @@ styleable NavHostFragment defaultNavHost
 styleable NavInclude graph
 styleable NavigationView android_background android_fitsSystemWindows android_maxWidth elevation headerLayout itemBackground itemHorizontalPadding itemIconPadding itemIconSize itemIconTint itemMaxLines itemShapeAppearance itemShapeAppearanceOverlay itemShapeFillColor itemShapeInsetBottom itemShapeInsetEnd itemShapeInsetStart itemShapeInsetTop itemTextAppearance itemTextColor menu
 styleable Navigator android_label android_id
+styleable Pinview cursorVisible forceKeyboard hint inputType password pinBackground pinHeight pinLength pinWidth splitWidth textSize
 styleable PopupWindow android_popupBackground android_popupAnimationStyle overlapAnchor
 styleable PopupWindowBackgroundState state_above_anchor
 styleable RecycleListView paddingBottomNoButtons paddingTopNoTitle

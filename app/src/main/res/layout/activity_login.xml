@@ -8,20 +8,31 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp"
-    tools:context=".LoginActivity">
+    android:background="@drawable/gradient"
+    tools:context=".ui.LoginAndRegister.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/my_logo_black" />
 
 
     <EditText
         android:id="@+id/editTextLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -32,19 +43,24 @@
         android:hint="Hasło"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextLogin" />
+
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@drawable/upgrade_button"
         android:onClick="onClickLogin"
+        android:alpha="0.6"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword"></Button>
+
 
     <Button
         android:id="@+id/registerButton"
@@ -53,7 +69,12 @@
         android:layout_marginTop="16dp"
         android:onClick="onClickRegister"
         android:text="Rejestracja"
+        android:padding="8dp"
+        android:background="@drawable/upgrade_button"
+        android:alpha="0.6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"></Button>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

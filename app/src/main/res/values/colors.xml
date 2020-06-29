@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="black">#009688</color>
+
+    <color name="previosMainColor">#009688</color>
+    <color name="previousColorPrimary">#6200EE</color>
+    <color name="previousColorPrimaryDark">#3700B3</color>
+    <color name="previousColorAccent">#03DAC5</color>
+
 </resources>

@@ -1,28 +1,18 @@
 package com.example.myapplication.Adapters;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.LoginActivity;
-import com.example.myapplication.Models.Person;
+import com.example.myapplication.Models.Owner;
 import com.example.myapplication.R;
-import com.example.myapplication.UserDetailActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -54,7 +44,7 @@ public class UserDetailAdapter extends RecyclerView.Adapter<UserDetailAdapter.Vi
         this.listener = listener;
     }
 
-    public ArrayList<Person> personArrayList = new ArrayList<>();
+    public ArrayList<Owner> ownerArrayList = new ArrayList<>();
 
 
     @NonNull
@@ -82,7 +72,7 @@ public class UserDetailAdapter extends RecyclerView.Adapter<UserDetailAdapter.Vi
         if (user != null) {
             try {
                 // tabela users. Dlatego nie działają pracownicy
-                reference = FirebaseDatabase.getInstance().getReference().child("users").child(user.getEmail().split("@")[0]);
+                reference = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
                 //           storageReference = FirebaseStorage.getInstance().getReference().child("Users_avatars"));
                 storageReference = FirebaseStorage.getInstance().getReference().child("Users_avatars").child(user.getUid() + ".jpg");
             }catch (Exception e){
@@ -120,6 +110,8 @@ public class UserDetailAdapter extends RecyclerView.Adapter<UserDetailAdapter.Vi
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot != null) {
                         String name = dataSnapshot.child("name").getValue().toString();
+                        String area = dataSnapshot.child("totalArea").getValue().toString();
+                        String fields = dataSnapshot.child("totalFields").getValue().toString();
 
                         if(dataSnapshot.child("code").getValue() != null) {
                              String code = dataSnapshot.child("code").getValue().toString();
@@ -127,6 +119,9 @@ public class UserDetailAdapter extends RecyclerView.Adapter<UserDetailAdapter.Vi
                         }
 //                        String imageUri = dataSnapshot.child("imageUrl").getValue().toString();
                         textViewUserName.setText(name);
+                        textViewArea.setText(area + " ha");
+                        textViewNumberOfFields.setText(fields);
+
                         //textViewCode.setText(code);
                     }
                 }

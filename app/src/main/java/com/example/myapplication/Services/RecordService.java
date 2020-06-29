@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.Models.Fields;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,32 +23,53 @@ public class RecordService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (!intent.hasExtra("userName")){
-            return super.onStartCommand(intent, flags, startId);
-        }
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+//        if (!intent.hasExtra("userName")){
+//            return super.onStartCommand(intent, flags, startId);
+//        }
+//        if (!intent.hasExtra("number")){
+//            return super.onStartCommand(intent, flags, startId);
+//        }
         String userName = intent.getStringExtra("userName");
         String name = intent.getStringExtra("name");
         String number = intent.getStringExtra("number");
         String area = intent.getStringExtra("area");
+        if(area == null){
+            area = "0";
+        }
+        double addArea = Double.parseDouble(area);
 
-        // sprawdzić
-        FirebaseDatabase.getInstance().getReference("users").child(userName).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d(TAG, "onDataChange: ");
-                if(dataSnapshot.exists()){
+        if(user != null) {
+            // sprawdzić
+            String finalArea = area;
+            FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Log.d(TAG, "onDataChange: ");
+                    if (dataSnapshot.exists()) {
                         String id = FirebaseDatabase.getInstance().getReference().push().getKey();
+                        double currentArea = dataSnapshot.child("totalArea").getValue(Double.class);
+                        int currentFields = dataSnapshot.child("totalFields").getValue(Integer.class);
+                        int newFields = currentFields ++;
+                        double newArea = addArea + currentArea;
                         // FirebaseDatabase.getInstance().getReference("fields").child(userName).push().setValue(new Fields(userName, name, number, area));
-                        FirebaseDatabase.getInstance().getReference("fields").child(userName).child(id).setValue(new Fields(userName, name, number, area, id));
+                        FirebaseDatabase.getInstance().getReference("fields").child(user.getUid()).child(id).setValue(new Fields(userName, name, number, finalArea, id));
+                        FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("totalArea").setValue(newArea);
+                        FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("totalFields").setValue(newFields);
+                        //FirebaseDatabase.getInstance().getReference("af").child(user.getUid()).child("totalArea").setValue(newArea);
                         Log.d("postKey", id);
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: ");
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d(TAG, "onCancelled: ");
+                }
+            });
+        }
 
         return super.onStartCommand(intent, flags, startId);
 

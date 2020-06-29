@@ -21,13 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Adapters.MenuAdapter;
 import com.example.myapplication.Adapters.UserDetailAdapter;
-import com.example.myapplication.LoginActivity;
-import com.example.myapplication.UserDetailActivity;
-import com.example.myapplication.WorkersActivity;
-import com.example.myapplication.MenuNamesActivity;
-import com.example.myapplication.OptimalizationActivity;
+import com.example.myapplication.ui.LoginAndRegister.LoginActivity;
+import com.example.myapplication.ui.Workers.WorkersActivity;
+import com.example.myapplication.Models.MenuNamesActivity;
+import com.example.myapplication.ui.OptimalizationActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.FieldsRecordActivity;
+import com.example.myapplication.ui.FieldRecords.FieldsRecordActivity;
 import com.example.myapplication.ui.machines.MachniesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
