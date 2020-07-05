@@ -62,13 +62,13 @@ if(user != null) {
                 // FirebaseDatabase.getInstance().getReference("fields").child(userName).push().setValue(new Fields(userName, name, number, area));
 //                    FirebaseDatabase.getInstance().getReference("fieldsDetail").child(fieldId).child(id).setValue(new FieldsDetail(userName, plant, chemia, date, id, category));
                 if (category.equals("Uprawa")) {
-                    FirebaseDatabase.getInstance().getReference("fieldsDetailUprawa").child(fieldId).child(id).setValue(new FieldsDetailCultivation(userName, plant, cultivationType, sowingType, date, info, id, category));
+               //     FirebaseDatabase.getInstance().getReference("fieldsDetailUprawa").child(fieldId).child(id).setValue(new FieldsDetailCultivation(userName, plant, cultivationType, sowingType, date, info, id, category));
                 }
                 if (category.equals("Ochrona")) {
-                    FirebaseDatabase.getInstance().getReference("fieldsDetailOchrona").child(fieldId).child(id).setValue(new FieldsDetailPlantProtection(userName, plant, chemia, dose, developmentPhase, date, id, category));
+                 //   FirebaseDatabase.getInstance().getReference("fieldsDetailOchrona").child(fieldId).child(id).setValue(new FieldsDetailPlantProtection(userName, plant, chemia, dose, developmentPhase, date, id, category));
                 }
                 if (category.equals("Nawozenie")) {
-                    FirebaseDatabase.getInstance().getReference("fieldsDetailNawozenie").child(fieldId).child(id).setValue(new FieldsDetailFertilization(userName, plant, chemia, dose, developmentPhase, date, id, category));
+               //     FirebaseDatabase.getInstance().getReference("fieldsDetailNawozenie").child(fieldId).child(id).setValue(new FieldsDetailFertilization(userName, plant, chemia, dose, developmentPhase, date, id, category));
                 }
 
                 Log.d("postKey", id);

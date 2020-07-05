@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.db.AppRepository;
 import com.example.myapplication.ui.Workers.EmployeeMainActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
@@ -59,8 +60,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void userLoggedIn2(DatabaseReference reference) {
-            reference.addValueEventListener(new ValueEventListener() {
+    private void userLoggedIn2() {
+        AppRepository.getInstance().getUserRef().addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.child("accountType").getValue().toString().equals("owner")){
@@ -104,10 +105,8 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d(TAG, "onComplete success: ");
                         Toast.makeText(LoginActivity.this, "Zalogowano pomyślnie", Toast.LENGTH_SHORT).show();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        // if (FirebaseAuth.getInstance().getCurrentUser() == null){
                         if (user != null){
-                            reference1 = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
-                            userLoggedIn2(reference1);
+                            userLoggedIn2();
                         }
                     } else {
                         Toast.makeText(LoginActivity.this, "Error: " + task.getException(), Toast.LENGTH_SHORT).show();

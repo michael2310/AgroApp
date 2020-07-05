@@ -4,7 +4,7 @@
             "outputFile": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sr\\values-sr.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\9d9ba218892b14f546288a3e7bae8a74\\navigation-ui-2.2.2\\res\\values-sr\\values-sr.xml",
+                    "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\fa870dce52ce308e346373602a08e0cc\\navigation-ui-2.3.0\\res\\values-sr\\values-sr.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -35,23 +35,6 @@
                         "startOffsets": "247407,247515,247703,247831,247943,248156,248285,248427,248747,248955,249064,249255,249384,249592,249764,249862,249957",
                         "endColumns": "107,187,127,111,212,128,141,130,207,108,190,128,207,171,97,94,108",
                         "endOffsets": "247510,247698,247826,247938,248151,248280,248422,248553,248950,249059,249250,249379,249587,249759,249857,249952,250061"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\b2b51ad2129f7ae88186ad90508b79ab\\core-1.1.0\\res\\values-sr\\values-sr.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "2005",
-                        "startColumns": "4",
-                        "startOffsets": "250382",
-                        "endColumns": "100",
-                        "endOffsets": "250478"
                     }
                 },
                 {
@@ -103,6 +86,23 @@
                         "startOffsets": "248558",
                         "endColumns": "188",
                         "endOffsets": "248742"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\3409a0677005b670ffbce34943fb9b2b\\core-1.3.0\\res\\values-sr\\values-sr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "2005",
+                        "startColumns": "4",
+                        "startOffsets": "250382",
+                        "endColumns": "100",
+                        "endOffsets": "250478"
                     }
                 }
             ]

@@ -21,6 +21,7 @@ import com.example.myapplication.Models.Fields;
 import com.example.myapplication.R;
 import com.example.myapplication.Services.FieldDetailRemoveService;
 import com.example.myapplication.Services.RecordService;
+import com.example.myapplication.db.AppRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,7 +35,7 @@ import java.util.ArrayList;
 
 public class FieldsRecordActivity extends AppCompatActivity implements ChildEventListener, DialogField.DialogListener, DialogDetailRemove.DialogDetailRemoveListener {
     private static final String TAG = FieldsRecordActivity.class.getSimpleName();
-    
+
     FloatingActionButton fab;
     DatabaseReference reference;
     FieldAdapter fieldAdapter;
@@ -66,8 +67,8 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
         fieldsRecycler.setHasFixedSize(true);
 
         //linear layout
-       // LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-       // fieldsRecycler.setLayoutManager(linearLayoutManager);
+        // LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        // fieldsRecycler.setLayoutManager(linearLayoutManager);
         //StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         fieldsRecycler.setLayoutManager(layoutManager);
@@ -78,28 +79,27 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
             @Override
             public void onClick(int position) {
                 String id = fieldAdapter.fieldsArrayList.get(position).getFieldId();
-                 String userName = fieldAdapter.fieldsArrayList.get(position).getUserName();
-                 String name = fieldAdapter.fieldsArrayList.get(position).getName();
-                 String number = fieldAdapter.fieldsArrayList.get(position).getNumber();
-                 String area = fieldAdapter.fieldsArrayList.get(position).getArea();
-               // FirebaseDatabase.getInstance().getReference("fieldsDetatail").child(id).push().setValue(new FieldsDetail(userName, name, number, area)).addOnCompleteListener(new OnCompleteListener<Void>() {
-                   // @Override
-                   // public void onComplete(@NonNull Task<Void> task) {
-                       // Log.d(TAG, "onComplete: ");
-                        Toast.makeText(FieldsRecordActivity.this, id, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(FieldsRecordActivity.this, FieldsDetailActivity.class);
-                        //przekazanie pozycji
-                        intent.putExtra(FieldsDetailActivity.EXTRA_FIELD_ID, id);
-                        startActivity(intent);
-                  //  }
-               // });
+                String name = fieldAdapter.fieldsArrayList.get(position).getName();
+                String number = fieldAdapter.fieldsArrayList.get(position).getNumber();
+                String area = fieldAdapter.fieldsArrayList.get(position).getArea();
+                // FirebaseDatabase.getInstance().getReference("fieldsDetatail").child(id).push().setValue(new FieldsDetail(userName, name, number, area)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                // @Override
+                // public void onComplete(@NonNull Task<Void> task) {
+                // Log.d(TAG, "onComplete: ");
+                Toast.makeText(FieldsRecordActivity.this, id, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(FieldsRecordActivity.this, FieldsDetailActivity.class);
+                //przekazanie pozycji
+                intent.putExtra(FieldsDetailActivity.EXTRA_FIELD_ID, id);
+                startActivity(intent);
+                //  }
+                // });
 
                 //FirebaseDatabase.getInstance().getReference("fieldsDetail").child()
 
                 //Intent intent = new Intent(FieldsRecordActivity.this, FieldsDetailActivity.class);
                 //przekazanie pozycji
                 //intent.putExtra(FieldsDetailActivity.EXTRA_FIELD_ID, position);
-               // startActivity(intent);
+                // startActivity(intent);
             }
         });
 
@@ -108,7 +108,7 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
             email = user.getEmail();
             reference = FirebaseDatabase.getInstance().getReference("fields").child(user.getUid());
             reference.addChildEventListener(this);
-           id = user.getUid();
+            id = user.getUid();
         }
 
         fieldAdapter.setListener2(new FieldAdapter.Listener() {
@@ -121,7 +121,7 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
                 serviceIntent.putExtra("userName", email.split("@")[0]);
                 //serviceIntent.putExtra("fieldId", id);
                 startService(serviceIntent);
-          //       openDialogRemove(position, id);
+                //       openDialogRemove(position, id);
                 // removeText();
             }
         });
@@ -135,7 +135,7 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
     }
 
 
-    private void openDialogRemove(int position, String id){
+    private void openDialogRemove(int position, String id) {
         DialogDetailRemove dialogDetailRemove = new DialogDetailRemove(position, id);
         dialogDetailRemove.show(getSupportFragmentManager(), "Dialog Detail Remove");
     }
@@ -147,10 +147,10 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
     }
 
 
-//zakonczenie w onpause
+    //zakonczenie w onpause
     @Override
     protected void onPause() {
-        if(reference != null){
+        if (reference != null) {
             reference.removeEventListener(this);
         }
         super.onPause();
@@ -160,15 +160,12 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
     @Override
     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
         Log.d(TAG, "onChildAdded: ");
-        if(fieldAdapter != null){
-                Fields field = dataSnapshot.getValue(Fields.class);
-                fieldAdapter.fieldsArrayList.add(field);
-                fieldAdapter.notifyDataSetChanged();
+        if (fieldAdapter != null) {
+            Fields field = dataSnapshot.getValue(Fields.class);
+            fieldAdapter.fieldsArrayList.add(field);
+            fieldAdapter.notifyDataSetChanged();
         }
-
-
     }
-
 
     @Override
     public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -179,7 +176,7 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
     @Override
     public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
         Log.d(TAG, "onChildRemoved: ");
-        if(fieldAdapter != null){
+        if (fieldAdapter != null) {
             Fields field = dataSnapshot.getValue(Fields.class);
             fieldAdapter.fieldsArrayList.remove(positionInfo);
             fieldAdapter.notifyDataSetChanged();
@@ -202,12 +199,7 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
     @Override
     public void applyTexts(String number, String area, String name) {
         Log.d(TAG, "onClick: ");
-        Intent serviceIntent = new Intent(FieldsRecordActivity.this, RecordService.class);
-        serviceIntent.putExtra("userName", email.split("@")[0]);
-        serviceIntent.putExtra("name", name);
-        serviceIntent.putExtra("number", number);
-        serviceIntent.putExtra("area", area);
-        startService(serviceIntent);
+        AppRepository.getInstance().addField(name, number, Double.parseDouble(area));
     }
 
 
@@ -237,7 +229,7 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
 //    }
 
 
-    public void setId(String id){
+    public void setId(String id) {
         this.id = id;
     }
 

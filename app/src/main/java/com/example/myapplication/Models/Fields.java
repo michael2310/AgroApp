@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Fields {
 
-    private String userName;
     private String name;
     private String number;
     private String area;
@@ -17,24 +16,11 @@ public class Fields {
     public Fields(){
     }
 
-    public Fields(String userName, String name, String number, String area, String fieldId) {
-        this.userName = userName;
+    public Fields(String name, String number, String area, String fieldId) {
         this.name = name;
         this.number = number;
         this.area = area;
         this.fieldId = fieldId;
-    }
-
-    public Fields(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getName() {

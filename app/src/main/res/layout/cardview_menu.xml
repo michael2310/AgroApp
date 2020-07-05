@@ -10,7 +10,8 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="15dp"
-    app:cardElevation="5dp">
+    app:cardElevation="5dp"
+    android:backgroundTint="@color/background">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

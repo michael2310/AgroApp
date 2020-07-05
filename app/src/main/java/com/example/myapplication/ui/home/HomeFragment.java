@@ -183,7 +183,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, ChildE
 
     @Override
     public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+        //location.setLatitude((Double) dataSnapshot.child("lat").getValue());
+        //location.setLongitude((Double) dataSnapshot.child("lgt").getValue());
     }
 
     @Override

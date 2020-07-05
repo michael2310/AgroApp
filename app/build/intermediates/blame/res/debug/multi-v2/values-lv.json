@@ -4,7 +4,7 @@
             "outputFile": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lv\\values-lv.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\b2b51ad2129f7ae88186ad90508b79ab\\core-1.1.0\\res\\values-lv\\values-lv.xml",
+                    "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\3409a0677005b670ffbce34943fb9b2b\\core-1.3.0\\res\\values-lv\\values-lv.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -18,6 +18,23 @@
                         "startOffsets": "276066",
                         "endColumns": "100",
                         "endOffsets": "276162"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\fa870dce52ce308e346373602a08e0cc\\navigation-ui-2.3.0\\res\\values-lv\\values-lv.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,169",
+                        "endColumns": "113,122",
+                        "endOffsets": "164,287"
+                    },
+                    "to": {
+                        "startLines": "2002,2003",
+                        "startColumns": "4,4",
+                        "startOffsets": "275747,275861",
+                        "endColumns": "113,122",
+                        "endOffsets": "275856,275979"
                     }
                 },
                 {
@@ -86,23 +103,6 @@
                         "startOffsets": "105,225,335,444,530,634,756,838,919,1029,1136,1242,1351,1463,1566,1678,1785,1890,1990,2074,2183,2294,2393,2504,2611,2716,2890,275984",
                         "endColumns": "119,109,108,85,103,121,81,80,109,106,105,108,111,102,111,106,104,99,83,108,110,98,110,106,104,173,98,81",
                         "endOffsets": "220,330,439,525,629,751,833,914,1024,1131,1237,1346,1458,1561,1673,1780,1885,1985,2069,2178,2289,2388,2499,2606,2711,2885,2984,276061"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\michu\\.gradle\\caches\\transforms-2\\files-2.1\\9d9ba218892b14f546288a3e7bae8a74\\navigation-ui-2.2.2\\res\\values-lv\\values-lv.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,169",
-                        "endColumns": "113,122",
-                        "endOffsets": "164,287"
-                    },
-                    "to": {
-                        "startLines": "2002,2003",
-                        "startColumns": "4,4",
-                        "startOffsets": "275747,275861",
-                        "endColumns": "113,122",
-                        "endOffsets": "275856,275979"
                     }
                 }
             ]

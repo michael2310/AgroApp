@@ -62,7 +62,7 @@ public class PlantProtectionFragment extends Fragment implements ChildEventListe
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             email = user.getEmail();
-            reference = FirebaseDatabase.getInstance().getReference("fieldsDetailOchrona").child(a);
+            reference = FirebaseDatabase.getInstance().getReference("fieldsDetailPlantProtection").child(a);
             reference.addChildEventListener(this);
             id = user.getUid();
         }

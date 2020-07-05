@@ -29,19 +29,13 @@ public class DialogField extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog, null);
 
-        builder.setView(view).setTitle("Dodaj działkę").setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        builder.setView(view).setTitle("Dodaj działkę").setNegativeButton("Anuluj", (dialog, which) -> {
 
-            }
-        }).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String number = editTextNumber.getText().toString();
-                String area = editTextArea.getText().toString();
-                String name = editTextName.getText().toString();
-                listener.applyTexts(number, area, name);
-            }
+        }).setPositiveButton("Ok", (dialog, which) -> {
+            String number = editTextNumber.getText().toString();
+            String area = editTextArea.getText().toString();
+            String name = editTextName.getText().toString();
+            listener.applyTexts(number, area, name);
         });
 
         editTextNumber = view.findViewById(R.id.editTextNumber);

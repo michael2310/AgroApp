@@ -36,25 +36,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCultivationType"></EditText>
 
-    <EditText
-        android:id="@+id/editTextChemical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Środek chemiczny"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSowingType"></EditText>
+<!--    <EditText-->
+<!--        android:id="@+id/editTextChemical"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:hint="Środek chemiczny"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/editTextSowingType"></EditText>-->
 
     <EditText
         android:id="@+id/editTextDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="false"
         android:hint="Data"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextChemical"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/editTextSowingType">
+
+    </EditText>
 
     <EditText
         android:id="@+id/editTextInfo"

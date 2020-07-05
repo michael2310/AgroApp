@@ -16,6 +16,7 @@ import com.example.myapplication.Adapters.EmployeesAdapter;
 import com.example.myapplication.Dialogs.DialogWorkers;
 import com.example.myapplication.Models.Employee;
 import com.example.myapplication.R;
+import com.example.myapplication.db.AppRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,9 +32,6 @@ import java.util.ArrayList;
 public class WorkersActivity extends AppCompatActivity implements ChildEventListener {
     private static final String TAG = WorkersActivity.class.getSimpleName();
     FloatingActionButton fab;
-    DatabaseReference reference;
-    DatabaseReference reference1;
-    DatabaseReference reference2;
     EmployeesAdapter employeesAdapter;
     EmployeeAdapter employeeAdapter;
     String email;
@@ -48,44 +46,37 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workers);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        reference1 = FirebaseDatabase.getInstance().getReference().child("FarmWorkers").child(user.getUid());
-        reference2 = FirebaseDatabase.getInstance().getReference().child("users");
-
-
         employeeList = new ArrayList<>();
 
 
         fab = (FloatingActionButton) findViewById(R.id.addFab);
         fab.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               // tak jak działało do tej pory
-               //openDialog();
-               if (user != null) {
-                   reference = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
-                   // to sa te metody na dole
-                   reference.addValueEventListener(new ValueEventListener() {
-                       @Override
-                       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                           if (dataSnapshot.exists()) {
-                               String name = dataSnapshot.child("name").getValue().toString();
-                               String code = dataSnapshot.child("code").getValue().toString();
-                               Intent intent = new Intent(Intent.ACTION_SEND);
-                               intent.setType("text/plain");
-                               intent.putExtra(Intent.EXTRA_TEXT, "Użytkownik " + name + " prosi Cię o dołączenie do jego gospodarstwa. Wpisz w aplikacji AgroApp następujący kod: " + code);
-                               startActivity(intent);
-                           }
-                       }
-                       @Override
-                       public void onCancelled(@NonNull DatabaseError databaseError) {
-                       }
-                   });
+            @Override
+            public void onClick(View v) {
+                // tak jak działało do tej pory
+                //openDialog();
+                if (AppRepository.getInstance().isUserLogged()) {
+                    // to sa te metody na dole
+                    AppRepository.getInstance().getUserRef().addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                String name = dataSnapshot.child("name").getValue().toString();
+                                String code = dataSnapshot.child("code").getValue().toString();
+                                Intent intent = new Intent(Intent.ACTION_SEND);
+                                intent.setType("text/plain");
+                                intent.putExtra(Intent.EXTRA_TEXT, "Użytkownik " + name + " prosi Cię o dołączenie do jego gospodarstwa. Wpisz w aplikacji AgroApp następujący kod: " + code);
+                                startActivity(intent);
+                            }
+                        }
 
-                   String a= reference.push().getKey();
-               }
-           }
-       });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
+                }
+            }
+        });
 
         RecyclerView fieldsRecycler = (RecyclerView) findViewById(R.id.employee_recycler);
         fieldsRecycler.setHasFixedSize(true);
@@ -94,15 +85,15 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
         fieldsRecycler.setLayoutManager(layoutManager);
 
 
-        reference1.addListenerForSingleValueEvent(new ValueEventListener() {
+        AppRepository.getInstance().getUserFarmWorkersRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 employeeList.clear();
-                if(dataSnapshot.exists()) {
+                if (dataSnapshot.exists()) {
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
                         circleMemberId = data.child("circleMemberId").getValue(String.class);
 
-                        reference2.child(circleMemberId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        AppRepository.getInstance().getUserRef().child(circleMemberId).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 employee = dataSnapshot.getValue(Employee.class);
@@ -142,7 +133,7 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
 
                 Intent intent = new Intent(WorkersActivity.this, EmployeeDetailActivity.class);
                 //przekazanie pozycji
-               // intent.putExtra(FieldsDetailActivity.EXTRA_FIELD_ID, id);
+                // intent.putExtra(FieldsDetailActivity.EXTRA_FIELD_ID, id);
                 intent.putExtra("name", name);
                 intent.putExtra("mail", mail);
                 intent.putExtra("employeeId", employeeId);
@@ -189,7 +180,6 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
 //        });
 
 
-
 //        if (user != null) {
 //            email = user.getEmail();
 //            //reference = FirebaseDatabase.getInstance().getReference("workers").child(user.getEmail().split("@")[0]);
@@ -220,16 +210,15 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
 
     @Override
     protected void onResume() {
-        reference2.addChildEventListener(this);
+        AppRepository.getInstance().getUserRef().addChildEventListener(this);
         super.onResume();
 
     }
+
     //zakonczenie w onpause
     @Override
     protected void onPause() {
-//        if(reference2 != null){
-//            reference2.removeEventListener(this);
-//        }
+        AppRepository.getInstance().getUserRef().removeEventListener(this);
         super.onPause();
     }
 

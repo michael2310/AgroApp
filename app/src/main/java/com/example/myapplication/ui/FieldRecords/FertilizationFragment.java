@@ -62,7 +62,7 @@ public class FertilizationFragment extends Fragment implements ChildEventListene
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             email = user.getEmail();
-            reference = FirebaseDatabase.getInstance().getReference("fieldsDetailNawozenie").child(a);
+            reference = FirebaseDatabase.getInstance().getReference("fieldsDetailFertilization").child(a);
             // to sa te metody na dole
             reference.addChildEventListener(this);
             id = user.getUid();

@@ -353,6 +353,7 @@ attr drawableTint
 attr drawableTintMode
 attr drawableTopCompat
 attr drawerArrowStyle
+attr drawerLayoutStyle
 attr dropDownListViewStyle
 attr dropdownListPreferredItemHeight
 attr editTextBackground
@@ -598,6 +599,7 @@ attr maxCharacterCount
 attr maxImageSize
 attr measureWithLargestChild
 attr menu
+attr mimeType
 attr minTouchTargetSize
 attr multiChoiceItemLayout
 attr navGraph
@@ -857,6 +859,9 @@ color abc_tint_spinner
 color abc_tint_switch_track
 color accent_material_dark
 color accent_material_light
+color androidx_core_ripple_material_light
+color androidx_core_secondary_text_default_material_light
+color background
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -1139,6 +1144,7 @@ dimen compat_button_padding_vertical_material
 dimen compat_control_corner_material
 dimen compat_notification_large_icon_max_height
 dimen compat_notification_large_icon_max_width
+dimen def_drawer_elevation
 dimen default_dimension
 dimen design_appbar_elevation
 dimen design_bottom_navigation_active_item_max_width
@@ -1519,8 +1525,11 @@ drawable gradient
 drawable ic_account_box_black_24dp
 drawable ic_account_circle_black_24dp
 drawable ic_add
+drawable ic_baseline_add_12
 drawable ic_baseline_add_black_24
 drawable ic_baseline_add_photo_alternate_96
+drawable ic_baseline_map_white_24
+drawable ic_baseline_menu_white_24
 drawable ic_baseline_person_96
 drawable ic_build_black_24dp
 drawable ic_calendar_black_24dp
@@ -1651,7 +1660,6 @@ id action_mode_close_button
 id action_text
 id actions
 id activity_chooser_view_content
-id activity_main
 id add
 id addFab
 id adjust_height
@@ -1680,7 +1688,7 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
-id btn
+id button
 id button3
 id button4
 id buttonPanel
@@ -1784,6 +1792,7 @@ id forever
 id fragment_container_view_tag
 id ghost_view
 id ghost_view_holder
+id glide_custom_view_target_tag
 id gone
 id group_divider
 id groups
@@ -1809,14 +1818,17 @@ id italic
 id item_touch_helper_previous_elevation
 id labeled
 id largeLabel
+id layout_employee_main
 id layout_main
 id left
 id light
 id line1
 id line3
 id listMode
+id list_content
 id list_item
 id loginButton
+id machineListView
 id map
 id mapview_esribanner_attribution_text
 id mapview_esribanner_container
@@ -1824,7 +1836,6 @@ id mapview_esribanner_layout
 id mapview_esribanner_logotext
 id masked
 id media_actions
-id menuRecycler
 id message
 id middle
 id mini
@@ -1858,7 +1869,6 @@ id mtrl_picker_title_text
 id multiply
 id nameText
 id nav_controller_view_tag
-id nav_host_fragment
 id nav_host_fragment_container
 id nav_view
 id navigation_header_container
@@ -1976,10 +1986,16 @@ id textView11
 id textView12
 id textView13
 id textView14
-id textView15
+id textView16
 id textView17
 id textView18
+id textView19
 id textView2
+id textView25
+id textView26
+id textView27
+id textView28
+id textView29
 id textView3
 id textView4
 id textView5
@@ -1989,6 +2005,7 @@ id textView8
 id textView9
 id textViewAreaDisplay
 id textViewCodeDisplay
+id textViewCultivationType
 id textViewDate
 id textViewEmail
 id textViewEmpty
@@ -2002,6 +2019,8 @@ id textViewName
 id textViewNumberOfFields
 id textViewNumberOfFieldsDisplay
 id textViewPhone
+id textViewPlant
+id textViewSowingType
 id textViewSurname
 id text_input_end_icon
 id text_input_start_icon
@@ -2026,6 +2045,7 @@ id unlabeled
 id up
 id useLogo
 id userListView
+id viewPager
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
@@ -2108,7 +2128,6 @@ layout activity_optimalization
 layout activity_register
 layout activity_register_info_employee
 layout activity_register_info_owner
-layout activity_test2
 layout activity_workers
 layout arcgisruntime_mapview_esribanner_layout
 layout arcgisruntime_sketcheditor_callout_layout
@@ -2155,10 +2174,13 @@ layout fragment_tractors
 layout layout_dialog
 layout layout_dialog_cultivation_detail
 layout layout_dialog_detail
+layout layout_dialog_detail2
 layout layout_dialog_detail_remove
 layout layout_dialog_field_detail
 layout layout_dialog_workers
+layout layout_employee_main
 layout layout_main
+layout list_black_text
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -5089,6 +5111,7 @@ styleable CoordinatorLayout_Layout android_layout_gravity layout_anchor layout_a
 styleable CropImageView cropAspectRatioX cropAspectRatioY cropAutoZoomEnabled cropBackgroundColor cropBorderCornerColor cropBorderCornerLength cropBorderCornerOffset cropBorderCornerThickness cropBorderLineColor cropBorderLineThickness cropFixAspectRatio cropFlipHorizontally cropFlipVertically cropGuidelines cropGuidelinesColor cropGuidelinesThickness cropInitialCropWindowPaddingRatio cropMaxCropResultHeightPX cropMaxCropResultWidthPX cropMaxZoom cropMinCropResultHeightPX cropMinCropResultWidthPX cropMinCropWindowHeight cropMinCropWindowWidth cropMultiTouchEnabled cropSaveBitmapToInstanceState cropScaleType cropShape cropShowCropOverlay cropShowProgressBar cropSnapRadius cropTouchRadius
 styleable DialogFragmentNavigator android_name
 styleable DrawerArrowToggle arrowHeadLength arrowShaftLength barLength color drawableSize gapBetweenBars spinBars thickness
+styleable DrawerLayout elevation
 styleable ExtendedFloatingActionButton elevation extendMotionSpec hideMotionSpec showMotionSpec shrinkMotionSpec
 styleable ExtendedFloatingActionButton_Behavior_Layout behavior_autoHide behavior_autoShrink
 styleable FloatingActionButton backgroundTint backgroundTintMode borderWidth elevation ensureMinTouchTargetSize fabCustomSize fabSize hideMotionSpec hoveredFocusedTranslationZ maxImageSize pressedTranslationZ rippleColor shapeAppearance shapeAppearanceOverlay showMotionSpec useCompatPadding
@@ -5125,7 +5148,7 @@ styleable MenuItem android_icon android_enabled android_id android_checked andro
 styleable MenuView android_windowAnimationStyle android_itemTextAppearance android_horizontalDivider android_verticalDivider android_headerBackground android_itemBackground android_itemIconDisabledAlpha preserveIconSpacing subMenuArrow
 styleable NavAction android_id destination enterAnim exitAnim launchSingleTop popEnterAnim popExitAnim popUpTo popUpToInclusive
 styleable NavArgument android_name android_defaultValue argType nullable
-styleable NavDeepLink android_autoVerify uri
+styleable NavDeepLink android_autoVerify action mimeType uri
 styleable NavGraphNavigator startDestination
 styleable NavHost navGraph
 styleable NavHostFragment defaultNavHost

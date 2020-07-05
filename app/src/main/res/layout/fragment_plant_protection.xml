@@ -4,7 +4,8 @@
     android:id="@+id/plantProtectionRecycler"
     tools:context=".ui.FieldRecords.PlantProtectionFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient">
 
 
 </androidx.recyclerview.widget.RecyclerView>

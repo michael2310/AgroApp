@@ -19,6 +19,9 @@ import com.example.myapplication.Dialogs.DialogPlantProtection;
 import com.example.myapplication.R;
 import com.example.myapplication.Services.FieldDetailRemoveService;
 import com.example.myapplication.Services.FieldDetailService;
+import com.example.myapplication.db.CultivationRepository;
+import com.example.myapplication.db.FertilizationRepository;
+import com.example.myapplication.db.PlantProtectionRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -106,47 +109,48 @@ public class FieldsDetailActivity extends AppCompatActivity implements DialogDet
 
 
     @Override
-    public void applyTextsPlantProtection(String plant, String chemia, String dose, String developmentPhase, String date, String category) {
-        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
-        intent.putExtra("fieldId", fieldId);
-        intent.putExtra("userName", email.split("@")[0]);
-        intent.putExtra("category", category);
-        intent.putExtra("plant", plant);
-        intent.putExtra("chemia", chemia);
-        intent.putExtra("dose", dose);
-        intent.putExtra("developmentPhase", developmentPhase);
-        intent.putExtra("date", date);
-        startService(intent);
+    public void applyTextsPlantProtection(String plant, String chemicals, String dose, String developmentPhase, String date, String category, String info) {
+//        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
+//        intent.putExtra("fieldId", fieldId);
+//        intent.putExtra("userName", email.split("@")[0]);
+//        intent.putExtra("category", category);
+//        intent.putExtra("plant", plant);
+//        intent.putExtra("chemia", chemia);
+//        intent.putExtra("dose", dose);
+//        intent.putExtra("developmentPhase", developmentPhase);
+//        intent.putExtra("date", date);
+//        startService(intent);
+        PlantProtectionRepository.getInstance().addFieldDetail(category, fieldId, plant, chemicals, dose, developmentPhase, date, info);
     }
-
 
     @Override
-    public void applyTextsFertilization(String plant, String chemia, String dose, String developmentPhase, String date, String category) {
-        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
-        intent.putExtra("fieldId", fieldId);
-        intent.putExtra("userName", email.split("@")[0]);
-        intent.putExtra("category", category);
-        intent.putExtra("plant", plant);
-        intent.putExtra("chemia", chemia);
-        intent.putExtra("dose", dose);
-        intent.putExtra("developmentPhase", developmentPhase);
-        intent.putExtra("date", date);
-        startService(intent);
+    public void applyTextsFertilization(String plant, String chemicals, String dose, String developmentPhase, String date, String category, String info) {
+//        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
+//        intent.putExtra("fieldId", fieldId);
+//        intent.putExtra("userName", email.split("@")[0]);
+//        intent.putExtra("category", category);
+//        intent.putExtra("plant", plant);
+//        intent.putExtra("chemicals", chemicals);
+//        intent.putExtra("dose", dose);
+//        intent.putExtra("developmentPhase", developmentPhase);
+//        intent.putExtra("date", date);
+//        startService(intent);
+        FertilizationRepository.getInstance().addFieldDetail(category, fieldId, plant, chemicals, dose, developmentPhase, date, info);
     }
-
 
     @Override
     public void applyTextsCultivation(String plant, String cultivationType, String sowingType, String date, String info, String category) {
-        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
-        intent.putExtra("fieldId", fieldId);
-        intent.putExtra("userName", email.split("@")[0]);
-        intent.putExtra("category", category);
-        intent.putExtra("plant", plant);
-        intent.putExtra("cultivationType", cultivationType);
-        intent.putExtra("sowingType", sowingType);
-        intent.putExtra("date", date);
-        intent.putExtra("info", info);
-        startService(intent);
+//        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
+//        intent.putExtra("fieldId", fieldId);
+//        intent.putExtra("userName", email.split("@")[0]);
+//        intent.putExtra("category", category);
+//        intent.putExtra("plant", plant);
+//        intent.putExtra("cultivationType", cultivationType);
+//        intent.putExtra("sowingType", sowingType);
+//        intent.putExtra("date", date);
+//        intent.putExtra("info", info);
+//        startService(intent);
+        CultivationRepository.getInstance().addFieldDetail(category, plant, cultivationType, sowingType, date, info, fieldId);
     }
 
 

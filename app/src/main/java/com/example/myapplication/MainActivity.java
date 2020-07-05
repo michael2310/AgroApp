@@ -12,82 +12,52 @@ import android.os.IBinder;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.myapplication.Services.LocationService;
-import com.example.myapplication.Services.UploadLocationService;
-import com.example.myapplication.ui.LoginAndRegister.LoginActivity;
-import com.example.myapplication.ui.home.HomeFragment;
-import com.example.myapplication.ui.menu.MenuFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.widget.ViewPager2;
 
-public class MainActivity extends AppCompatActivity implements ServiceConnection   {
+import com.example.myapplication.Services.LocationService;
+import com.example.myapplication.Services.UploadLocationService;
+import com.example.myapplication.ui.LoginAndRegister.LoginActivity;
+import com.example.myapplication.ui.MainPagerAdapter;
+import com.example.myapplication.ui.home.HomeFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-    final Fragment fragment1 = new HomeFragment();
-    final Fragment fragment2 = new MenuFragment();
-    final FragmentManager fragmentManager = getSupportFragmentManager();
-    FragmentTransaction fragmentTransaction;
-    Fragment active = fragment1;
-    FirebaseUser user;
-    DatabaseReference reference;
-    DatabaseReference latitudeReference;
-    DatabaseReference longitudeReference;
+public class MainActivity extends AppCompatActivity implements ServiceConnection {
 
     private LocationService locationService;
     private boolean bound = false;
     private final int PERMISSION_REQUEST_CODE = 698;
-    private final int NOTIFICATION_ID = 423;
-    private static final int PERMISSIONS_REQUEST = 100;
-
-    
-    HomeFragment homeFragment;
-    private boolean isChecked = false;
+    private ViewPager2 viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
-
-
-        fragmentManager.beginTransaction().add(R.id.layout_main, fragment2, "2").setCustomAnimations(android.R.anim.slide_in_left,
-                android.R.anim.slide_out_right).hide(fragment2).commit();
-        fragmentManager.beginTransaction().add(R.id.layout_main, fragment1, "1").setCustomAnimations(android.R.anim.slide_in_left,
-                android.R.anim.slide_out_right).commit();
-
-        //homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.layout_main);
-
-        user = FirebaseAuth.getInstance().getCurrentUser();
-
-
-        if (active == fragment1) {
+        viewPager = findViewById(R.id.viewPager);
+        viewPager.setAdapter(new MainPagerAdapter(this));
+        if (savedInstanceState == null) {
             displayDistance();
         }
+        viewPager.setUserInputEnabled(false);
     }
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    fragmentManager.beginTransaction().hide(active).show(fragment1).commit();
-                    active = fragment1;
+                    viewPager.setCurrentItem(0, true);
+                    displayDistance();
                     return true;
                 case R.id.navigation_menu:
-                    fragmentManager.beginTransaction().hide(active).show(fragment2).commit();
-                    active = fragment2;
+                    viewPager.setCurrentItem(1, true);
                     return true;
             }
             return false;
@@ -111,17 +81,14 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     }
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-       // if (FirebaseAuth.getInstance().getCurrentUser() == null){
-        if (user == null){
-        startLoginActivity();
+        if (user == null) {
+            startLoginActivity();
         }
     }
-
 
 
     @Override
@@ -135,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         return false;
     }
 
-    private void startLoginActivity(){
+    private void startLoginActivity() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         MainActivity.this.startActivity(intent);
         MainActivity.this.finish();
@@ -159,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     @Override
     protected void onStop() {
         super.onStop();
-        if(bound){
+        if (bound) {
             unbindService(this);
             bound = false;
         }
@@ -173,10 +140,10 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
                 double distance = 0.0;
                 if (bound && locationService != null) {
                     Location location = locationService.getLastLocation();
-                    if(location!= null) {
-                        homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.layout_main);
-                        homeFragment.setLocation(location);
-                        startUploadLocationService(location, user.getEmail().split("@")[0]);
+                    if (location != null) {
+                         HomeFragment homeFragment = new HomeFragment();
+                         homeFragment.setLocation(location);
+                         startUploadLocationService(location);
                     }
                 }
                 handler.postDelayed(this, 5000);
@@ -184,19 +151,18 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         });
     }
 
-    private void startUploadLocationService(Location location, String userName) {
+    private void startUploadLocationService(Location location) {
         Intent intent = new Intent(MainActivity.this, UploadLocationService.class);
         intent.putExtra("lat", location.getLatitude());
         intent.putExtra("lng", location.getLongitude());
-        intent.putExtra("userName", userName);
         startService(intent);
     }
 
     @Override
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        LocationService.OdometerBinder odometerBinder =
-                (LocationService.OdometerBinder) iBinder;
-        locationService = odometerBinder.getOdometer();
+        LocationService.LocationServiceBinder locationServiceBinder =
+                (LocationService.LocationServiceBinder) iBinder;
+        locationService = locationServiceBinder.getLocationService();
         bound = true;
 
     }

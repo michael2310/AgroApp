@@ -4,12 +4,12 @@
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\drawable-v21\\round_button.xml"
     },
     {
-        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_cardview_fields.xml.flat",
-        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\cardview_fields.xml"
-    },
-    {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_fertilization.xml.flat",
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\fragment_fertilization.xml"
+    },
+    {
+        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_cardview_fields.xml.flat",
+        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\cardview_fields.xml"
     },
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_add.xml.flat",
@@ -26,6 +26,10 @@
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_cardview_machines.xml.flat",
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\cardview_machines.xml"
+    },
+    {
+        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_employee_main.xml.flat",
+        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\layout_employee_main.xml"
     },
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
@@ -58,6 +62,10 @@
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_person_96.xml.flat",
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\drawable\\ic_baseline_person_96.xml"
+    },
+    {
+        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_map_white_24.xml.flat",
+        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\drawable\\ic_baseline_map_white_24.xml"
     },
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_employee_farm_code.xml.flat",
@@ -122,6 +130,10 @@
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_home_black_24dp.xml.flat",
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\drawable\\ic_home_black_24dp.xml"
+    },
+    {
+        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_black_text.xml.flat",
+        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\list_black_text.xml"
     },
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_map_black_24dp.xml.flat",
@@ -212,12 +224,12 @@
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\activity_login.xml"
     },
     {
-        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\menu_menu_main.xml.flat",
-        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\menu\\menu_main.xml"
-    },
-    {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_my_logo_white.png.flat",
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\drawable\\my_logo_white.png"
+    },
+    {
+        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\menu_menu_main.xml.flat",
+        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\menu\\menu_main.xml"
     },
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\menu_menu_field_cardview.xml.flat",
@@ -236,6 +248,10 @@
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\activity_employee_main.xml"
     },
     {
+        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_menu_white_24.xml.flat",
+        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\drawable\\ic_baseline_menu_white_24.xml"
+    },
+    {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_employee_menu.xml.flat",
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\fragment_employee_menu.xml"
     },
@@ -244,12 +260,12 @@
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\menu\\menu_delete.xml"
     },
     {
-        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_machines.xml.flat",
-        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\activity_machines.xml"
-    },
-    {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_add_black_24.xml.flat",
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\drawable\\ic_baseline_add_black_24.xml"
+    },
+    {
+        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_machines.xml.flat",
+        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\activity_machines.xml"
     },
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_cultivation.xml.flat",
@@ -268,16 +284,16 @@
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\drawable\\btn_view.xml"
     },
     {
-        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_test2.xml.flat",
-        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\activity_test2.xml"
-    },
-    {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_dialog_cultivation_detail.xml.flat",
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\layout_dialog_cultivation_detail.xml"
+    },
+    {
+        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_dialog_detail2.xml.flat",
+        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\layout_dialog_detail2.xml"
     },
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
@@ -296,12 +312,12 @@
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\layout\\cardview_user_detail.xml"
     },
     {
-        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
-    },
-    {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_dots.xml.flat",
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\drawable\\ic_dots.xml"
+    },
+    {
+        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
@@ -310,6 +326,10 @@
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi_john.png.flat",
         "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\drawable-nodpi\\john.png"
+    },
+    {
+        "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_add_12.xml.flat",
+        "source": "D:\\Android Studio Projects\\AgroApp\\app\\src\\main\\res\\drawable\\ic_baseline_add_12.xml"
     },
     {
         "merged": "D:\\Android Studio Projects\\AgroApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_face_black_24dp.xml.flat",

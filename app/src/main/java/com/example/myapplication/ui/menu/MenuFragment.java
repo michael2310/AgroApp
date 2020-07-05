@@ -62,7 +62,7 @@ public class MenuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         infoRecycler = (RecyclerView) view.findViewById(R.id.infoRecycler);
-        menuRecycler = (RecyclerView) view.findViewById(R.id.menuRecycler) ;
+        menuRecycler = (RecyclerView) view.findViewById(R.id.machineListView) ;
         ListView userListview = (ListView) view.findViewById(R.id.userListView);
         firebaseAuth = FirebaseAuth.getInstance();
 
