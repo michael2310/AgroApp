@@ -14,56 +14,37 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myapplication.Adapters.FieldDetailAdapterCultivation;
-import com.example.myapplication.Dialogs.DialogCultivation;
-import com.example.myapplication.Dialogs.DialogDetail;
-import com.example.myapplication.Dialogs.DialogDetail2;
-import com.example.myapplication.Dialogs.DialogDetailRemove;
+
+import com.example.myapplication.Dialogs.Details.DialogDetailCultivationInfo;
+import com.example.myapplication.Dialogs.Details.DialogDetailRemove;
+import com.example.myapplication.Dialogs.Details.DialogEditCultivation;
 import com.example.myapplication.Models.FieldsDetailCultivation;
 import com.example.myapplication.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.myapplication.db.CultivationRepository;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Date;
 
 
-public class CultivationFragment extends Fragment implements ChildEventListener, DialogDetailRemove.DialogDetailRemoveListener {
+public class CultivationFragment extends Fragment implements ChildEventListener{
     private static final String TAG = CultivationFragment.class.getSimpleName();
 
-    DatabaseReference reference;
-    String email;
-    String id;
+
+
     FieldDetailAdapterCultivation fieldDetailAdapter;
 
-    String fieldId;
-    String plant;
-    String cultivationType;
-    String sowingType;
-    String date;
-    String info;
-    int positionInfo;
+    private String fieldId;
 
     public CultivationFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
        FieldsDetailActivity fieldsDetailActivity = (FieldsDetailActivity) getActivity();
        fieldId = fieldsDetailActivity.fieldId;
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            email = user.getEmail();
-            reference = FirebaseDatabase.getInstance().getReference("fieldsDetailCultivation").child(fieldId);
-        }
         return inflater.inflate(R.layout.fragment_cultivation, container, false);
     }
 
@@ -75,18 +56,18 @@ public class CultivationFragment extends Fragment implements ChildEventListener,
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.cultivationRecycler);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(layoutManager);
-
         fieldDetailAdapter = new FieldDetailAdapterCultivation();
         recyclerView.setAdapter(fieldDetailAdapter);
 
         fieldDetailAdapter.setListener(new FieldDetailAdapterCultivation.Listener() {
             @Override
             public void onClick(int position) {
-                plant = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getPlant();
-                cultivationType = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getCultivationType();
-                sowingType = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getSowingType();
-                date = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getDate();
-                id = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getId();
+                String plant = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getPlant();
+                String cultivationType = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getCultivationType();
+                String sowingType = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getSowingType();
+                String date = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getDate();
+                String id = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getId();
+                String info = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getInfo();
                 openDialog(plant, cultivationType, sowingType, date, info);
             }
         });
@@ -95,43 +76,53 @@ public class CultivationFragment extends Fragment implements ChildEventListener,
         fieldDetailAdapter.setListener1(new FieldDetailAdapterCultivation.Listener() {
             @Override
             public void onClick(int position) {
-                id = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getId();
-                FieldsDetailActivity fieldsDetailActivity = (FieldsDetailActivity) getActivity();
-                fieldsDetailActivity.setId(id);
-                positionInfo = position;
-                openDialogRemove(position);
+                String id = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getId();
+                openDialogEdit(id, fieldId);
+            }
+        });
+
+        fieldDetailAdapter.setListener2(new FieldDetailAdapterCultivation.Listener() {
+            @Override
+            public void onClick(int position) {
+                String id = fieldDetailAdapter.fieldsDetailsArrayList.get(position).getId();
+//                CultivationRepository.getInstance().removeFieldDetail(fieldId, id);
+                openDialogRemove(fieldId, id);
             }
         });
     }
 
 
     private void openDialog(String plant, String cultivationType, String sowingType, String date, String info) {
-        DialogDetail2 dialogDetail2 = new DialogDetail2(plant, cultivationType, sowingType, date, info);
-        dialogDetail2.show(getChildFragmentManager(), "Dialog Detail");
-       // DialogDetail dialogDetail = new DialogDetail(plant, chemia, date);
-       // dialogDetail.show(getChildFragmentManager(), "Dialog Detail");
+        DialogDetailCultivationInfo dialogDetailCultivationInfo = new DialogDetailCultivationInfo(plant, cultivationType, sowingType, date, info);
+        dialogDetailCultivationInfo.show(getChildFragmentManager(), "Dialog Detail");
+    }
+
+    private void openDialogEdit(String id, String fieldId){
+       DialogEditCultivation dialogEditCultivation = new DialogEditCultivation(id, fieldId);
+       dialogEditCultivation.show(getChildFragmentManager(), "Dialog Edit Cultivation");
     }
 
 
-    private void openDialogRemove(int position){
-        DialogDetailRemove dialogDetailRemove = new DialogDetailRemove(position);
+    private void openDialogRemove(String fieldId, String id){
+        DialogDetailRemove dialogDetailRemove = new DialogDetailRemove(fieldId, id);
         dialogDetailRemove.show(getChildFragmentManager(), "Dialog Detail Remove");
     }
 
 
     @Override
-    public void onStart() {
-        super.onStart();
-        reference.addChildEventListener(this);
+    public void onResume() {
+        super.onResume();
+        fieldDetailAdapter.fieldsDetailsArrayList.clear();
+        CultivationRepository.getInstance().getUserFieldDetail(fieldId).addChildEventListener(this);
     }
-
 
     @Override
     public void onPause() {
         super.onPause();
-        if(reference != null) {
-            reference.removeEventListener(this);
-        }
+        CultivationRepository.getInstance().getUserFieldDetail(fieldId).removeEventListener(this);
+//        if(reference != null) {
+//            reference.removeEventListener(this);
+//        }
     }
 
 
@@ -147,16 +138,43 @@ public class CultivationFragment extends Fragment implements ChildEventListener,
 
     @Override
     public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+        if (fieldDetailAdapter != null) {
+            FieldsDetailCultivation field = dataSnapshot.getValue(FieldsDetailCultivation.class);
+            replace(field);
+            fieldDetailAdapter.notifyDataSetChanged();
+        }
+    }
+
+
+    private void replace(FieldsDetailCultivation field) {
+        for (FieldsDetailCultivation item : fieldDetailAdapter.fieldsDetailsArrayList) {
+            if (field.getId().equals(item.getId())) {
+                int index = fieldDetailAdapter.fieldsDetailsArrayList.indexOf(item);
+                fieldDetailAdapter.fieldsDetailsArrayList.set(index, field);
+                break;
+            }
+        }
     }
 
     @Override
     public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
         Log.d(TAG, "onChildRemoved: ");
         if(fieldDetailAdapter != null) {
-            FieldsDetailCultivation field = dataSnapshot.getValue(FieldsDetailCultivation.class);
-            fieldDetailAdapter.fieldsDetailsArrayList.remove(positionInfo);
+                String key = dataSnapshot.getKey();
+                for(FieldsDetailCultivation field : fieldDetailAdapter.fieldsDetailsArrayList){
+                    if(field.getId().equals(key)){
+                        fieldDetailAdapter.fieldsDetailsArrayList.remove(field);
+                    }
+                }
             fieldDetailAdapter.notifyDataSetChanged();
         }
+
+        //String key = dataSnapshot.getKey();
+
+//            for (int i = 0; i <fieldDetailAdapter.fieldsDetailsArrayList.size(); i ++) {
+//                if (fieldDetailAdapter.fieldsDetailsArrayList.get(i).getId().equals(key))
+//                    fieldDetailAdapter.fieldsDetailsArrayList.remove(i);
+//            }
     }
 
     @Override
@@ -170,9 +188,5 @@ public class CultivationFragment extends Fragment implements ChildEventListener,
     }
 
 
-    @Override
-    public void removeText() {
-
-    }
 }
 

@@ -8,8 +8,8 @@ public class Owner {
     private String password;
     private String id;
     private String code;
-    private String lat;
-    private String lng;
+    private double lat;
+    private double lng;
     private String imageUrl;
     private String accountType;
     private double totalArea;
@@ -20,10 +20,6 @@ public class Owner {
 
     public Owner() {
     }
-
-    ArrayList<Owner> ownerArrayList = new ArrayList<>();
-
-
 
     public Owner(String name, String email, String id, String code, String accountType, Boolean sharing) {
         this.name = name;
@@ -39,6 +35,20 @@ public class Owner {
         this.email = email;
         this.id = id;
         this.code = code;
+        this.accountType = accountType;
+        this.sharing = sharing;
+        this.totalArea = totalArea;
+        this.totalFields = totalFields;
+    }
+
+    public Owner(String name, String email, String id, String code, double lat, double lng, String imageUrl, String accountType, Boolean sharing, double totalArea, int totalFields) {
+        this.name = name;
+        this.email = email;
+        this.id = id;
+        this.code = code;
+        this.lat = lat;
+        this.lng = lng;
+        this.imageUrl = imageUrl;
         this.accountType = accountType;
         this.sharing = sharing;
         this.totalArea = totalArea;
@@ -86,19 +96,19 @@ public class Owner {
         this.password = password;
     }
 
-    public String getLat() {
+    public double getLat() {
         return lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public String getLng() {
+    public double getLng() {
         return lng;
     }
 
-    public void setLng(String lng) {
+    public void setLng(double lng) {
         this.lng = lng;
     }
 

@@ -34,137 +34,137 @@
 18    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 18-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:7:5-81
 18-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:7:22-78
-19
-20    <uses-feature
-20-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:14:5-16:35
-21        android:glEsVersion="0x00020000"
-21-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:15:9-41
-22        android:required="true" />
-22-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:16:9-32
-23
-24    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
-24-->[com.google.android.gms:play-services-measurement-api:17.4.3] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\d5552a3996f76de5fed58bcb0a1e63b5\jetified-play-services-measurement-api-17.4.3\AndroidManifest.xml:24:5-68
-24-->[com.google.android.gms:play-services-measurement-api:17.4.3] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\d5552a3996f76de5fed58bcb0a1e63b5\jetified-play-services-measurement-api-17.4.3\AndroidManifest.xml:24:22-65
-25    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-25-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\13d8d8b1efb3455f1d2cb9103ff3556f\jetified-firebase-iid-20.1.5\AndroidManifest.xml:26:5-82
-25-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\13d8d8b1efb3455f1d2cb9103ff3556f\jetified-firebase-iid-20.1.5\AndroidManifest.xml:26:22-79
-26    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-26-->[com.google.android.gms:play-services-measurement:17.4.3] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\8e50c4481e121e43b9fce9973d991103\jetified-play-services-measurement-17.4.3\AndroidManifest.xml:26:5-110
-26-->[com.google.android.gms:play-services-measurement:17.4.3] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\8e50c4481e121e43b9fce9973d991103\jetified-play-services-measurement-17.4.3\AndroidManifest.xml:26:22-107
-27
-28    <application
-28-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:18:5-69:19
-29        android:allowBackup="true"
-29-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:19:9-35
-30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-30-->[androidx.core:core:1.3.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\3409a0677005b670ffbce34943fb9b2b\core-1.3.0\AndroidManifest.xml:24:18-86
-31        android:debuggable="true"
-32        android:icon="@mipmap/ic_launcher"
-32-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:20:9-43
-33        android:label="@string/app_name"
-33-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:21:9-41
-34        android:roundIcon="@mipmap/ic_launcher_round"
-34-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:22:9-54
-35        android:supportsRtl="true"
-35-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:23:9-35
-36        android:testOnly="true"
-37        android:theme="@style/AppTheme" >
-37-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:24:9-40
-38        <activity android:name="com.example.myapplication.ui.Workers.EmployeeDetailActivity" />
-38-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:25:9-80
-38-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:25:19-68
-39        <activity android:name="com.example.myapplication.ui.Workers.EmployeeFarmCodeActivity" />
-39-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:26:9-73
-39-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:26:19-70
+19    <uses-permission android:name="android.permission.BLUETOOTH" />
+19-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:13:5-68
+19-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:13:22-65
+20
+21    <uses-feature
+21-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:15:5-17:35
+22        android:glEsVersion="0x00020000"
+22-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:16:9-41
+23        android:required="true" />
+23-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:17:9-32
+24
+25    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+25-->[com.google.android.gms:play-services-measurement-api:17.4.3] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\d5552a3996f76de5fed58bcb0a1e63b5\jetified-play-services-measurement-api-17.4.3\AndroidManifest.xml:24:5-68
+25-->[com.google.android.gms:play-services-measurement-api:17.4.3] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\d5552a3996f76de5fed58bcb0a1e63b5\jetified-play-services-measurement-api-17.4.3\AndroidManifest.xml:24:22-65
+26    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+26-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\13d8d8b1efb3455f1d2cb9103ff3556f\jetified-firebase-iid-20.1.5\AndroidManifest.xml:26:5-82
+26-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\13d8d8b1efb3455f1d2cb9103ff3556f\jetified-firebase-iid-20.1.5\AndroidManifest.xml:26:22-79
+27    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+27-->[com.google.android.gms:play-services-measurement:17.4.3] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\8e50c4481e121e43b9fce9973d991103\jetified-play-services-measurement-17.4.3\AndroidManifest.xml:26:5-110
+27-->[com.google.android.gms:play-services-measurement:17.4.3] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\8e50c4481e121e43b9fce9973d991103\jetified-play-services-measurement-17.4.3\AndroidManifest.xml:26:22-107
+28
+29    <application
+29-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:19:5-69:19
+30        android:allowBackup="true"
+30-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:20:9-35
+31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+31-->[androidx.core:core:1.3.0] C:\Users\michu\.gradle\caches\transforms-2\files-2.1\3409a0677005b670ffbce34943fb9b2b\core-1.3.0\AndroidManifest.xml:24:18-86
+32        android:debuggable="true"
+33        android:icon="@mipmap/ic_launcher"
+33-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:21:9-43
+34        android:label="@string/app_name"
+34-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:22:9-41
+35        android:roundIcon="@mipmap/ic_launcher_round"
+35-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:23:9-54
+36        android:supportsRtl="true"
+36-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:24:9-35
+37        android:testOnly="true"
+38        android:theme="@style/AppTheme" >
+38-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:25:9-40
+39        <activity android:name="com.example.myapplication.AboutAppActivity" />
+39-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:26:9-63
+39-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:26:19-51
 40        <activity
-40-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:27:9-35:20
-41            android:name="com.example.myapplication.ui.LoginAndRegister.CheckUserLoggedInActivity"
-41-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:28:13-74
-42            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-42-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:29:13-69
-43            <intent-filter>
-43-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:30:13-34:29
-44                <action android:name="android.intent.action.MAIN" />
-44-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:31:17-69
-44-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:31:25-66
-45
-46                <category android:name="android.intent.category.LAUNCHER" />
-46-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:33:17-77
-46-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:33:27-74
-47            </intent-filter>
-48        </activity>
-49        <activity android:name="com.example.myapplication.ui.Workers.EmployeeMainActivity" />
-49-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:36:9-69
-49-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:36:19-66
-50        <activity android:name="com.example.myapplication.ui.LoginAndRegister.RegisterInfoEmployeeActivity" />
-50-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:37:9-86
-50-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:37:19-83
-51        <activity android:name="com.example.myapplication.ui.LoginAndRegister.RegisterInfoOwnerActivity" />
-51-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:38:9-83
-51-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:38:19-80
-52        <activity
-52-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:39:9-41:58
-53            android:name="com.example.myapplication.ui.Workers.WorkersActivity"
-53-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:40:13-55
-54            android:parentActivityName="com.example.myapplication.MainActivity" />
-54-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:41:13-55
-55        <activity
-55-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:42:9-44:58
-56            android:name="com.example.myapplication.ui.OptimalizationActivity"
-56-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:43:13-54
-57            android:parentActivityName="com.example.myapplication.MainActivity" />
-57-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:44:13-55
-58
-59        <meta-data
-59-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:46:9-48:47
-60            android:name="com.google.android.geo.API_KEY"
-60-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:47:13-58
-61            android:value="@string/map_key" />
-61-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:48:13-44
+40-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:27:9-29:63
+41            android:name="com.example.myapplication.SettingsActivity"
+41-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:28:13-45
+42            android:label="@string/title_activity_settings" />
+42-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:29:13-60
+43        <activity android:name="com.example.myapplication.BluetoothActivity" />
+43-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:30:9-55
+43-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:30:19-52
+44        <activity android:name="com.example.myapplication.ui.Workers.EmployeeDetailActivity" />
+44-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:31:9-71
+44-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:31:19-68
+45        <activity android:name="com.example.myapplication.ui.Workers.EmployeeFarmCodeActivity" />
+45-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:32:9-73
+45-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:32:19-70
+46        <activity
+46-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:33:9-41:20
+47            android:name="com.example.myapplication.ui.LoginAndRegister.CheckUserLoggedInActivity"
+47-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:34:13-74
+48            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+48-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:35:13-69
+49            <intent-filter>
+49-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:36:13-40:29
+50                <action android:name="android.intent.action.MAIN" />
+50-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:37:17-69
+50-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:37:25-66
+51
+52                <category android:name="android.intent.category.LAUNCHER" />
+52-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:39:17-77
+52-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:39:27-74
+53            </intent-filter>
+54        </activity>
+55        <activity android:name="com.example.myapplication.ui.Workers.EmployeeMainActivity" />
+55-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:42:9-69
+55-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:42:19-66
+56        <activity android:name="com.example.myapplication.ui.LoginAndRegister.RegisterInfoEmployeeActivity" />
+56-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:43:9-86
+56-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:43:19-83
+57        <activity android:name="com.example.myapplication.ui.LoginAndRegister.RegisterInfoOwnerActivity" />
+57-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:44:9-83
+57-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:44:19-80
+58        <activity
+58-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:45:9-47:58
+59            android:name="com.example.myapplication.ui.Workers.WorkersActivity"
+59-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:46:13-55
+60            android:parentActivityName="com.example.myapplication.MainActivity" />
+60-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:47:13-55
+61        <activity android:name="com.example.myapplication.OptimalizationActivity" />
+61-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:48:9-60
+61-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:48:19-57
 62
-63        <activity android:name="com.example.myapplication.ui.FieldRecords.FieldsDetailActivity" />
-63-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:50:9-74
-63-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:50:19-71
-64        <activity android:name="com.example.myapplication.ui.FieldRecords.FieldsRecordActivity" />
-64-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:51:9-74
-64-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:51:19-71
-65        <activity android:name="com.example.myapplication.ui.LoginAndRegister.RegisterActivity" />
-65-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:52:9-74
-65-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:52:19-71
-66        <activity
-66-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:53:9-55:48
-67            android:name="com.example.myapplication.ui.LoginAndRegister.LoginActivity"
-67-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:54:13-62
-68            android:label="@string/app_name" />
-68-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:55:13-45
-69        <activity
-69-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:56:9-58:48
-70            android:name="com.example.myapplication.MainActivity"
-70-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:57:13-41
-71            android:label="@string/app_name" />
-71-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:58:13-45
-72        <activity
-72-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:59:9-61:58
-73            android:name="com.example.myapplication.ui.machines.MachniesActivity"
-73-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:60:13-57
-74            android:parentActivityName="com.example.myapplication.MainActivity" />
-74-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:61:13-55
-75        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
-75-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:62:9-85
-75-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:62:19-82
-76
-77        <service android:name="com.example.myapplication.Services.RecordService" />
-77-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:64:9-59
-77-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:64:18-56
-78        <service android:name="com.example.myapplication.Services.FieldDetailService" />
-78-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:65:9-64
-78-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:65:18-61
-79        <service android:name="com.example.myapplication.Services.FieldDetailRemoveService" />
-79-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:66:9-70
-79-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:66:18-67
-80        <service android:name="com.example.myapplication.Services.WorkersService" />
-80-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:67:9-60
-80-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:67:18-57
+63        <meta-data
+63-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:50:9-52:47
+64            android:name="com.google.android.geo.API_KEY"
+64-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:51:13-58
+65            android:value="@string/map_key" />
+65-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:52:13-44
+66
+67        <activity android:name="com.example.myapplication.ui.FieldRecords.FieldsDetailActivity" />
+67-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:54:9-74
+67-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:54:19-71
+68        <activity android:name="com.example.myapplication.ui.FieldRecords.FieldsRecordActivity" />
+68-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:55:9-74
+68-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:55:19-71
+69        <activity android:name="com.example.myapplication.ui.LoginAndRegister.RegisterActivity" />
+69-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:56:9-74
+69-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:56:19-71
+70        <activity
+70-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:57:9-59:48
+71            android:name="com.example.myapplication.ui.LoginAndRegister.LoginActivity"
+71-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:58:13-62
+72            android:label="@string/app_name" />
+72-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:59:13-45
+73        <activity
+73-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:60:9-62:48
+74            android:name="com.example.myapplication.MainActivity"
+74-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:61:13-41
+75            android:label="@string/app_name" />
+75-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:62:13-45
+76        <activity
+76-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:63:9-65:58
+77            android:name="com.example.myapplication.ui.machines.MachniesActivity"
+77-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:64:13-57
+78            android:parentActivityName="com.example.myapplication.MainActivity" />
+78-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:65:13-55
+79        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
+79-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:66:9-85
+79-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:66:19-82
+80
 81        <service android:name="com.example.myapplication.Services.LocationService" />
 81-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:68:9-61
 81-->D:\Android Studio Projects\AgroApp\app\src\main\AndroidManifest.xml:68:18-58

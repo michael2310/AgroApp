@@ -19,24 +19,30 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.AboutAppActivity;
 import com.example.myapplication.Adapters.MenuAdapter;
 import com.example.myapplication.Adapters.UserDetailAdapter;
+import com.example.myapplication.SettingsActivity;
+import com.example.myapplication.db.UsersRepository;
 import com.example.myapplication.ui.LoginAndRegister.LoginActivity;
 import com.example.myapplication.ui.Workers.WorkersActivity;
-import com.example.myapplication.Models.MenuNamesActivity;
-import com.example.myapplication.ui.OptimalizationActivity;
+import com.example.myapplication.Models.MenuNames;
+import com.example.myapplication.OptimalizationActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.FieldRecords.FieldsRecordActivity;
 import com.example.myapplication.ui.machines.MachniesActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 
-public class MenuFragment extends Fragment {
-    // deklaracje
-    FirebaseAuth firebaseAuth;
+public class MenuFragment extends Fragment implements ChildEventListener {
+
     private MenuViewModel menuViewModel;
     private RecyclerView infoRecycler;
     private RecyclerView menuRecycler;
+
+    private UserDetailAdapter infoAdapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -64,22 +70,20 @@ public class MenuFragment extends Fragment {
         infoRecycler = (RecyclerView) view.findViewById(R.id.infoRecycler);
         menuRecycler = (RecyclerView) view.findViewById(R.id.machineListView) ;
         ListView userListview = (ListView) view.findViewById(R.id.userListView);
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
-        String[] names = new String[MenuNamesActivity.names.length];
-        for (int i = 0; i<MenuNamesActivity.names.length; i++){
-            names[i] = MenuNamesActivity.names[i].getName();
+        String[] names = new String[MenuNames.names.length];
+        for (int i = 0; i< MenuNames.names.length; i++){
+            names[i] = MenuNames.names[i].getName();
         }
 
-        int[] imagesId = new int[MenuNamesActivity.names.length];
-        for(int i = 0; i<MenuNamesActivity.names.length; i ++){
-            imagesId[i] = MenuNamesActivity.names[i].getImageId();
+        int[] imagesId = new int[MenuNames.names.length];
+        for(int i = 0; i< MenuNames.names.length; i ++){
+            imagesId[i] = MenuNames.names[i].getImageId();
         }
 
-        UserDetailAdapter infoAdapter = new UserDetailAdapter();
+        //UserDetailAdapter infoAdapter = new UserDetailAdapter();
+         infoAdapter = new UserDetailAdapter();
         //manager ukladu
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         infoRecycler.setLayoutManager(linearLayoutManager);
@@ -90,6 +94,7 @@ public class MenuFragment extends Fragment {
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         menuRecycler.setLayoutManager(layoutManager);
         menuRecycler.setAdapter(adapter);
+
         adapter.setListener(new MenuAdapter.Listener() {
             @Override
             public void onClick(int position) {
@@ -116,6 +121,15 @@ public class MenuFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
+                    case 0:
+                        Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                        startActivity(intent);
+                        break;
+
+                    case 1:
+                        Intent intent1 = new Intent(getActivity(), AboutAppActivity.class);
+                        startActivity(intent1);
+                        break;
                     case 4:
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                         builder.setTitle("Czy na pewno chcesz się wylogować?");
@@ -135,6 +149,7 @@ public class MenuFragment extends Fragment {
                         });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
+                    break;
                 }
             }
         };
@@ -145,5 +160,53 @@ public class MenuFragment extends Fragment {
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         getActivity().startActivity(intent);
         getActivity().finish();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        if(infoAdapter != null) {
+//            infoAdapter.notifyDataSetChanged();
+//        }
+        UsersRepository.getInstance().getCurrentUserRef().addChildEventListener(this);
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        UsersRepository.getInstance().getCurrentUserRef().removeEventListener(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+    }
+
+    @Override
+    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+        if(infoAdapter != null) {
+            infoAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+    }
+
+    @Override
+    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError error) {
+
     }
 }

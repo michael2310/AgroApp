@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp"
-    android:background="@drawable/gradient"
+    android:background="@color/backgroundGray"
     tools:context=".ui.LoginAndRegister.LoginActivity">
 
     <ImageView

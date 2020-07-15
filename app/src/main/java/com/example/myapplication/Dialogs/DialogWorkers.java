@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,13 +20,13 @@ public class DialogWorkers extends DialogFragment {
     private DialogListener listener;
 
 
-    EditText textViewSurname;
-    EditText textViewLastname;
-    EditText textViewInfo;
+    private EditText textViewName;
+    private EditText textViewMail;
+    private EditText textViewInfo;
 
-    String surname;
-    String lastname;
-    String info;
+    private String name;
+    private String mail;
+    private String info;
 
 
     @NonNull
@@ -40,8 +39,8 @@ public class DialogWorkers extends DialogFragment {
         builder.setView(view).setTitle("Dodaj pracownika").setNegativeButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String surname = textViewSurname.getText().toString();
-                String lastname = textViewLastname.getText().toString();
+                String surname = textViewName.getText().toString();
+                String lastname = textViewMail.getText().toString();
                 String info = textViewInfo.getText().toString();
                     if(!surname.equals("") && !lastname.equals("")) {
                     listener.applyTexts(surname, lastname, info);
@@ -51,12 +50,12 @@ public class DialogWorkers extends DialogFragment {
             }
         });
 
-        textViewSurname = view.findViewById(R.id.editTextSurname);
-        textViewLastname = view.findViewById(R.id.editTextLastname);
+        textViewName = view.findViewById(R.id.editTextSurname);
+        textViewMail = view.findViewById(R.id.editTextLastname);
         textViewInfo = view.findViewById(R.id.editTextInfo);
 
-        textViewSurname.setText(surname);
-        textViewLastname.setText(lastname);
+        textViewName.setText(name);
+        textViewMail.setText(mail);
         textViewInfo.setText(info);
 
 

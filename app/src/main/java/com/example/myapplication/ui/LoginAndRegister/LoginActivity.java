@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.db.AppRepository;
+import com.example.myapplication.db.UsersRepository;
 import com.example.myapplication.ui.Workers.EmployeeMainActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
@@ -23,20 +23,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
 
-    EditText editTextlogin;
-    EditText editTextpassword;
-    Button buttonLogin;
-    Button buttonRegister;
+    private EditText editTextlogin;
+    private EditText editTextpassword;
+    private Button buttonLogin;
+    private Button buttonRegister;
     FirebaseAuth firebaseAuth;
-    ProgressDialog progressDialog;
-    DatabaseReference reference1;
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -52,16 +49,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+
     private void userLoggedIn() {
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
-        progressDialog.dismiss();
-        LoginActivity.this.finish();
-    }
-
-
-    private void userLoggedIn2() {
-        AppRepository.getInstance().getUserRef().addListenerForSingleValueEvent(new ValueEventListener() {
+        UsersRepository.getInstance().getCurrentUserRef().addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.child("accountType").getValue().toString().equals("owner")){
@@ -97,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         String login = editTextlogin.getText().toString();
         String password = editTextpassword.getText().toString();
         firebaseAuth = FirebaseAuth.getInstance();
-        if (login.trim().length() > 0 && password.trim().length() > 0 ) { // sprawdzenie czy pola login i password nie są puste
+        if (login.trim().length() > 0 && password.trim().length() > 0 ) {
             firebaseAuth.signInWithEmailAndPassword(login, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -106,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Zalogowano pomyślnie", Toast.LENGTH_SHORT).show();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         if (user != null){
-                            userLoggedIn2();
+                            userLoggedIn();
                         }
                     } else {
                         Toast.makeText(LoginActivity.this, "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
@@ -122,6 +112,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+            FirebaseAuth.getInstance().signOut();
+        }
 //        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 //        // if (FirebaseAuth.getInstance().getCurrentUser() == null){
 //        if (user != null){

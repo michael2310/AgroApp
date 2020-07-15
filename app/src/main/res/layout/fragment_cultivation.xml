@@ -5,7 +5,7 @@
     tools:context=".ui.FieldRecords.CultivationFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient">
+    android:background="@color/backgroundGray">
 
 
 </androidx.recyclerview.widget.RecyclerView>

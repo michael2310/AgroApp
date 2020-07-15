@@ -15,25 +15,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapters.FieldAdapter;
-import com.example.myapplication.Dialogs.DialogDetailRemove;
 import com.example.myapplication.Dialogs.DialogField;
+import com.example.myapplication.Dialogs.DialogFieldEdtit;
+import com.example.myapplication.Dialogs.DialogRemove;
 import com.example.myapplication.Models.Fields;
 import com.example.myapplication.R;
-import com.example.myapplication.Services.FieldDetailRemoveService;
-import com.example.myapplication.Services.RecordService;
-import com.example.myapplication.db.AppRepository;
+import com.example.myapplication.db.FieldsRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class FieldsRecordActivity extends AppCompatActivity implements ChildEventListener, DialogField.DialogListener, DialogDetailRemove.DialogDetailRemoveListener {
+public class FieldsRecordActivity extends AppCompatActivity implements ChildEventListener, DialogField.DialogListener, DialogFieldEdtit.DialogEditListener, DialogRemove.DialogRemoveListener {
     private static final String TAG = FieldsRecordActivity.class.getSimpleName();
 
     FloatingActionButton fab;
@@ -41,7 +37,6 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
     FieldAdapter fieldAdapter;
     String email;
     String id;
-    String fieldIdToRemove;
     int positionInfo;
     ArrayList<Fields> list;
     TextView textView;
@@ -57,8 +52,6 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(FieldsRecordActivity.this, AddFieldActivity.class);
-                //startActivity(intent);
                 openDialog();
             }
         });
@@ -66,63 +59,39 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
         RecyclerView fieldsRecycler = (RecyclerView) findViewById(R.id.fields_recycler);
         fieldsRecycler.setHasFixedSize(true);
 
-        //linear layout
-        // LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        // fieldsRecycler.setLayoutManager(linearLayoutManager);
-        //StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         fieldsRecycler.setLayoutManager(layoutManager);
         fieldAdapter = new FieldAdapter();
         fieldsRecycler.setAdapter(fieldAdapter);
 
+
         fieldAdapter.setListener(new FieldAdapter.Listener() {
             @Override
             public void onClick(int position) {
                 String id = fieldAdapter.fieldsArrayList.get(position).getFieldId();
-                String name = fieldAdapter.fieldsArrayList.get(position).getName();
-                String number = fieldAdapter.fieldsArrayList.get(position).getNumber();
-                String area = fieldAdapter.fieldsArrayList.get(position).getArea();
-                // FirebaseDatabase.getInstance().getReference("fieldsDetatail").child(id).push().setValue(new FieldsDetail(userName, name, number, area)).addOnCompleteListener(new OnCompleteListener<Void>() {
-                // @Override
-                // public void onComplete(@NonNull Task<Void> task) {
-                // Log.d(TAG, "onComplete: ");
                 Toast.makeText(FieldsRecordActivity.this, id, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(FieldsRecordActivity.this, FieldsDetailActivity.class);
                 //przekazanie pozycji
                 intent.putExtra(FieldsDetailActivity.EXTRA_FIELD_ID, id);
                 startActivity(intent);
-                //  }
-                // });
-
-                //FirebaseDatabase.getInstance().getReference("fieldsDetail").child()
-
-                //Intent intent = new Intent(FieldsRecordActivity.this, FieldsDetailActivity.class);
-                //przekazanie pozycji
-                //intent.putExtra(FieldsDetailActivity.EXTRA_FIELD_ID, position);
-                // startActivity(intent);
             }
         });
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            email = user.getEmail();
-            reference = FirebaseDatabase.getInstance().getReference("fields").child(user.getUid());
-            reference.addChildEventListener(this);
-            id = user.getUid();
-        }
+
+        fieldAdapter.setListener1(new FieldAdapter.Listener() {
+            @Override
+            public void onClick(int position) {
+                openDialogEdit(position);
+            }
+        });
 
         fieldAdapter.setListener2(new FieldAdapter.Listener() {
             @Override
             public void onClick(int position) {
                 String id = fieldAdapter.fieldsArrayList.get(position).getFieldId();
                 positionInfo = position;
-                Intent serviceIntent = new Intent(FieldsRecordActivity.this, FieldDetailRemoveService.class);
-                serviceIntent.putExtra("id", id);
-                serviceIntent.putExtra("userName", email.split("@")[0]);
-                //serviceIntent.putExtra("fieldId", id);
-                startService(serviceIntent);
-                //       openDialogRemove(position, id);
-                // removeText();
+                openDialogRemove(id);
+                //FieldsRepository.getInstance().removeField(id);
             }
         });
     }
@@ -135,24 +104,37 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
     }
 
 
-    private void openDialogRemove(int position, String id) {
-        DialogDetailRemove dialogDetailRemove = new DialogDetailRemove(position, id);
-        dialogDetailRemove.show(getSupportFragmentManager(), "Dialog Detail Remove");
+    private void openDialogEdit(int position) {
+        String fieldId = fieldAdapter.fieldsArrayList.get(position).getFieldId();
+        double oldArea = fieldAdapter.fieldsArrayList.get(position).getArea();
+        fieldAdapter.fieldsArrayList.get(position).getArea();
+        DialogFieldEdtit dialogFieldEdtit = new DialogFieldEdtit(fieldId, oldArea);
+        dialogFieldEdtit.show(getSupportFragmentManager(), "Dialog Field Edit");
+    }
+
+
+    private void openDialogRemove(String id) {
+        DialogRemove dialogRemove = new DialogRemove(id);
+        dialogRemove.show(getSupportFragmentManager(), "Dialog Detail Remove");
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
+        fieldAdapter.fieldsArrayList.clear();
+        FieldsRepository.getInstance().getUserFieldRef().addChildEventListener(this);
     }
 
 
     //zakonczenie w onpause
     @Override
     protected void onPause() {
-        if (reference != null) {
-            reference.removeEventListener(this);
-        }
+//        if (FieldsRepository.getInstance().getUserFieldRef() != null) {
+//            //reference.removeEventListener(this);
+//            FieldsRepository.getInstance().getUserFieldRef().removeEventListener(this);
+//        }
+        FieldsRepository.getInstance().getUserFieldRef().removeEventListener(this);
         super.onPause();
     }
 
@@ -161,6 +143,7 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
         Log.d(TAG, "onChildAdded: ");
         if (fieldAdapter != null) {
+            textView.setVisibility(View.INVISIBLE);
             Fields field = dataSnapshot.getValue(Fields.class);
             fieldAdapter.fieldsArrayList.add(field);
             fieldAdapter.notifyDataSetChanged();
@@ -170,17 +153,49 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
     @Override
     public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
         Log.d(TAG, "onChildChanged: ");
+        if (fieldAdapter != null) {
+            Fields field = dataSnapshot.getValue(Fields.class);
+            replace(field);
+            fieldAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void replace(Fields field) {
+        for (Fields item : fieldAdapter.fieldsArrayList) {
+            if (field.getFieldId().equals(item.getFieldId())) {
+                int index = fieldAdapter.fieldsArrayList.indexOf(item);
+                fieldAdapter.fieldsArrayList.set(index, field);
+                break;
+            }
+        }
     }
 
 
     @Override
     public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
         Log.d(TAG, "onChildRemoved: ");
-        if (fieldAdapter != null) {
-            Fields field = dataSnapshot.getValue(Fields.class);
-            fieldAdapter.fieldsArrayList.remove(positionInfo);
-            fieldAdapter.notifyDataSetChanged();
-        }
+//        if (fieldAdapter != null) {
+//            Fields field = dataSnapshot.getValue(Fields.class);
+//            fieldAdapter.fieldsArrayList.remove(positionInfo);
+//            fieldAdapter.fieldsArrayList.remove(field);
+//            fieldAdapter.notifyDataSetChanged();
+//        }
+
+            if(fieldAdapter != null) {
+                textView.setVisibility(View.INVISIBLE);
+                String key = dataSnapshot.getKey();
+                 for(Fields field : fieldAdapter.fieldsArrayList){
+                     if(field.getFieldId().equals(key)){
+                         fieldAdapter.fieldsArrayList.remove(field);
+                     }
+                 }
+//                for (int i = 0; i < fieldAdapter.fieldsArrayList.size(); i++) {
+//                    if (fieldAdapter.fieldsArrayList.get(i).getFieldId().equals(key))
+//                        fieldAdapter.fieldsArrayList.remove(i);
+//                    break;
+//                }
+                fieldAdapter.notifyDataSetChanged();
+            }
     }
 
 
@@ -198,35 +213,20 @@ public class FieldsRecordActivity extends AppCompatActivity implements ChildEven
 
     @Override
     public void applyTexts(String number, String area, String name) {
+        FieldsRepository.getInstance().addField(name, number, Double.parseDouble(area));
+    }
+
+    @Override
+    public void changeTexts(String number, String area, String name, String fieldId, double oldArea) {
         Log.d(TAG, "onClick: ");
-        AppRepository.getInstance().addField(name, number, Double.parseDouble(area));
+        FieldsRepository.getInstance().editField(name, number, Double.parseDouble(area), fieldId, oldArea);
     }
 
 
     @Override
-    public void removeText() {
-//                Intent serviceIntent = new Intent(FieldsRecordActivity.this, FieldDetailRemoveService.class);
-//                serviceIntent.putExtra("id", fieldIdToRemove);
-//                serviceIntent.putExtra("userName", email.split("@")[0]);
-//                //serviceIntent.putExtra("fieldId", id);
-//                startService(serviceIntent);
+    public void removeText(String id) {
+        FieldsRepository.getInstance().removeField(id);
     }
-
-//    public void hash(){
-//        HashMap<String, Object> hashMap = new HashMap<>();
-//        hashMap.put("admin", id);
-//        hashMap.put("data", "aaa");
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-//        String key = reference.child("fields").push().getKey();
-//        hashMap.put("key", key);
-//        Task task = reference.child("fields").child(key).setValue(hashMap);
-//        task.addOnCompleteListener(new OnCompleteListener() {
-//            @Override
-//            public void onComplete(@NonNull Task task) {
-//                Log.d(TAG, "onComplete: ");
-//            }
-//        });
-//    }
 
 
     public void setId(String id) {

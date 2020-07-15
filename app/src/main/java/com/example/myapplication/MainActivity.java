@@ -1,16 +1,13 @@
 package com.example.myapplication;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,34 +16,40 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.Services.LocationService;
-import com.example.myapplication.Services.UploadLocationService;
+import com.example.myapplication.db.UsersRepository;
 import com.example.myapplication.ui.LoginAndRegister.LoginActivity;
-import com.example.myapplication.ui.MainPagerAdapter;
-import com.example.myapplication.ui.home.HomeFragment;
+import com.example.myapplication.pagers.MainPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity implements ServiceConnection {
+public class MainActivity extends AppCompatActivity {
 
-    private LocationService locationService;
-    private boolean bound = false;
     private final int PERMISSION_REQUEST_CODE = 698;
     private ViewPager2 viewPager;
+    private boolean b = false;
+    private boolean isClosed = true;
+    private Switch sw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(savedInstanceState != null){
+            isClosed = savedInstanceState.getBoolean("isClosed");
+            b = savedInstanceState.getBoolean("switch");
+        }
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(new MainPagerAdapter(this));
-        if (savedInstanceState == null) {
-            displayDistance();
-        }
         viewPager.setUserInputEnabled(false);
     }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -54,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     viewPager.setCurrentItem(0, true);
-                    displayDistance();
                     return true;
                 case R.id.navigation_menu:
                     viewPager.setCurrentItem(1, true);
@@ -64,21 +66,55 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         }
     };
 
+
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQUEST_CODE: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Intent intent = new Intent(this, LocationService.class);
-                    bindService(intent, this, Context.BIND_AUTO_CREATE);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem itemSwitch = menu.findItem(R.id.action_location);
+        itemSwitch.setActionView(R.layout.switch_menu);
+
+        sw = (Switch) menu.findItem(R.id.action_location).getActionView().findViewById(R.id.location_switch);
+
+        if(isClosed) {
+            UsersRepository.getInstance().getCurrentUserSharing().addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    b = (boolean) snapshot.getValue();
+                    sw.setChecked(b);
+                    isClosed = false;
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        } else {
+            sw.setChecked(b);
+        }
+
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    UsersRepository.getInstance().changeSharing(b);
+                    Toast.makeText(getApplicationContext(), "Lokalizacja włączona", Toast.LENGTH_SHORT).show();
+                    startLocationService();
                 } else {
-                    ////
+                    UsersRepository.getInstance().changeSharing(b);
+                    Toast.makeText(getApplicationContext(), "Lokalizacja wyłączona", Toast.LENGTH_SHORT).show();
+                    stopLocationService();
                 }
             }
-        }
+        });
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return false;
+    }
+
 
 
     @Override
@@ -90,17 +126,12 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         }
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    protected void onStop() {
+        super.onStop();
+            b = sw.isChecked();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        return false;
-    }
 
     private void startLoginActivity() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -108,10 +139,32 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         MainActivity.this.finish();
     }
 
+
+
+
     @Override
-    protected void onStart() {
-        super.onStart();
-        super.onStart();
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startLocationService();
+                } else {
+                    ////
+                    Toast.makeText(this, "Brak uprawnień", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+
+    private void stopLocationService() {
+        Intent intent = new Intent(this, LocationService.class);
+        stopService(intent);
+    }
+
+    private void startLocationService() {
         if (ContextCompat.checkSelfPermission(this, LocationService.PERMISSION_STRING)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -119,57 +172,15 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
                     PERMISSION_REQUEST_CODE);
         } else {
             Intent intent = new Intent(this, LocationService.class);
-            bindService(intent, this, Context.BIND_AUTO_CREATE);
+            startService(intent);
         }
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (bound) {
-            unbindService(this);
-            bound = false;
-        }
-    }
-
-    private void displayDistance() {
-        final Handler handler = new Handler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                double distance = 0.0;
-                if (bound && locationService != null) {
-                    Location location = locationService.getLastLocation();
-                    if (location != null) {
-                         HomeFragment homeFragment = new HomeFragment();
-                         homeFragment.setLocation(location);
-                         startUploadLocationService(location);
-                    }
-                }
-                handler.postDelayed(this, 5000);
-            }
-        });
-    }
-
-    private void startUploadLocationService(Location location) {
-        Intent intent = new Intent(MainActivity.this, UploadLocationService.class);
-        intent.putExtra("lat", location.getLatitude());
-        intent.putExtra("lng", location.getLongitude());
-        startService(intent);
-    }
 
     @Override
-    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        LocationService.LocationServiceBinder locationServiceBinder =
-                (LocationService.LocationServiceBinder) iBinder;
-        locationService = locationServiceBinder.getLocationService();
-        bound = true;
-
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("isClosed", isClosed);
+        outState.putBoolean("switch", b);
     }
-
-    @Override
-    public void onServiceDisconnected(ComponentName componentName) {
-        bound = false;
-    }
-
 }

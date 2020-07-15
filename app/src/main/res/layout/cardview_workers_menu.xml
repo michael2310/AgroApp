@@ -9,55 +9,107 @@
     android:focusable="true"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:backgroundTint="@color/background"
+    android:backgroundTint="@color/background2"
     app:cardCornerRadius="15dp"
     app:cardElevation="2dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageViewWorkers"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/round_button"
-            android:src="@drawable/ic_baseline_person_96"
-            android:textColor="#fff"
-            android:textSize="20sp"
+        <View
+            android:id="@+id/view3"
+            android:layout_width="96dp"
+            android:layout_height="match_parent"
+            android:background="@color/background"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textViewSurname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/circleImageViewWorkers"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Imie"></TextView>
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textViewLastname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/circleImageViewWorkers"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSurname"
-            tools:text="Nazwisko" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageViewWorkers"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_baseline_person_96"
+                android:textColor="#fff" />
+
+            <ImageView
+                android:id="@+id/activeDot"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true" />
+            <!--                android:src="@drawable/ic_online" />-->
+
+        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+
+            <!--        <de.hdodenhof.circleimageview.CircleImageView-->
+            <!--            android:id="@+id/circleImageViewWorkers"-->
+            <!--            android:layout_width="70dp"-->
+            <!--            android:layout_height="70dp"-->
+            <!--            android:layout_marginStart="4dp"-->
+            <!--            android:layout_marginTop="16dp"-->
+            <!--            android:layout_marginBottom="16dp"-->
+            <!--            android:background="@drawable/round_button"-->
+            <!--            android:src="@drawable/ic_baseline_person_96"-->
+            <!--            android:textColor="#fff"-->
+            <!--            android:textSize="20sp"-->
+            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+            <TextView
+                android:id="@+id/textViewSurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Imie" />
+
+
+            <TextView
+                android:id="@+id/textViewLastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textViewSurname"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSurname"
+                tools:text="mail" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
 
 

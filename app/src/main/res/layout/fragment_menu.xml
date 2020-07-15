@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient"
+        android:background="@color/backgroundGray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,15 +26,15 @@
             android:overScrollMode="never"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Narzędzia"
+            android:text="@string/menuFragmentTools"
             android:textColor="#000"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -50,35 +50,36 @@
             android:stateListAnimator="@anim/fragment_close_enter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"></androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Ustawienia i informacje"
+            android:layout_marginBottom="16dp"
+            android:text="@string/menuFragmentSettingsAndInfo"
             android:textColor="#000"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/userListView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/machineListView"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/machineListView" />
 
         <ListView
             android:id="@+id/userListView"
             android:layout_width="match_parent"
             android:layout_height="245dp"
             android:layout_margin="4dp"
-            android:layout_marginTop="16dp"
             android:background="@drawable/corner_list"
-            android:elevation="5dp"
+            android:backgroundTint="@color/background2"
+            android:elevation="2dp"
             android:entries="@array/userListView"
-            android:backgroundTint="@color/background"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintCircleRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"></ListView>
+            app:layout_constraintStart_toStartOf="parent" />
 
 
 

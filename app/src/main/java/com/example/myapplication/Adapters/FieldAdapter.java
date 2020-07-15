@@ -1,11 +1,11 @@
 package com.example.myapplication.Adapters;
 
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,24 +15,18 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.Dialogs.DialogDetailRemove;
 import com.example.myapplication.Models.Fields;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
-public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> implements DialogDetailRemove.DialogDetailRemoveListener {
+public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> {
 
     public ArrayList<Fields> fieldsArrayList = new ArrayList<>();
 
     private Listener listener;
     private Listener listener1;
     private Listener listener2;
-
-    @Override
-    public void removeText() {
-
-    }
 
     //interfejs
     public interface Listener{
@@ -53,18 +47,14 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
 
         Fields fields = fieldsArrayList.get(position);
 
-       // TextView textViewNumber = (TextView) cardView.findViewById(R.id.numberText);
-       // textViewNumber.setText("Działka nr: " + fields.getNumber());
-
         TextView textViewArea = (TextView) cardView.findViewById(R.id.areaText);
-        textViewArea.setText("Powierzchnia: " + fields.getArea() + " ha");
-
+        textViewArea.setText(cardView.getContext().getResources().getString(R.string.fieldArea, fmt(fields.getArea())));
         TextView textViewName = (TextView) cardView.findViewById(R.id.nameText);
-        textViewName.setText("Info: " + fields.getName());
+        textViewName.setText(cardView.getContext().getResources().getString(R.string.fieldInfo, fields.getName()));
 
-        Button numberButton = (Button) cardView.findViewById(R.id.numberButton);
-        numberButton.setText(fields.getNumber());
-        numberButton.setTextSize(20);
+
+        TextView textViewNumber = (TextView) cardView.findViewById(R.id.numberButton);
+        textViewNumber.setText(fields.getNumber());
 
         ImageButton imageButton = (ImageButton) cardView.findViewById(R.id.imageButton);
 
@@ -75,9 +65,6 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
             }
         });
 
-//        TextView textViewId = (TextView) cardView.findViewById(R.id.textViewId);
-//        textViewId.setText(fields.getFieldId());
-
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,19 +74,6 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
                 }
             }
         });
-
-        cardView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if(listener1 != null){
-                    listener1.onClick(position);
-                }
-                return false;
-            }
-        });
-
-
-        //holder.itemView
     }
 
     @Override
@@ -130,13 +104,11 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
     }
 
     private void showMenu(View view,int position) {
-        // inflate menu
+
         PopupMenu popup = new PopupMenu(view.getContext(),view );
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.menu_field_cardview, popup.getMenu());
-      // popup.setOnMenuItemClickListener(new MyMenuItemClickListener(position, view));
-        //view.startAnimation(Con);
-        //view.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.nav_default_enter_anim));
+
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -144,6 +116,9 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
                     case R.id.Edit:
                         Toast.makeText(view.getContext(),"Edytuj", Toast.LENGTH_SHORT).show();
                         // INTERFEJS
+                        if(listener1 != null){
+                            listener1.onClick(position);
+                        }
                         return true;
                     case R.id.Delete:
                         // INTERFEJS
@@ -157,6 +132,14 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.ViewHolder> 
             }
         });
         popup.show();
+    }
+
+    public static String fmt(double d)
+    {
+        if(d == (long) d)
+            return String.format("%d",(long)d);
+        else
+            return String.format("%s",d);
     }
 
 }

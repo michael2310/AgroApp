@@ -12,28 +12,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.myapplication.Dialogs.DialogCultivation;
-import com.example.myapplication.Dialogs.DialogDetailRemove;
-import com.example.myapplication.Dialogs.DialogFertilization;
-import com.example.myapplication.Dialogs.DialogPlantProtection;
+import com.example.myapplication.Dialogs.Details.DialogCultivation;
+import com.example.myapplication.Dialogs.Details.DialogDetailRemove;
+import com.example.myapplication.Dialogs.Details.DialogEditCultivation;
+import com.example.myapplication.Dialogs.Details.DialogEditFertilization;
+import com.example.myapplication.Dialogs.Details.DialogEditPlantProtection;
+import com.example.myapplication.Dialogs.Details.DialogFertilization;
+import com.example.myapplication.Dialogs.Details.DialogPlantProtection;
 import com.example.myapplication.R;
-import com.example.myapplication.Services.FieldDetailRemoveService;
-import com.example.myapplication.Services.FieldDetailService;
 import com.example.myapplication.db.CultivationRepository;
 import com.example.myapplication.db.FertilizationRepository;
 import com.example.myapplication.db.PlantProtectionRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 
-public class FieldsDetailActivity extends AppCompatActivity implements DialogDetailRemove.DialogDetailRemoveListener, DialogCultivation.DialogListener, DialogPlantProtection.DialogListener, DialogFertilization.DialogListener {
+public class FieldsDetailActivity extends AppCompatActivity implements  DialogCultivation.DialogListener,
+        DialogPlantProtection.DialogListener, DialogFertilization.DialogListener, DialogEditCultivation.DialogEditListener, DialogEditPlantProtection.DialogEditListener, DialogEditFertilization.DialogEditListener, DialogDetailRemove.DialogDetailRemoveListener {
 
     public static final String EXTRA_FIELD_ID = "fieldId";
+    ViewPager pager;
     FloatingActionButton fab;
-    DatabaseReference reference;
-    String email;
     String fieldId;
     String id;
 
@@ -43,20 +41,17 @@ public class FieldsDetailActivity extends AppCompatActivity implements DialogDet
         setContentView(R.layout.activity_fields_detail);
 
         SectionsPagerAdapter pagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(pagerAdapter);
          //viewPager do TabLaoyout
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(pager);
 
-        // id = (TextView) findViewById(R.id.id);
-        // number = (TextView) findViewById(R.id.textView2);
+
         fab = (FloatingActionButton) findViewById(R.id.addFab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // openDialog();
-                //openDialogChooseCategory();
                 int number = pager.getCurrentItem();
 
                 if(number == 0){
@@ -73,11 +68,6 @@ public class FieldsDetailActivity extends AppCompatActivity implements DialogDet
         Intent intent = getIntent();
 
         fieldId = intent.getStringExtra(EXTRA_FIELD_ID);
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            email = user.getEmail();
-        }
     }
 
 
@@ -100,59 +90,51 @@ public class FieldsDetailActivity extends AppCompatActivity implements DialogDet
 
 
     @Override
-    public void removeText() {
-        Intent serviceIntent = new Intent(FieldsDetailActivity.this, FieldDetailRemoveService.class);
-        serviceIntent.putExtra("id", id);
-        serviceIntent.putExtra("fieldId", fieldId);
-        startService(serviceIntent);
+    public void applyTextsCultivation(String plant, String cultivationType, String sowingType, String date, String info, String category) {
+        CultivationRepository.getInstance().addFieldDetail(category, plant, cultivationType, sowingType, date, info, fieldId);
     }
 
+    @Override
+    public void changeTextsCultivation(String plant, String cultivationType, String sowingType, String date, String info, String category, String id) {
+        CultivationRepository.getInstance().editFieldDetail(category, plant, cultivationType, sowingType, date, info, id, fieldId);
+    }
 
     @Override
     public void applyTextsPlantProtection(String plant, String chemicals, String dose, String developmentPhase, String date, String category, String info) {
-//        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
-//        intent.putExtra("fieldId", fieldId);
-//        intent.putExtra("userName", email.split("@")[0]);
-//        intent.putExtra("category", category);
-//        intent.putExtra("plant", plant);
-//        intent.putExtra("chemia", chemia);
-//        intent.putExtra("dose", dose);
-//        intent.putExtra("developmentPhase", developmentPhase);
-//        intent.putExtra("date", date);
-//        startService(intent);
         PlantProtectionRepository.getInstance().addFieldDetail(category, fieldId, plant, chemicals, dose, developmentPhase, date, info);
     }
 
     @Override
+    public void changeTextsPlantProtection(String category,String id, String fieldId, String plant, String chemicals, String dose, String developmentPhase, String date, String info) {
+        PlantProtectionRepository.getInstance().editFieldDetail(category, id, fieldId, plant, chemicals, dose, developmentPhase, date, info);
+    }
+
+    @Override
     public void applyTextsFertilization(String plant, String chemicals, String dose, String developmentPhase, String date, String category, String info) {
-//        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
-//        intent.putExtra("fieldId", fieldId);
-//        intent.putExtra("userName", email.split("@")[0]);
-//        intent.putExtra("category", category);
-//        intent.putExtra("plant", plant);
-//        intent.putExtra("chemicals", chemicals);
-//        intent.putExtra("dose", dose);
-//        intent.putExtra("developmentPhase", developmentPhase);
-//        intent.putExtra("date", date);
-//        startService(intent);
         FertilizationRepository.getInstance().addFieldDetail(category, fieldId, plant, chemicals, dose, developmentPhase, date, info);
     }
 
     @Override
-    public void applyTextsCultivation(String plant, String cultivationType, String sowingType, String date, String info, String category) {
-//        Intent intent = new Intent(FieldsDetailActivity.this, FieldDetailService.class);
-//        intent.putExtra("fieldId", fieldId);
-//        intent.putExtra("userName", email.split("@")[0]);
-//        intent.putExtra("category", category);
-//        intent.putExtra("plant", plant);
-//        intent.putExtra("cultivationType", cultivationType);
-//        intent.putExtra("sowingType", sowingType);
-//        intent.putExtra("date", date);
-//        intent.putExtra("info", info);
-//        startService(intent);
-        CultivationRepository.getInstance().addFieldDetail(category, plant, cultivationType, sowingType, date, info, fieldId);
+    public void changeTextsFertilization(String category, String id, String fieldId, String plant, String chemicals, String dose, String developmentPhase, String date, String info) {
+        FertilizationRepository.getInstance().editFieldDetail(category, id, fieldId, plant, chemicals, dose, developmentPhase, date, info);
     }
 
+
+    @Override
+    public void removeText(String fieldId, String id) {
+        int number = pager.getCurrentItem();
+
+        if(number == 0){
+            CultivationRepository.getInstance().removeFieldDetail(fieldId, id);
+        }
+        else if(number == 1){
+            PlantProtectionRepository.getInstance().removeFieldDetail(fieldId, id);
+        }
+        else if (number == 2){
+            FertilizationRepository.getInstance().removeFieldDetail(fieldId, id);
+        }
+
+    }
 
     class SectionsPagerAdapter extends FragmentPagerAdapter {
 

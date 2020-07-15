@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -36,6 +37,11 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="com.example.myapplication.AboutAppActivity" />
+        <activity
+            android:name="com.example.myapplication.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name="com.example.myapplication.BluetoothActivity" />
         <activity android:name="com.example.myapplication.ui.Workers.EmployeeDetailActivity" />
         <activity android:name="com.example.myapplication.ui.Workers.EmployeeFarmCodeActivity" />
         <activity
@@ -53,9 +59,7 @@
         <activity
             android:name="com.example.myapplication.ui.Workers.WorkersActivity"
             android:parentActivityName="com.example.myapplication.MainActivity" />
-        <activity
-            android:name="com.example.myapplication.ui.OptimalizationActivity"
-            android:parentActivityName="com.example.myapplication.MainActivity" />
+        <activity android:name="com.example.myapplication.OptimalizationActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -75,10 +79,6 @@
             android:parentActivityName="com.example.myapplication.MainActivity" />
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
 
-        <service android:name="com.example.myapplication.Services.RecordService" />
-        <service android:name="com.example.myapplication.Services.FieldDetailService" />
-        <service android:name="com.example.myapplication.Services.FieldDetailRemoveService" />
-        <service android:name="com.example.myapplication.Services.WorkersService" />
         <service android:name="com.example.myapplication.Services.LocationService" />
 
         <activity

@@ -27,7 +27,6 @@ public class MachinesAdapter extends RecyclerView.Adapter<MachinesAdapter.ViewHo
     @NonNull
     @Override
     public MachinesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_machines, parent, false);
         CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_machines,parent,false);
 
         return new ViewHolder(cardView);

@@ -1,22 +1,16 @@
 package com.example.myapplication.Models;
 
-import java.util.ArrayList;
-
 public class Fields {
 
     private String name;
     private String number;
-    private String area;
+    private Double area;
     private String fieldId;
-
-
-
-    ArrayList<Fields> fieldsArrayList = new ArrayList<>();
 
     public Fields(){
     }
 
-    public Fields(String name, String number, String area, String fieldId) {
+    public Fields(String name, String number, Double area, String fieldId) {
         this.name = name;
         this.number = number;
         this.area = area;
@@ -39,11 +33,11 @@ public class Fields {
         this.number = number;
     }
 
-    public String getArea() {
+    public Double getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Double area) {
         this.area = area;
     }
 

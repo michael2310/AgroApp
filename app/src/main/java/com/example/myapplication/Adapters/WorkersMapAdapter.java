@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Models.Employee;
 import com.example.myapplication.R;
+import com.example.myapplication.db.StorageRepository;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class WorkersMapAdapter extends RecyclerView.Adapter<WorkersMapAdapter.ViewHolder> {
     String[] names;
@@ -49,6 +52,9 @@ public class WorkersMapAdapter extends RecyclerView.Adapter<WorkersMapAdapter.Vi
         TextView textView = (TextView) cardView.findViewById(R.id.info_text);
         textView.setText(employees.getName());
 
+        CircleImageView circleImageView = (CircleImageView) cardView.findViewById(R.id.workersMapCircle);
+        StorageRepository.getInstance().getWorkersAvatar(circleImageView, employees.getId());
+
         //listener przy tworzeniu viewHoldera
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +64,6 @@ public class WorkersMapAdapter extends RecyclerView.Adapter<WorkersMapAdapter.Vi
                 }
             }
         });
-
     }
 
     @Override

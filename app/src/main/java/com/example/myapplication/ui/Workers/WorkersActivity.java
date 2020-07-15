@@ -12,19 +12,15 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.myapplication.Adapters.EmployeeAdapter;
-import com.example.myapplication.Adapters.EmployeesAdapter;
 import com.example.myapplication.Dialogs.DialogWorkers;
 import com.example.myapplication.Models.Employee;
 import com.example.myapplication.R;
-import com.example.myapplication.db.AppRepository;
+import com.example.myapplication.db.UsersRepository;
+import com.example.myapplication.db.WorkersRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -32,11 +28,10 @@ import java.util.ArrayList;
 public class WorkersActivity extends AppCompatActivity implements ChildEventListener {
     private static final String TAG = WorkersActivity.class.getSimpleName();
     FloatingActionButton fab;
-    EmployeesAdapter employeesAdapter;
     EmployeeAdapter employeeAdapter;
     String email;
     String id;
-    String circleMemberId;
+    String farmMemberId;
 
     Employee employee;
     ArrayList<Employee> employeeList;
@@ -48,6 +43,8 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
 
         employeeList = new ArrayList<>();
 
+        //WorkersRepository.getInstance().getUserFarmWorkersRef().addChildEventListener(this);
+
 
         fab = (FloatingActionButton) findViewById(R.id.addFab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -55,9 +52,9 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
             public void onClick(View v) {
                 // tak jak działało do tej pory
                 //openDialog();
-                if (AppRepository.getInstance().isUserLogged()) {
+                if (UsersRepository.getInstance().isUserLogged()) {
                     // to sa te metody na dole
-                    AppRepository.getInstance().getUserRef().addListenerForSingleValueEvent(new ValueEventListener() {
+                    UsersRepository.getInstance().getCurrentUserRef().addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
@@ -85,30 +82,10 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
         fieldsRecycler.setLayoutManager(layoutManager);
 
 
-        AppRepository.getInstance().getUserFarmWorkersRef().addListenerForSingleValueEvent(new ValueEventListener() {
+        WorkersRepository.getInstance().getUserFarmWorkersRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                employeeList.clear();
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot data : dataSnapshot.getChildren()) {
-                        circleMemberId = data.child("circleMemberId").getValue(String.class);
-
-                        AppRepository.getInstance().getUserRef().child(circleMemberId).addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                employee = dataSnapshot.getValue(Employee.class);
-                                employeeList.add(employee);
-                                employeeAdapter.notifyDataSetChanged();
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-                        Log.d(TAG, "onDataChange: ");
-                    }
-                }
+                updateWorkers(dataSnapshot);
             }
 
             @Override
@@ -138,57 +115,33 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
                 intent.putExtra("mail", mail);
                 intent.putExtra("employeeId", employeeId);
                 startActivity(intent);
-                //  }
-                // });
             }
         });
+    }
 
+    private void updateWorkers(@NonNull DataSnapshot dataSnapshot) {
+        employeeList.clear();
+        if (dataSnapshot.exists()) {
+            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                farmMemberId = data.child("FarmMemberId").getValue(String.class);
 
-//        employeesAdapter.setListener(new EmployeesAdapter.Listener() {
-//            @Override
-//            public void onClick(int position) {
-//
-//            }
-//        });
-//        fieldAdapter.setListener(new FieldAdapter.Listener() {
-//            @Override
-//            public void onClick(int position) {
-//                String id = fieldAdapter.fieldsArrayList.get(position).getFieldId();
-//                String userName = fieldAdapter.fieldsArrayList.get(position).getUserName();
-//                String name = fieldAdapter.fieldsArrayList.get(position).getName();
-//                String number = fieldAdapter.fieldsArrayList.get(position).getNumber();
-//                String area = fieldAdapter.fieldsArrayList.get(position).getArea();
-//                // FirebaseDatabase.getInstance().getReference("fieldsDetatail").child(id).push().setValue(new FieldsDetail(userName, name, number, area)).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                // @Override
-//                // public void onComplete(@NonNull Task<Void> task) {
-//                // Log.d(TAG, "onComplete: ");
-//                Toast.makeText(FieldsRecordActivity.this, id, Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(FieldsRecordActivity.this, FieldsDetailActivity.class);
-//                //przekazanie pozycji
-//                intent.putExtra(FieldsDetailActivity.EXTRA_FIELD_ID, id);
-//                startActivity(intent);
-//                //  }
-//                // });
-//
-//                //FirebaseDatabase.getInstance().getReference("fieldsDetail").child()
-//
-//                //Intent intent = new Intent(FieldsRecordActivity.this, FieldsDetailActivity.class);
-//                //przekazanie pozycji
-//                //intent.putExtra(FieldsDetailActivity.EXTRA_FIELD_ID, position);
-//                // startActivity(intent);
-//            }
-//        });
+                UsersRepository.getInstance().getUsersRef().child(farmMemberId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        employee = dataSnapshot.getValue(Employee.class);
+                        employeeList.add(employee);
+                        employeeAdapter.notifyDataSetChanged();
+                        //employeeAdapter.notifyDataSetChanged();
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-//        if (user != null) {
-//            email = user.getEmail();
-//            //reference = FirebaseDatabase.getInstance().getReference("workers").child(user.getEmail().split("@")[0]);
-//            reference = FirebaseDatabase.getInstance().getReference().child("FarmWorkers").child(user.getUid());
-//            // to sa te metody na dole
-//            //reference.addChildEventListener(this);
-//            id = user.getUid();
-//        }
-
+                    }
+                });
+                Log.d(TAG, "onDataChange: ");
+            }
+        }
     }
 
     private void openDialog() {
@@ -197,20 +150,10 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
         dialogWorkers.show(getSupportFragmentManager(), "Dialog Workers");
     }
 
-//    @Override
-//    public void applyTexts(String surname, String lastname, String info) {
-//        Log.d(TAG, "onClick: ");
-//        Intent serviceIntent = new Intent(WorkersActivity.this, WorkersService.class);
-//        serviceIntent.putExtra("userName", email.split("@")[0]);
-//        serviceIntent.putExtra("surname", surname);
-//        serviceIntent.putExtra("lastname", lastname );
-//        serviceIntent.putExtra("info", info);
-//        startService(serviceIntent);
-//    }
 
     @Override
     protected void onResume() {
-        AppRepository.getInstance().getUserRef().addChildEventListener(this);
+        UsersRepository.getInstance().getCurrentUserRef().addChildEventListener(this);
         super.onResume();
 
     }
@@ -218,7 +161,8 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
     //zakonczenie w onpause
     @Override
     protected void onPause() {
-        AppRepository.getInstance().getUserRef().removeEventListener(this);
+        //UsersRepository.getInstance().getCurrentUserRef().removeEventListener(this);
+        WorkersRepository.getInstance().getUserFarmWorkersRef().removeEventListener(this);
         super.onPause();
     }
 
@@ -234,11 +178,26 @@ public class WorkersActivity extends AppCompatActivity implements ChildEventList
 
     @Override
     public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+//        if (employeeAdapter != null) {
+//            updateWorkers(dataSnapshot);
+//            employeeAdapter.notifyDataSetChanged();
+//        }
     }
 
     @Override
     public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//        if(employeeAdapter != null) {
+//            String key = dataSnapshot.getKey();
+//            for (int i = 0; i < employeeList.size(); i++) {
+//                if (employeeList.get(i).getId().equals(key))
+//                    employeeList.remove(i);
+//            }
+//            employeeAdapter.notifyDataSetChanged();
+//        }
+        if(employeeAdapter != null) {
+            updateWorkers(dataSnapshot);
+            employeeAdapter.notifyDataSetChanged();
+        }
 
     }
 

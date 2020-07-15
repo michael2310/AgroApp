@@ -20,19 +20,15 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     int [] imagesId;
 
     private Listener listener;
-    //interfejs
+
     public interface Listener{
         void onClick(int position);
     }
-
-
-    //konstruktory
 
     public MenuAdapter(String[] names, int[] imagesId){
         this.names = names;
         this.imagesId = imagesId;
     }
-
 
 
     @NonNull
@@ -54,7 +50,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         ImageView imageView = (ImageView) cardView.findViewById(R.id.imageView);
         Drawable drawable = ContextCompat.getDrawable(cardView.getContext(), imagesId[position]);
         imageView.setImageDrawable(drawable);
-        //imageView.setImageDrawable(imagesId[position]);
         imageView.setContentDescription(names[position]);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override

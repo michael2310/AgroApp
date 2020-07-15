@@ -1,50 +1,49 @@
 package com.example.myapplication.Adapters;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Registry;
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
+import com.example.myapplication.Models.Fields;
 import com.example.myapplication.Models.Owner;
 import com.example.myapplication.R;
-import com.example.myapplication.db.AppRepository;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.myapplication.db.StorageRepository;
+import com.example.myapplication.db.UsersRepository;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserDetailAdapter extends RecyclerView.Adapter<UserDetailAdapter.ViewHolder> {
 
-    DatabaseReference reference;
-    StorageReference storageReference;
+    CardView cardView;
+    TextView textViewUserName;
+    TextView textViewCode;
+    TextView textViewArea;
+    TextView textViewNumberOfFields;
+    CircleImageView circleImageView;
+    Resources res;
+
+    public Resources getRes() {
+        return res;
+    }
+
     private Listener listener;
-    //interfejs
+
+
     public interface Listener{
         void onClick(int position);
     }
@@ -54,6 +53,7 @@ public class UserDetailAdapter extends RecyclerView.Adapter<UserDetailAdapter.Vi
     }
 
     public ArrayList<Owner> ownerArrayList = new ArrayList<>();
+    public Owner owner1;
 
 
     @NonNull
@@ -69,52 +69,43 @@ public class UserDetailAdapter extends RecyclerView.Adapter<UserDetailAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull UserDetailAdapter.ViewHolder holder, int position) {
 
-        CardView cardView = holder.cardView;
-        TextView textViewUserName = (TextView) cardView.findViewById(R.id.nameText);
-        TextView textViewCode = (TextView) cardView.findViewById(R.id.textViewCodeDisplay);
-        TextView textViewArea = (TextView) cardView.findViewById(R.id.textViewAreaDisplay);
-        TextView textViewNumberOfFields = (TextView) cardView.findViewById(R.id.textViewNumberOfFieldsDisplay);
-        CircleImageView circleImageView = (CircleImageView) cardView.findViewById(R.id.imageView);
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            try {
-                reference = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
-                //           storageReference = FirebaseStorage.getInstance().getReference().child("Users_avatars"));
-                storageReference = FirebaseStorage.getInstance().getReference().child("Users_avatars").child(user.getUid() + ".jpg");
-            }catch (Exception e){
-
-            }
-
-         storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-             @Override
-             public void onSuccess(Uri uri) {
-                 if(uri != null) {
-                     Glide.with(cardView.getContext()).load(uri.toString()).into(circleImageView);
-                 }
-             }
-         });
+         cardView = holder.cardView;
+         textViewUserName = (TextView) cardView.findViewById(R.id.nameText);
+         textViewCode = (TextView) cardView.findViewById(R.id.textViewCodeDisplay);
+         textViewArea = (TextView) cardView.findViewById(R.id.textViewAreaDisplay);
+         textViewNumberOfFields = (TextView) cardView.findViewById(R.id.textViewNumberOfFieldsDisplay);
+         circleImageView = (CircleImageView) cardView.findViewById(R.id.imageView);
 
 
-            AppRepository.getInstance().getUserRef().addListenerForSingleValueEvent(new ValueEventListener() {
+            StorageRepository.getInstance().getAvatar(circleImageView);
+
+          //  UsersRepository.getInstance().getCurrentUserRef().addChildEventListener(this);
+
+            UsersRepository.getInstance().getCurrentUserRef().addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot != null) {
-                        String name = dataSnapshot.child("name").getValue().toString();
-                        String area = dataSnapshot.child("totalArea").getValue().toString();
-                        String fields = dataSnapshot.child("totalFields").getValue().toString();
-                      //  String uri = dataSnapshot.child("imageUrl").getValue().toString();
+                    if(dataSnapshot.exists()) {
+
+                        if(dataSnapshot.child("name").getValue() != null) {
+                            String name = dataSnapshot.child("name").getValue().toString();
+                            textViewUserName.setText(name);
+                        }
+
+                        if(dataSnapshot.child("totalArea").getValue() != null) {
+                            String area = dataSnapshot.child("totalArea").getValue().toString();
+                            textViewArea.setText(cardView.getContext().getResources().getString(R.string.userDetailHa, area));
+                        }
+
+                        if(dataSnapshot.child("totalFields").getValue() != null) {
+                            String fields = dataSnapshot.child("totalFields").getValue().toString();
+                            textViewNumberOfFields.setText(fields);
+                        }
 
                         if(dataSnapshot.child("code").getValue() != null) {
                              String code = dataSnapshot.child("code").getValue().toString();
                              textViewCode.setText(code);
                         }
 
-                        textViewUserName.setText(name);
-                        textViewArea.setText(area + " ha");
-                        textViewNumberOfFields.setText(fields);
-                       // Glide.with(cardView.getContext()).load(storageReference).into(circleImageView);
-                        //textViewCode.setText(code);
                     }
                 }
 
@@ -123,8 +114,6 @@ public class UserDetailAdapter extends RecyclerView.Adapter<UserDetailAdapter.Vi
 
                 }
             });
-        }
-       // textView.setText(email);
     }
 
     @Override
@@ -139,9 +128,17 @@ public class UserDetailAdapter extends RecyclerView.Adapter<UserDetailAdapter.Vi
         public ViewHolder(@NonNull CardView v) {
             super(v);
             cardView = v;
-
-
         }
     }
+
+
+    public static String fmt(double d)
+    {
+        if(d == (long) d)
+            return String.format("%d",(long)d);
+        else
+            return String.format("%s",d);
+    }
+
 
 }

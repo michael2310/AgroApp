@@ -6,24 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<fragment
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/map"
     tools:context=".ui.home.HomeFragment"
     android:name="com.google.android.gms.maps.SupportMapFragment" />
 
-<!--    <com.esri.arcgisruntime.mapping.view.MapView-->
-<!--        android:id="@+id/map"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-<!--    </com.esri.arcgisruntime.mapping.view.MapView>-->
-
-<androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/employee_recycler">
+    android:id="@+id/employee_recycler"
+        android:focusable="true"
+        android:clickable="true">
 </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/location_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_my_location_24"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="64dp">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 </FrameLayout>

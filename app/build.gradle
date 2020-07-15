@@ -53,6 +53,7 @@ dependencies {
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
     implementation files('glide')
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'androidx.preference:preference:1.1.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     testImplementation 'junit:junit:4.12'

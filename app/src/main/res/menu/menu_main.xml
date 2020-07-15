@@ -5,9 +5,11 @@
     <item
         android:id="@+id/action_location"
         android:orderInCategory="1"
-        android:title="location"
-        app:actionViewClass="android.widget.Switch"
-        app:showAsAction="always">
+        android:title="@string/viewPagerLocation"
+        android:actionLayout="@layout/switch_menu"
+        app:showAsAction="ifRoom">
     </item>
+
+
 
 </menu>
