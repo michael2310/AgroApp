@@ -4,8 +4,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.myapplication.Models.Fields;
-import com.example.myapplication.Models.Owner;
+import com.example.myapplication.models.Fields;
+import com.example.myapplication.models.Owner;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -113,8 +113,6 @@ public class FieldsRepository {
 
                                             int newFields = owner.getTotalFields() - 1;
                                             double newArea = owner.getTotalArea() - area;
-                                            //  UsersRepository.getInstance().getCurrentUserRef().child("totalArea").setValue(newArea)
-                                            //     .continueWith((Continuation<Void, Object>) task -> UsersRepository.getInstance().getCurrentUserRef().child("totalFields").setValue(newFields));
                                             UsersRepository.getInstance().getCurrentUserRef().child("totalArea").setValue(newArea).continueWith((Continuation<Void, Object>) task1 -> UsersRepository.getInstance().getCurrentUserRef().child("totalFields").setValue(newFields));
                                         }
                                     });

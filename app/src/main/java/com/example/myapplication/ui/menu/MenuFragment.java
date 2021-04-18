@@ -19,17 +19,17 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.AboutAppActivity;
-import com.example.myapplication.Adapters.MenuAdapter;
-import com.example.myapplication.Adapters.UserDetailAdapter;
-import com.example.myapplication.SettingsActivity;
+import com.example.myapplication.ui.AboutAppActivity;
+import com.example.myapplication.adapters.MenuAdapter;
+import com.example.myapplication.adapters.UserDetailAdapter;
+import com.example.myapplication.ui.SettingsActivity;
 import com.example.myapplication.db.UsersRepository;
-import com.example.myapplication.ui.LoginAndRegister.LoginActivity;
-import com.example.myapplication.ui.Workers.WorkersActivity;
-import com.example.myapplication.Models.MenuNames;
-import com.example.myapplication.OptimalizationActivity;
+import com.example.myapplication.ui.loginAndRegister.LoginActivity;
+import com.example.myapplication.ui.workers.WorkersActivity;
+import com.example.myapplication.models.MenuNames;
+import com.example.myapplication.ui.optimization.OptimizationActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.FieldRecords.FieldsRecordActivity;
+import com.example.myapplication.ui.fieldRecords.FieldsRecordActivity;
 import com.example.myapplication.ui.machines.MachniesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -38,7 +38,6 @@ import com.google.firebase.database.DatabaseError;
 
 public class MenuFragment extends Fragment implements ChildEventListener {
 
-    private MenuViewModel menuViewModel;
     private RecyclerView infoRecycler;
     private RecyclerView menuRecycler;
 
@@ -47,20 +46,11 @@ public class MenuFragment extends Fragment implements ChildEventListener {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        menuViewModel =
-                ViewModelProviders.of(this).get(MenuViewModel.class);
-        //final TextView textView = root.findViewById(R.id.text_menu);
-        menuViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                //    textView.setText(s);
-            }
-        });
+
 
         View root = inflater.inflate(R.layout.fragment_menu, container, false);
 
         return root;
-        //return menuRecycler;
     }
 
     @Override
@@ -68,7 +58,7 @@ public class MenuFragment extends Fragment implements ChildEventListener {
         super.onViewCreated(view, savedInstanceState);
 
         infoRecycler = (RecyclerView) view.findViewById(R.id.infoRecycler);
-        menuRecycler = (RecyclerView) view.findViewById(R.id.machineListView) ;
+        menuRecycler = (RecyclerView) view.findViewById(R.id.tractorsRecycler) ;
         ListView userListview = (ListView) view.findViewById(R.id.userListView);
 
 
@@ -104,7 +94,7 @@ public class MenuFragment extends Fragment implements ChildEventListener {
                         intent = new Intent(getActivity(), FieldsRecordActivity.class);
                        break;
                     case 1:
-                        intent = new Intent(getActivity(), OptimalizationActivity.class);
+                        intent = new Intent(getActivity(), OptimizationActivity.class);
                         break;
                     case 2:
                         intent = new Intent(getActivity(), WorkersActivity.class);
@@ -144,7 +134,6 @@ public class MenuFragment extends Fragment implements ChildEventListener {
                         builder.setNegativeButton("Nie", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                ////
                             }
                         });
                     AlertDialog alertDialog = builder.create();
@@ -175,13 +164,11 @@ public class MenuFragment extends Fragment implements ChildEventListener {
     @Override
     public void onPause() {
         super.onPause();
-        UsersRepository.getInstance().getCurrentUserRef().removeEventListener(this);
+        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+            UsersRepository.getInstance().getCurrentUserRef().removeEventListener(this);
+        }
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
 
     @Override
     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {

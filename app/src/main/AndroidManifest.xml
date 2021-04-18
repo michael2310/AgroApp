@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
 
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -11,6 +12,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
+
+
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -23,15 +26,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutAppActivity"></activity>
+        <activity android:name=".ui.AboutAppActivity" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".BluetoothActivity" />
-        <activity android:name=".ui.Workers.EmployeeDetailActivity" />
-        <activity android:name=".ui.Workers.EmployeeFarmCodeActivity" />
+        <activity android:name=".bt.BluetoothActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.workers.EmployeeDetailActivity" />
+        <activity android:name=".ui.workers.EmployeeFarmCodeActivity" />
         <activity
-            android:name=".ui.LoginAndRegister.CheckUserLoggedInActivity"
+            android:name=".ui.loginAndRegister.CheckUserLoggedInActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,33 +43,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Workers.EmployeeMainActivity" />
-        <activity android:name=".ui.LoginAndRegister.RegisterInfoEmployeeActivity" />
-        <activity android:name=".ui.LoginAndRegister.RegisterInfoOwnerActivity" />
+        <activity android:name=".ui.workers.EmployeeMainActivity" />
+        <activity android:name=".ui.loginAndRegister.RegisterInfoEmployeeActivity" />
+        <activity android:name=".ui.loginAndRegister.RegisterInfoOwnerActivity" />
         <activity
-            android:name=".ui.Workers.WorkersActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".OptimalizationActivity" />
+            android:name=".ui.workers.WorkersActivity"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity android:name=".ui.optimization.OptimizationActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
 
-        <activity android:name=".ui.FieldRecords.FieldsDetailActivity" />
-        <activity android:name=".ui.FieldRecords.FieldsRecordActivity" />
-        <activity android:name=".ui.LoginAndRegister.RegisterActivity" />
+        <activity android:name=".ui.fieldRecords.FieldsDetailActivity" />
+        <activity android:name=".ui.fieldRecords.FieldsRecordActivity" />
+        <activity android:name=".ui.loginAndRegister.RegisterActivity" />
         <activity
-            android:name=".ui.LoginAndRegister.LoginActivity"
+            android:name=".ui.loginAndRegister.LoginActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name" />
         <activity
             android:name=".ui.machines.MachniesActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.MainActivity" />
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
 
-        <service android:name=".Services.LocationService" />
+        <service android:name=".services.LocationService" />
     </application>
 
 </manifest>

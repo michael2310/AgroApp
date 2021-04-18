@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/backgroundGray"
-    tools:context=".ui.FieldRecords.FieldsDetailActivity">
+    tools:context=".ui.fieldRecords.FieldsDetailActivity">
 
 
     <com.google.android.material.appbar.AppBarLayout

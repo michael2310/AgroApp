@@ -64,7 +64,7 @@
 
 
         <ListView
-            android:id="@+id/machineListView"
+            android:id="@+id/tractorsRecycler"
             android:layout_width="match_parent"
             android:layout_height="195dp"
             android:layout_marginTop="16dp"
@@ -89,7 +89,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/machineListView"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/tractorsRecycler"></TextView>
 
         <ListView
             android:id="@+id/userListView"

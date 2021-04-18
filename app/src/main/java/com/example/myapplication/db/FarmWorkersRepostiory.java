@@ -2,17 +2,15 @@ package com.example.myapplication.db;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.myapplication.Models.JoinEmployee;
-import com.example.myapplication.Models.Owner;
-import com.example.myapplication.ui.Workers.EmployeeFarmCodeActivity;
-import com.example.myapplication.ui.Workers.EmployeeMainActivity;
-import com.example.myapplication.ui.Workers.WorkersActivity;
+import com.example.myapplication.models.JoinEmployee;
+import com.example.myapplication.models.Owner;
+import com.example.myapplication.ui.workers.EmployeeMainActivity;
+import com.example.myapplication.ui.workers.WorkersActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,6 +43,10 @@ public class FarmWorkersRepostiory {
         return farmWorkersRef.child(ownerId);
     }
 
+    public DatabaseReference getUserFarmWorkersRef() {
+        return farmWorkersRef.child(auth.getCurrentUser().getUid());
+    }
+
     public void addFarmMember(View view, String pinValue) {
         if (auth.getCurrentUser() != null) {
             Query query = UsersRepository.getInstance().getUsersRef().orderByChild("code").equalTo(pinValue);
@@ -62,6 +64,7 @@ public class FarmWorkersRepostiory {
                             //circleReference1.child(user.getUid()).setValue(joinEmployee).addOnCompleteListener(new OnCompleteListener<Void>() {
                             getOwnerId(ownerId).child(auth.getCurrentUser().getUid()).setValue(joinEmployee);
                             UsersRepository.getInstance().getCurrentUserRef().child("farmName").setValue(owner.getName());
+                            UsersRepository.getInstance().getCurrentUserRef().child("ownerId").setValue(owner.getId());
                             UsersRepository.getInstance().getCurrentUserRef().child("farmCode").setValue(owner.getCode()).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -97,6 +100,7 @@ public class FarmWorkersRepostiory {
                     Owner owner = snapshot.getValue(Owner.class);
                     getOwnerId(auth.getCurrentUser().getUid()).child(employeeId).removeValue();
                     UsersRepository.getInstance().getUsersRef().child(employeeId).child("farmName").removeValue();
+                    UsersRepository.getInstance().getUsersRef().child(employeeId).child("ownerId").removeValue();
                     UsersRepository.getInstance().getUsersRef().child(employeeId).child("farmCode").removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

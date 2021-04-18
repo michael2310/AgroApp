@@ -4,10 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.myapplication.OptimalizationCultivationFragment;
-import com.example.myapplication.SprayingFragment;
-import com.example.myapplication.ui.home.HomeFragment;
-import com.example.myapplication.ui.menu.MenuFragment;
+import com.example.myapplication.ui.optimization.OptimizationCultivationFragment;
+import com.example.myapplication.ui.optimization.SprayingFragment;
 
 public class OptimalizationPagerAdapter extends FragmentStateAdapter {
 
@@ -17,7 +15,7 @@ public class OptimalizationPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public Fragment createFragment(int position) {
-        return (position == 0) ? new SprayingFragment() : new OptimalizationCultivationFragment();
+        return (position == 0) ? new SprayingFragment() : new OptimizationCultivationFragment();
     }
 
     @Override

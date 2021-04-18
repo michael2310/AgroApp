@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/backgroundGray"
-    tools:context=".ui.LoginAndRegister.RegisterActivity">
+    tools:context=".ui.loginAndRegister.RegisterActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
@@ -34,7 +34,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:onClick="onClickRegister"
         android:text="Rejestracja"
         android:background="@drawable/upgrade_button"
         android:padding="8dp"

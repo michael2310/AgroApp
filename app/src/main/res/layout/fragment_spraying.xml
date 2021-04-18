@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SprayingFragment"
-    android:background="@color/background2">
+    tools:context=".ui.optimization.SprayingFragment"
+    android:background="@drawable/rounded_shape">
 
 <!--        <androidx.recyclerview.widget.RecyclerView-->
 <!--            android:id="@+id/sprayRecycler"-->

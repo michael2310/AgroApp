@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,11 +15,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.Adapters.WorkersMapAdapter;
-import com.example.myapplication.Models.Employee;
-import com.example.myapplication.Models.Fields;
-import com.example.myapplication.Models.Owner;
+import com.example.myapplication.adapters.WorkersMapAdapter;
+import com.example.myapplication.models.Employee;
+import com.example.myapplication.models.Owner;
 import com.example.myapplication.R;
+import com.example.myapplication.db.FarmWorkersRepostiory;
 import com.example.myapplication.db.UsersRepository;
 import com.example.myapplication.db.WorkersRepository;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,7 +42,6 @@ import java.util.Map;
 public class HomeFragment extends Fragment implements OnMapReadyCallback, ChildEventListener {
 
     private final String TAG = HomeFragment.class.getSimpleName();
-    private HomeViewModel homeViewModel;
     private WorkersMapAdapter workersMapAdapter;
     private SupportMapFragment mapFragment;
     private Employee employee;
@@ -63,14 +61,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, ChildE
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-            }
-        });
+
         return root;
     }
 
@@ -88,18 +81,18 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, ChildE
             googleMap = gMap;
         });
 
+
         menuRecycler = view.findViewById(R.id.employee_recycler);
         workersMapAdapter = new WorkersMapAdapter();
-        //manager ukladu
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false);
         menuRecycler.setLayoutManager(layoutManager);
         menuRecycler.setAdapter(workersMapAdapter);
 
         FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.location_button);
 
-    if(!flag) {
+        if(!flag) {
         zoomToUser();
-    }
+        }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,25 +101,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, ChildE
             }
         });
 
-
         workersMapAdapter.setListener(new WorkersMapAdapter.Listener() {
             @Override
             public void onClick(int position) {
-                Employee employee = workersMapAdapter.employeeArrayListMap.get(position);
-                if(workers.get(employee.getId()) != null){
-                    if(googleMap != null){
-                        LatLng latLng = new LatLng(employee.getLat(), employee.getLng());
-                        CameraPosition cameraPosition =
-                                new CameraPosition.Builder()
-                                        .target(latLng)
-                                        .bearing(0)
-                                        .tilt(0)
-                                        .zoom(15)
-                                        .build();
-                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                    }
-                    Toast.makeText(getContext(), workersMapAdapter.employeeArrayListMap.get(position).getName().toString(), Toast.LENGTH_SHORT).show();
-                }
+              zoomToEmployee(position);
             }
         });
     }
@@ -172,7 +150,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, ChildE
 
             if (googleMap != null) {
                 LatLng latLng = new LatLng(employee.getLat(), employee.getLng());
-                Marker workerData = workers.get(employee.getId());
+                Marker workerData = workers.get(employee.getId()); // tu chyba pobierany jest marker z listy na podstawie id pracownika
                 if (workerData == null) {
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(latLng);
@@ -216,6 +194,24 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, ChildE
 
             }
         });
+    }
+
+    private void zoomToEmployee(int position){
+        Employee employee = workersMapAdapter.employeeArrayListMap.get(position);
+        if(workers.get(employee.getId()) != null){
+            if(googleMap != null){
+                LatLng latLng = new LatLng(employee.getLat(), employee.getLng());
+                CameraPosition cameraPosition =
+                        new CameraPosition.Builder()
+                                .target(latLng)
+                                .bearing(0)
+                                .tilt(0)
+                                .zoom(15)
+                                .build();
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            }
+            Toast.makeText(getContext(), workersMapAdapter.employeeArrayListMap.get(position).getName().toString(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initWindow(GoogleMap gMap) {
@@ -286,10 +282,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, ChildE
     @Override
     public void onStart() {
         super.onStart();
-//        workersMapAdapter.employeeArrayListMap.clear();
-//        WorkersRepository.getInstance().getUserFarmWorkersRef().addChildEventListener(this);
-//        startObserveUser();
-//        startObserveWorkers();
         flag = true;
     }
 
@@ -297,7 +289,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, ChildE
     public void onResume() {
         super.onResume();
         workersMapAdapter.employeeArrayListMap.clear();
-        WorkersRepository.getInstance().getUserFarmWorkersRef().addChildEventListener(this);
+        FarmWorkersRepostiory.getInstance().getUserFarmWorkersRef().addChildEventListener(this);
         startObserveUser();
         startObserveWorkers();
     }
@@ -306,7 +298,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, ChildE
     public void onPause() {
         stopObserveUser();
         stopObserveWorkers();
-        WorkersRepository.getInstance().getUserFarmWorkersRef().removeEventListener(this);
+        FarmWorkersRepostiory.getInstance().getUserFarmWorkersRef().removeEventListener(this);
         super.onPause();
     }
 
@@ -356,12 +348,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, ChildE
 
     @Override
     public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-        Log.d(TAG, "onChildChanged: ");
-        if (workersMapAdapter != null) {
-            Employee employee = dataSnapshot.getValue(Employee.class);
-            replace(employee);
-        }
-        workersMapAdapter.notifyDataSetChanged();
     }
 
     private void replace(Employee employee) {

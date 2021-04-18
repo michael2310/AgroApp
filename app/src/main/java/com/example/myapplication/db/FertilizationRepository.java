@@ -4,9 +4,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.myapplication.Models.FieldsDetailFertilization;
-import com.example.myapplication.Models.FieldsDetailPlantProtection;
-import com.example.myapplication.Models.Owner;
+import com.example.myapplication.models.FieldsDetailFertilization;
+import com.example.myapplication.models.Owner;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

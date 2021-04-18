@@ -9,7 +9,7 @@
     <!-- MachineTabs -->
     <string name="tractors_tab">Ciągniki</string>
     <string name="harvesters_tab">Kombajny</string>
-    <string name="handlers_tab">Ładowarki</string>
+    <string name="othersMachinesTab">Inne</string>
 
 
     <!-- userListView -->
